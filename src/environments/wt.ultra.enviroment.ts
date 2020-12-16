@@ -1,0 +1,68 @@
+export const WT_CONFIG = {
+  CRM_BASE_URL: 'https://api.ultraproexchange.com',
+  BO_BASE_URL: 'https://ultrawt.mt4.space/',
+  BO_DEMO_BASE_URL: 'https://whalestagewt.mt4.space:23998',
+  FOX_BASE_URL: 'https://ultrafoxapi.microfox.io:20000',
+
+
+  TERMS_CONDITIONS_EN: '',
+  TERMS_CONDITIONS_ZH: '',
+  TERMS_CONDITIONS_KO: '',
+  TERMS_CONDITIONS_TH: '',
+  TERMS_CONDITIONS_JP: '',
+  TERMS_CONDITIONS_VI: '',
+
+  dynamicCoachMark: true,
+  getFoxAPI: true,
+  s3BucketPath: "",
+
+  ABOUT_US: '',
+  CRM_APP: '',
+  BRAND_NAME: 'ULTRA',
+  MERCHANT_KEY: "12345",
+  DOMAIN: 'crm.broctagon.com',
+  appType: 'web',
+  LOGGING_BASE_URL: 'https://frontend-logging.broctagon.com:9343',
+  SECRET_KEY: '1c3f945e-9f43-44d8-ae9a-a247ea385e1e',
+  APP_TITLE: 'Crypto Countdown',
+
+  REGISTER_URI: '/v2/register/short',
+  DEPOSIT_URI: '/api/v1/deposit/gateways',
+  WITHDRAWAL_URI: '/api/v1/withdraw/get-withdraw',
+  REFRESH_URI: '/v2/refresh',
+  HISTORY_URI: '',
+  HISTORY_ARCHIVE_URI: '',
+  LOGIN_URI: '/webtrader/login',
+  LOGOUT_URI: '/logout',
+  FORGOT_PSWRD_URI: '',
+  APP_CONFIG_URI: '',
+  UPDATE_TOKEN: '',
+  USER_PROFILE: '/v2/member/profile',
+  DEPOSIT_UPLOAD_URI: '/api/deposit/upload',
+  DEPOSIT_CARD_URI: '/api/deposit/card',
+  WITHDRAWAL_WT_URI: '/api/withdrawal',
+  VALIDATE_PROMOCODE_URI: '/v2/validate/promoCode?',
+  VERIFY_URI: '/verify',
+  LOGIN_URI_TOKEN: '/wt/validate',
+  LOGIN_URI_TEMP_TOKEN: '/wt/validate',
+
+  FOX_LOGIN_URI: '/api/auth',
+  FOX_LOGOUT_URI: '/api/logout',
+  FOX_HISTORY_URI: '/api/mt4/TradeL?',
+  FOX_HISTORY_ARCHIVE_URI: '/api/mt4/archive-tradeL?',
+  FOX_REFRESH_URI: '/v2/refresh',
+  FOX_BALANCE_URI: '/api/user/Balance/',
+
+  IMAGE_ROOT: '',
+  GA_TRACKING_CODE: '',
+  liveChatLicenseId: 0,
+  CrazyeggId: '0083/7262.js',
+  showLiveChatIntervalDesktop: 30000,
+  showLiveChatIntervalMobile: 180000,
+  csEmail: { csEmail: 'info@whale-inc.com' },
+  mtVersion: {
+    mtx: 'MT4'
+  },
+  languageIconMember: 'assets/images/globe-member.png',
+  languageIconAdmin: 'assets/images/globe-member.png'
+};

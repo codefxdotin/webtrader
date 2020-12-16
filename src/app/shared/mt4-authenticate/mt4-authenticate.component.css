@@ -1,0 +1,35 @@
+.topMargin22 {
+  margin-top: 22px;
+}
+
+.fa-power-off {
+  font-size: 30px;
+  color: #fca600;
+  text-shadow: 3px 3px #000;
+}
+
+.mt4Validation {
+  margin: -30px 0 0
+}
+
+.mg-25 {
+  margin-top: -25px;
+}
+
+.logimg {
+  opacity: 0.5;
+}
+
+.mt4-login-validation {
+  font-size: 12px;
+  color: #f38383 !important;
+  margin: 0 0;
+}
+
+.mt4-login-block .loginform input {
+  margin-bottom: 0;
+}
+
+.rem-input {
+  color: #fff;
+}

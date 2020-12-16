@@ -1,0 +1,8 @@
+<router-outlet></router-outlet>
+<ng-template ngbModalContainer></ng-template>
+<div *ngIf="licenseId && brandName != 'FXOAK'" >
+    <livechat-widget [licenseId]="licenseId" [group]="groupLogin"></livechat-widget>
+  </div>
+<!-- <button *ngIf="utils.promptEvent" (click)="installPwa()">
+  Install
+</button> -->

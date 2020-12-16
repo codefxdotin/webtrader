@@ -1,0 +1,63 @@
+<div class="modal-header modal-headerbg">
+
+  <a class=" close-button" aria-label="Close" (click)="closeView()"><img src="{{'assets/images/backbt.png?v='+cacheBusting['backbt.png']}}"/></a>
+  <h3 *ngIf="componentFields && !gatewaySelected" class=" modal-title" id="myModalLabel">{{componentFields.title}}</h3>
+  <h3 *ngIf="componentFields && gatewaySelected" class=" modal-title" id="myModalLabel">
+    {{selectedGateway.form.title}}</h3>
+</div>
+<div class="image-overlay loader-bkg" *ngIf="!componentFields || depositFormSubmitting">
+  <div class="loader">
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__bar"></div>
+    <div class="loader__ball"></div>
+  </div>
+</div>
+<div class="modal-body d-flex depositform" *ngIf="componentFields">
+  <div *ngIf="!gatewaySelected" class="row">
+
+    <div class="col-12 info-text ">{{componentFields.body}}</div>
+
+    <div class="col-12 d-flex select-banktype">
+      <div class="col-3 banktype-block " *ngFor="let gateway of componentFields.gateways;let i = index">
+        <img [src]="gateway.image" class="img-fluid payimg">
+        <br>
+        <button (click)="selectGateway(i)" class="btn bt-second-color">{{gateway.name}}</button>
+      </div>
+    </div>
+
+    <div class="col-12 note-text">
+      <h6>{{componentFields.note.title}}</h6>
+      <span>{{componentFields.note.body}}</span>
+    </div>
+  </div>
+  <div *ngIf="gatewaySelected" class="col-12 fee-text-block">
+    <div class="deposit-notetext pull-left">
+      <p class="pull-left" *ngFor="let note of selectedGateway.form.body.p">
+        <ng-container>{{note}}&nbsp;</ng-container>
+      </p>
+
+      <p class="pull-left" *ngFor="let note of selectedGateway.form.body.li">
+        <ng-container>{{note}}&nbsp;</ng-container>
+      </p>
+
+    </div>
+
+    <dynamic-form class="pull-left" [config]="config" #form="gatewayForm" (submit)="gatewayFormSubmit($event)">
+    </dynamic-form>
+    <div *ngIf="showErrorMessage" class="alert-danger">
+      <span *ngFor="let error of errorMessages">{{error}}<br></span>
+    </div>
+    <form class="zero-height" #gatewayRedirect [method]="gateWayRedirect.method" [action]="gateWayRedirect.url">
+      <div *ngFor="let key of gateWayRedirect.elements | keyValue">
+        <input type="hidden" *ngIf="key != 'returnUrl'" [name]="key" [value]="gateWayRedirect.elements[key]">
+        <input type="hidden" *ngIf="key == 'returnUrl'" [name]="key" [value]="gateWayRedirect.returnUrl">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer nopadding">
+
+</div>

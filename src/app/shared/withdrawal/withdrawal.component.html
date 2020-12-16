@@ -1,0 +1,62 @@
+<div class="modal-header modal-headerbg">
+  <a *ngIf="withdrawalAllowed" class=" close-button" aria-label="Close" (click)="closeWithdrawal()"><img src="{{'/assets/images/backbt.png?v='+cacheBusting['backbt.png']}}" /></a>
+  <h3 *ngIf="!withdrawalAllowed" class="modal-title" id="myModalLabel">{{'withdrawal_heading' | translate}}</h3>
+  
+  <h3 *ngIf="withdrawalAllowed && withdrawalComponentFields && !withdrawalGatewaySelected" class="modal-title" id="myModalLabel">{{withdrawalComponentFields.title}}</h3>
+  <h3 *ngIf="withdrawalAllowed && withdrawalComponentFields && withdrawalGatewaySelected" class="modal-title" id="myModalLabel">{{selectedGateway.name}}</h3>
+  <a *ngIf="!withdrawalAllowed" class="pull-right close-button" aria-label="Close" (click)="closeWithdrawal()"><img src="{{'/assets/images/closebt.png?v='+cacheBusting['closebt.png']}}" /></a>
+</div>
+
+<div class="image-overlay loader-bkg" *ngIf="!withdrawalComponentFields && !withdrawalErrMessage ">
+            <div class="loader">
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__ball"></div>
+            </div>
+</div>
+
+<div class="modal-body d-flex depositform" >
+
+  <div *ngIf="withdrawalAllowed" class="col-12 withdrawalmethods">
+    <div *ngIf="!withdrawalGatewaySelected" class="row">
+      <div class="col-12 d-flex select-banktype">
+        <div class="row full-width">
+          <div class="col-3 banktype-block " *ngFor="let withmethods of getWithdrawalMethods;let i = index">
+            <img [src]=withmethods.image class="img-fluid payimg">
+            <br>
+            <button (click)="selectWithdrawalGateway(i)" class="btn bt-second-color">{{withmethods.name}}</button>
+          </div>
+          <div class="col-3 banktype-block" *ngFor="let test of empDivs">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="withdrawalGatewaySelected" class="">
+
+      <div class="withdraw-notetext">
+        <p *ngFor="let note of selectedGateway.form.body.p" class="pull-left">
+          <span>{{note}}</span>
+        </p>
+      </div>
+
+      <dynamic-form  [config]="config" #form="gatewayForm" (submit)="withdrawalFormSubmit($event)">
+      </dynamic-form>
+    </div>
+
+  </div>
+
+  <div class="col-12" *ngIf="!withdrawalAllowed">
+  <div class="response-msg-block" *ngFor="let message of withdrawalErrMessage">
+    <div class="response-msg" >{{message.body}}</div>
+  </div>
+</div>
+
+</div>
+
+<div class="modal-footer nopadding">
+</div>

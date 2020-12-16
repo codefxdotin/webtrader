@@ -1,0 +1,60 @@
+<div>
+  <div class="modal-header modal-headerbg">
+    <a class=" close-button" aria-label="Close" (click)="close()"><img src="{{'assets/images/backbt.png?v='+cacheBusting['backbt.png']}}"/></a>
+    <span class="col-7 profile-menu">{{'Profile' | translate}}</span>
+  </div>
+  <table *ngIf="user" class="profile-details">
+    <tr>
+      <td>{{user.email.label}}</td>
+      <td>:</td>
+      <td>{{user.email.value}}</td>
+    </tr>
+    <tr>
+      <td>{{user.name.label}}</td>
+      <td>:</td>
+      <td>{{user.name.value}}</td>
+    </tr>
+    <tr>
+      <td>{{user.phone[0].label}}</td>
+      <td>:</td>
+      <td>{{user.phone[0].value}}</td>
+    </tr>
+    <tr>
+      <td>{{user.country.label}}</td>
+      <td>:</td>
+      <td>{{user.country.value}}</td>
+    </tr>
+    <tr>
+      <td>{{'Citizenship' | translate}}</td>
+      <td>:</td>
+      <td>{{user.citizenship.value}}</td>
+    </tr>
+    <tr>
+      <td>{{user.address[0].label}}</td>
+      <td>:</td>
+      <td>{{(user.address[0].value !== null && user.address[0].value !== "") ? user.address[0].value :
+        ''}}{{(user.address[1].value !== null && user.address[1].value !== "") ? ((user.address[0].value !== null &&
+        user.address[0].value !== "") ? ', ':'')+user.address[1].value+'.' : (user.address[0].value !== null &&
+        user.address[0].value !== "") ? '.':''}}
+      </td>
+    </tr>
+    <tr>
+      <td>{{user.document_verified.label}}</td>
+      <td>:</td>
+      <td>{{user.document_verified.value == 1 ? ('Verified' | translate): ('Not_Verified' | translate)}}</td>
+    </tr>
+  </table>
+
+  <div class='aligner'>
+    <div class='loader-bkg aligner-item' *ngIf="!isDataLoaded">
+      <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+      </div>
+    </div>
+  </div>
+</div>

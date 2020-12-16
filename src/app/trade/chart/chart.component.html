@@ -1,0 +1,10 @@
+<div>
+	<!-- <div class="loading" *ngIf="!chartLoaded"></div> -->
+	<!-- <div [ng2-highstocks]="chartStock" class="graph"></div> -->
+	<div class="chart-control">
+		<button id="zoomIn" (click)="chartZoomIn()">+</button>
+		<button id="zoomOut" (click)="chartZoomOut()">-</button>
+		<button id="resetZoom" (click)="chartResetZoom()"></button>
+	</div>
+	<div #chartContainer id="chartContainer"  [ngStyle]=" { height: height + 'px', width: width + 'px' }"></div>
+</div>

@@ -1,0 +1,81 @@
+<div class="modal-header modal-headerbg ">
+  <h4 class=" modal-title" id="myModalLabel">{{'Binding_MT4_Account' | translate}}</h4>
+  <a *ngIf="loggedIn" class="" aria-label="Close" (click)="closeModal()"><img src="{{'assets/images/closebt.png?v='+cacheBusting['closebt.png']}}"/></a>
+  <a *ngIf="!loggedIn" style="cursor:pointer" class="logimg" aria-label="Close" (click)="crmLogout()">
+    <!-- <i class="fa fa-power-off"></i>--> <img src="{{'assets/images/logout.png?v='+cacheBusting['logout.png']}}"/></a>
+</div>
+<div class="d-flex container mt4 mt4-login-block mt40">
+  <div class="col-12 no-padding">
+
+    <div class="modal-body">
+      <!-- <form> -->
+      <form #form="ngForm" action="" (ngSubmit)=login() novalidate>
+
+        <div class="col-sm-12 no-padding loginform">
+
+
+          <div class="d-flex flex-column flex-sm-row" *ngFor="let account of mt4Accounts; let i = index">
+            <div class="col-sm-6 col-md-6  ">
+              <div class="row">
+                <div class="checkicon">
+                  <i class="fa fa-check-circle" [ngClass]="{'active':account.validate}"></i>
+                </div>
+                <h5><span>{{account.accountId}}</span></h5>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6 ">
+              <div class="row">
+                <input [(ngModel)]="account.password"
+                       [ngClass]="{'validated': account.password != '' && account.validateStatus == 'true' }"
+                       name="mt4-{{account.accountId}}" placeholder="{{'MT4_Password' | translate}}" type="password"
+                       value="" id="password_{{i}}"
+                       [autofocus]="account.password==''|| account.isSelected" [disabled]="account.validate" required/>
+                <!--<i class="fa statusIcon" [ngClass]="{'fa-check green': account.password != ''&& account.validateStatus==true,
+                                    'fa-remove red': account.validateStatus==false}"></i>-->
+              </div>
+              <div class="row">
+                <p *ngIf="! passwordEmpty && account.validateStatus==false" class="mt4-login-validation">
+                  {{'MT4_Password_Incorrect' | translate}}</p>
+                <p *ngIf="passwordEmpty && !account.validate" class="mt4-login-validation">{{'Please_Enter_Password' |
+                  translate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <!--
+                            <div *ngIf="passwordEmpty" class="col-md-12">
+                                <div class="validation mt4Validation">
+                                   {{'Please_Enter_Password' | translate}}
+                                </div>
+                            </div>
+                        -->
+          <!--<div class="float-left col no-padding remember mt40">
+              <input id="rememberme" type="checkbox" name="checkbox" value="rememberMe"  [(ngModel)]="rememberMe">
+              <label for="rememberme" class="rem-input">{{'MT4_Remember_Me' | translate}}</label>
+          </div>-->
+
+          <!--<div class="d-flex  col-xs-8 push-xs-2 col-sm-8 col-md-8 push-md-2 push-sm-2">-->
+
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="d-flex  modal-footer">
+
+  <button type="submit" class="btn bt-second-color" value="Log In" [ngClass]="{'':disableSubmit}" (click)="login()"
+          [disabled]="disableSubmit">{{'MT4_Submit' | translate}} <i *ngIf="disableSubmit"
+                                                                     class='fa fa-circle-o-notch fa-spin'></i></button>
+
+</div>
+
+<!--<div class="d-flex modal-footer ">
+            <button type="submit" class="btn bt-second-color btn-secondary" value="Log In" [ngClass]="{'':disableSubmit}" (click)="login()" [disabled]="disableSubmit">{{'MT4_Submit' | translate}} <i *ngIf="disableSubmit" class='fa fa-circle-o-notch fa-spin'></i></button>
+        </div>-->
+
+
+

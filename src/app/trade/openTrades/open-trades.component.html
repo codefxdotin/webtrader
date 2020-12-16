@@ -1,0 +1,93 @@
+<span *ngIf="tradeViewLoaded"></span>
+<div *ngIf="tradeViewLoaded" id="scroller" class="opentrades side-collapse animated" [ngClass]="{'in': showOpenTrades,
+              'slideInLeft': showOpenTrades, 'fadeOutLeftBig': !showOpenTrades}" [ngStyle]=" { height: headerWrapperHeight + 'px' }" [perfectScrollbar]>
+  <div class="d-flex justify-content-between align-items-center trading-strip" > 
+    <div class="heading d-flex align-items-center">
+
+      <a href="" (click)="close()">
+        <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="angle-left" role="img"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-angle-left fa-w-6 fa-9x">
+          <path fill="currentColor"
+            d="M25.1 247.5l117.8-116c4.7-4.7 12.3-4.7 17 0l7.1 7.1c4.7 4.7 4.7 12.3 0 17L64.7 256l102.2 100.4c4.7 4.7 4.7 12.3 0 17l-7.1 7.1c-4.7 4.7-12.3 4.7-17 0L25 264.5c-4.6-4.7-4.6-12.3.1-17z"
+            class=""></path>
+        </svg>
+      </a>
+      <span class="opentrades-font"> {{'Open_Open_Positions' | translate}}</span>
+    </div>
+  </div>
+  <div class="empty-trade" *ngIf="counter()">{{'Open_NO_Trade' | translate}}</div>
+  <!-- ng repeat  -->
+
+  <div  class="scroll-y" >
+  <div *ngFor="let openTrade of openTrades | openTradeOrderbyId">
+    <div class="positions-row" *ngIf="openTrade.symbol">
+      <!-- circle lose -->
+      <div class="open-card">
+        <div class="progress-wrapper" [ngClass]="{'trade-result': openTrade.closeTime && openTrade.counter<=0}">
+          <div class="timer-text" *ngIf="openTrade.counter && openTrade.counter>0">
+            <!-- {{date | countDownTimer:openTrade.expirationTime:true | timeHMS}} -->
+            <!-- <span *ngIf="openTrade.timeLeft>10">{{date | countDownTimer:openTrade.expirationTime:true:openTrade.openTime | timeHMS}}</span> -->
+            <!-- <span *ngIf="openTrade.timeLeft<=10">{{openTrade.timeLeft}}s</span> -->
+            <span *ngIf="openTrade.counter>=10">{{(openTrade.counter).toFixed(0) | timeHMS}}</span>
+            <span *ngIf="openTrade.counter<10">{{(openTrade.counter).toFixed(1)}}s</span>
+          </div>
+          <div *ngIf="openTrade.closeTime && openTrade.counter<=0" [ngClass]="{'lose':openTrade.profit<0,'win':openTrade.profit>0,
+                                    'draw':openTrade.profit==0, 'open-position-res':true}">
+            {{openTrade | openTradeStatus | translate}}</div>
+            <round-progress *ngIf="(openTrade.counter && openTrade.counter>0) || !openTrade.closeTime"
+            [current]="openTrade.counter"
+            [max]="openTrade.openTime | countDownTimer:openTrade.expirationTime:false" [stroke]="3" [radius]="35"
+            [rounded]="rounded" [responsive]="true" [clockwise]="true" [color]="gradient ? 'url(#gradient)' : '#2bc934'"
+            [background]="'#ffffff'" [duration]="800" [animation]="'easeOutCubic'" [animationDelay]="0">
+          </round-progress>
+        </div>
+        <!-- end circle lose -->
+        <div class="bottomborder">
+         <div class="symbol-wrap">
+          <h5 class="opentrades-font">{{openTrade.symbol}} <i class="fa iconsize open_position_symbol_align"
+            [ngClass]="{'fa-angle-double-down losetxt' : openTrade.action == 'Down', 'fa-angle-double-up wintxt' : openTrade.action == 'Up'}"></i>
+        </h5>
+        <div class="open-trade-id">
+          <div class="open-trade-text">
+            {{'orderId' | translate}}: &nbsp;
+          </div>
+          <div class="trade-id">
+             {{openTrade.id}}
+          </div>
+        </div>
+         </div>
+
+          <div class="result-trade">
+            <h6 class="opentrades-font">{{'Open_Open' | translate}}: <span>{{openTrade.openPrice}}</span></h6>
+            <h6 class="opentrades-font">{{'Open_Close' | translate}}: <span
+                [ngClass]="{'wintxt': openTrade.openPrice<openTrade.closePrice,
+                                        'losetxt': openTrade.openPrice>openTrade.closePrice,
+                                        'neutraltxt': openTrade.openPrice==openTrade.closePrice}">{{openTrade.closePrice}}</span></h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt15">
+        <div class="profit-padding">
+          <h6 class="opentrades-font opentrades-margin">{{'Open_Amount' | translate}}</h6>
+          <span>${{openTrade.amount}}</span>
+        </div>
+        <div class="profit-padding">
+          <h6 class="opentrades-font opentrades-margin">{{openTrade|timePeriod}}</h6>
+          <span>{{openTrade.payout}}%</span>
+        </div>
+        <div class="profit-padding">
+          <h6 class="opentrades-font opentrades-margin">{{'Open_Profit' | translate}}</h6>
+          <span *ngIf="openTrade.closeTime && openTrade.counter<=0" [ngClass]="{'losetxt':openTrade.profit<0,'wintxt':openTrade.profit>0,
+                                  'neutraltxt':openTrade.profit==0 }">
+                {{openTrade.profit | currency:'USD':'symbol' | wtcurrency}}
+          </span>
+          <span *ngIf="openTrade.counter && openTrade.counter>0">
+                {{0.00 | currency:'USD':'symbol' | wtcurrency}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

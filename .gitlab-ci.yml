@@ -1,0 +1,54 @@
+stages:
+  - wt_qa
+
+build_wt:
+  stage: wt_qa
+  tags:
+    - wt-gitlab
+  only:
+    - /(\d+\.)(\d+\.)(\d+\.)(\d+)-beta/
+  except:
+    - (!(development))
+  script:
+    - pwd
+#    - mkdir QA && cd QA
+    - ls
+#    - rm -rf dist #node_modules
+    - aws s3 cp s3://wt-stage-docker/QA/whale/assets/images/ src/assets/images/ --exclude "*" --include "*.png" --recursive
+    - aws s3 cp s3://wt-stage-docker/QA/whale/assets/images/ src/assets/images/ --exclude "*" --include "*.ico" --recursive
+    - aws s3 cp s3://wt-stage-docker/QA/whale/assets/images/ src/assets/images/ --exclude "*" --include "*.svg" --recursive
+    - aws s3 cp s3://wt-stage-docker/QA/whale/assets/icons/ src/assets/icons/ --exclude "*" --include "*.png" --recursive
+    - aws s3 cp s3://wt-stage-docker/QA/whale/config/ src/config/ --exclude "*" --include "*.ts" --recursive
+    - aws s3 cp s3://wt-stage-docker/QA/whale/config/ src/ --exclude "*" --include "manifest.json" --recursive
+#    - mv -f src/environments/wt.whale.enviroment.ts src/environments/wt.environment.ts
+    - npm install
+    - sudo rm -rf ${PWD}/node_modules/ngx-device-detector
+    - sudo cp -rf /root/ngx-device-detector ${PWD}/node_modules/
+    - sudo chown -R gitlab-runner:gitlab-runner ${PWD}/node_modules/ngx-device-detector
+    - sed -i -e "s/WT_Frontend_Release_Version/$CI_BUILD_REF_NAME/g" ${PWD}/package.json
+    - sed -i -e "s/WT_Frontend_Release_Version/$CI_BUILD_REF_NAME/g" ${PWD}/src/manifest.json
+    - node ./src/cache-busting/cache-busting.js
+    - ng build --configuration=production
+    - sudo chown -R gitlab-runner:gitlab-runner ${PWD}/dist/
+    - cd dist
+    - mkdir scripts
+    - cp /home/gitlab-runner/resources/.htaccess .
+    - cp /home/gitlab-runner/appspecs/appspec.yml-whale-QA appspec.yml
+    - cp /home/gitlab-runner/scripts/postdeploy.sh-whale-QA scripts/postdeploy.sh
+    - tar -cvzf whale-QA-${CI_BUILD_REF_NAME}.tar.gz * .htaccess
+    - sudo aws s3 mv whale-QA-${CI_BUILD_REF_NAME}.tar.gz s3://webtrader-prod-build/ --region=ap-northeast-2
+
+deploy_wt:
+  environment: qa
+  when: manual
+  stage: wt_qa
+  tags:
+    - wt-gitlab
+  only:
+    - /(\d+\.)(\d+\.)(\d+\.)(\d+)-beta/
+  except:
+    - (!(development))
+  script:
+    - echo "Deploying build of V${CI_BUILD_REF_NAME} on QA WT environment"
+    - sudo aws deploy create-deployment --application-name WT-whale-QA --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name WT-whale-QA --file-exists-behavior OVERWRITE --s3-location bucket=webtrader-prod-build,bundleType=tar,key=whale-QA-${CI_BUILD_REF_NAME}.tar.gz --region ap-northeast-2
+    - curl -X DELETE "https://api.cloudflare.com/client/v4/zones/a02be96b25b9bc4d1207c6dbfd4614d9/purge_cache" -H "Content-Type:application/json" -H "X-Auth-Key:595bc403e6ee9c2481afefacca43dae9193cc" -H "X-Auth-Email:dnsserver-1@broctagon.com" --data '{"purge_everything":true}'

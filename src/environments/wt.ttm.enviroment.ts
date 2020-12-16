@@ -1,0 +1,58 @@
+ export const WT_CONFIG = {
+    CRM_BASE_URL:'https://bbv2-backend.ttmtrades.com',
+	BO_BASE_URL:'https://ttmwt.mt4.space:21998',
+	BO_DEMO_BASE_URL: 'https://ttmdemowt.mt4.space:21997',
+	FOX_BASE_URL:'',
+    TERMS_CONDITIONS:'https://s3.ap-northeast-2.amazonaws.com/blackbuckv2-frontend/Production/ttm/assets/registerTermsAndServices/TTM%20TOS%20(Eng).pdf',
+	TERMS_CONDITIONS_ZH:'https://s3.ap-northeast-2.amazonaws.com/blackbuckv2-frontend/Production/ttm/assets/registerTermsAndServices/TTM%20TOS%20(Eng).pdf',
+	ONBORDING_VIDEO_URL_EN: '',
+	ONBORDING_VIDEO_URL_ZH: '',
+    ABOUT_US: 'https://ttmtrades.com/en/about/the-ttm-legacy',
+    CRM_APP: 'https://my.ttmtrades.com',
+	BRAND_NAME: 'TTM Portal',
+    LOGGING_BASE_URL: 'https://frontend-logging.broctagon.com:9343',
+    SECRET_KEY: '1c3f945e-9f43-44d8-ae9a-a247ea385e1e',
+	APP_TITLE: 'Countdown',
+
+    dynamicCoachMark: true,
+    MERCHANT_KEY: '12345',
+    DOMAIN: 'crm.broctagon.com',
+    appType : 'web',
+
+    REGISTER_URI: '/v2/register/short',
+    DEPOSIT_URI: '/api/v1/deposit/gateways',
+    WITHDRAWAL_URI : '/api/v1/withdraw/get-withdraw',
+    REFRESH_URI: '/v2/refresh',
+    HISTORY_URI: '/v2/reports/wt/trade/history?',
+    HISTORY_ARCHIVE_URI: '/api/v1/mt4/archive-trade?',
+    LOGIN_URI: '/v2/login',
+    LOGOUT_URI: '/v2/logout',
+    FORGOT_PSWRD_URI: '/api/v1/forgot-password',
+    APP_CONFIG_URI: '/api/v1/app-config',
+    UPDATE_TOKEN:'/api/v1/update-token',
+    USER_PROFILE:'/v2/member/profile',
+    DEPOSIT_UPLOAD_URI: '/api/deposit/upload',
+    DEPOSIT_CARD_URI: '/api/deposit/card',
+    WITHDRAWAL_WT_URI: '/api/withdrawal',
+    VALIDATE_PROMOCODE_URI: '/v2/validate/promoCode?',
+    VERIFY_URI: '/v2/verify',
+    LOGIN_URI_TOKEN: '/v2/wt/login',
+
+    FOX_LOGIN_URI: '/api/auth',
+    FOX_LOGOUT_URI: '/api/logout',
+    FOX_HISTORY_URI: '/api/mt4/trade?',
+    FOX_HISTORY_ARCHIVE_URI: '/api/mt4/archive-trade?',
+    FOX_REFRESH_URI: '/v2/refresh',
+
+    IMAGE_ROOT: '',
+	GA_TRACKING_CODE: 'UA-140663783-2',
+	liveChatLicenseId : 0,
+    CrazyeggId : '0083/7262.js',
+	showLiveChatIntervalDesktop: 30000,
+	showLiveChatIntervalMobile: 180000,
+	csEmail : { csEmail: 'support@ttmtrades.com' },
+	mtVersion: {
+        mtx: 'MT4'
+    }
+ };
+

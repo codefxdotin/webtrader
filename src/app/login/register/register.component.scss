@@ -1,0 +1,224 @@
+@import "../../../css/_font-face";
+@import "../../../css/_mixin";
+@include login-input-group();
+// Header new
+@include topNavigation();
+
+.banner-wrapper {
+  border-top: .1rem solid #32394a;
+  color: $white;
+  font-family: 'HelveticaNeue';
+  background: rgba(43,49,65,1);
+  background: -moz-linear-gradient(top, rgba(43,49,65,1) 0%, rgba(34,39,51,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(43,49,65,1)), color-stop(100%, rgba(34,39,51,1)));
+  background: -webkit-linear-gradient(top, rgba(43,49,65,1) 0%, rgba(34,39,51,1) 100%);
+  background: -o-linear-gradient(top, rgba(43,49,65,1) 0%, rgba(34,39,51,1) 100%);
+  background: -ms-linear-gradient(top, rgba(43,49,65,1) 0%, rgba(34,39,51,1) 100%);
+  background: linear-gradient(to bottom, rgba(43,49,65,1) 0%, rgba(34,39,51,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=  '#2b3141', endColorstr='#222733', GradientType=0 );
+  padding: 3rem 3rem 6rem;
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: .9rem;
+
+  }
+
+}
+.show{
+  background: #4CAF50 !important
+}
+
+.login-form {
+  // width: 80%;
+  margin: 0rem auto;
+  font-weight: 300;
+  position: relative;
+
+  a {
+    color: #8496c1;
+    font-weight: 300;
+  }
+
+  .validations ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+
+  }
+
+  .validations ul li {
+
+    padding: 1px 4px;
+    color: #fff;
+    background: #aaaaaa;
+    margin: 0 3px;
+    font-size: 11px;
+
+  }
+
+  .login-btn {
+    padding: 1.1rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+  .register-overlay {
+    background: #242935f0;
+    position: absolute;
+    z-index: 9;
+    padding: 0px;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    .captcha-info {
+      margin: 0;
+      position: absolute;
+      bottom: 0;
+      padding: 1rem;
+      background: #1e427d;
+  }
+}
+
+
+  .captacha-img {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 2rem;
+      margin: 0 1rem;
+  }
+}
+  .btn-otp {
+
+    height:3.5rem;
+  }
+  .form-check-input{
+    margin-left: 0!important;
+    cursor: pointer;
+  }
+  .disclaimer{
+    color:#fff;
+    a{
+      color: #fff;
+    }
+  }
+  .validation {
+    width: 100%;
+    color: #f38383 !important;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+}
+@media screen and (max-width: 990px) {
+
+  .top-navigation {
+    padding: 0;
+    .header-wrapper {
+      height: initial;
+      background: transparent;
+      border-bottom: 0;
+      .item.item-logo {
+        img{
+          height: inherit;
+        }
+      }
+    }
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .inner-addon{
+  .mt-3{
+    margin: 0!important;
+  }
+  }
+  .login-form{
+    .login-btn{
+      padding: .5rem;
+    }
+  }
+  h1, h2{
+    font-size: 1.5rem;
+  }
+  input.form-control, select.form-control, .btn-otp{
+    margin-bottom: 1rem;
+  }
+
+  .banner-wrapper{
+    padding: 0;
+  }
+  .login-form{
+    width: 100%;
+    padding: 2rem;
+    padding-top: 0;
+  }
+
+  .country-name{
+    >span{
+      display: none;
+    }
+  }
+  .item-manage-account{
+    >span{
+      display: none;
+    }
+  }
+
+}
+
+svg#Layer_1{
+  width: 26px;
+  height: auto;
+  right: 1.4rem;
+  position: absolute;
+  top: 1rem;
+}
+
+svg#Layer_2{
+  width: 26px;
+  height: auto;
+  right: 1.4rem;
+  position: absolute;
+  top: 1rem;
+}
+
+
+
+@media screen and (max-width:640px){
+  .login-form .validations ul{
+    flex-wrap: wrap;
+  }
+
+  .login-form .validations ul li {
+    padding: 1px 4px;
+    color: #fff;
+    background: #aaaaaa;
+    margin: 3px 3px;
+    font-size: 11px;
+  }
+}
+.right-addon svg{
+  width: 26px;
+  height: auto;
+  right: 1rem;
+  position: absolute;
+  top: 1rem;
+  color:#6c6b6b;
+}
+
+.right-addon #email-svg {
+  top: 1.3rem;
+  right: 1.4rem;
+}

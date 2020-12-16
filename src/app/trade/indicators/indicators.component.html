@@ -1,0 +1,90 @@
+<div ngbDropdown customDropdownToggle placement="bottom-left" class="d-inline-block" id="indicator"
+  [autoClose]="dropDowns.indicSel" (openChange)="toggleDpDown($event)" #indDropDn="ngbDropdown"
+   (closeDpDown)="closeIndicDpDown(indDropDn)">
+  <button class="indicator-line " ngbDropdownToggle>
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="analytics" role="img"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-analytics fa-w-18 fa-9x">
+      <path fill="currentColor"
+        d="M510.62 92.63C516.03 94.74 521.85 96 528 96c26.51 0 48-21.49 48-48S554.51 0 528 0s-48 21.49-48 48c0 2.43.37 4.76.71 7.09l-95.34 76.27c-5.4-2.11-11.23-3.37-17.38-3.37s-11.97 1.26-17.38 3.37L255.29 55.1c.35-2.33.71-4.67.71-7.1 0-26.51-21.49-48-48-48s-48 21.49-48 48c0 4.27.74 8.34 1.78 12.28l-101.5 101.5C56.34 160.74 52.27 160 48 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-4.27-.74-8.34-1.78-12.28l101.5-101.5C199.66 95.26 203.73 96 208 96c6.15 0 11.97-1.26 17.38-3.37l95.34 76.27c-.35 2.33-.71 4.67-.71 7.1 0 26.51 21.49 48 48 48s48-21.49 48-48c0-2.43-.37-4.76-.71-7.09l95.32-76.28zM400 320h-64c-8.84 0-16 7.16-16 16v160c0 8.84 7.16 16 16 16h64c8.84 0 16-7.16 16-16V336c0-8.84-7.16-16-16-16zm160-128h-64c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h64c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zm-320 0h-64c-8.84 0-16 7.16-16 16v288c0 8.84 7.16 16 16 16h64c8.84 0 16-7.16 16-16V208c0-8.84-7.16-16-16-16zM80 352H16c-8.84 0-16 7.16-16 16v128c0 8.84 7.16 16 16 16h64c8.84 0 16-7.16 16-16V368c0-8.84-7.16-16-16-16z"
+        class=""></path>
+    </svg>
+  </button>
+  <ul ngbDropdownMenu class="dropdown-menu dropdown-bg dropdown-menu-indicator animated flipInY"
+    aria-labelledby="indicator">
+    <li [ngClass]="{'selected': indicatorStatus.BB}">
+      <span (click)="showIndicatorSetting(settingIndicator,'BB')">
+
+        <i class="fa fa-cog"></i>
+
+      </span>
+      <a (click)="isShowIndicator('BB')">{{'Ind_BB' | translate}}</a>
+    </li>
+    <li [ngClass]="{'selected': indicatorStatus.MACD}">
+
+      <span (click)="showIndicatorSetting(settingIndicator,'MACD')">
+        <i class="fa fa-cog"></i>
+      </span>
+      <a (click)="isShowIndicator('MACD')">{{'Ind_MACD' | translate}}</a>
+    </li>
+    <li [ngClass]="{'selected': indicatorStatus.Stochastic}">
+
+      <span (click)="showIndicatorSetting(settingIndicator,'STOCHASTIC')">
+        <i class="fa fa-cog"></i>
+      </span>
+      <a (click)="isShowIndicator('Stochastic')">{{'Ind_Stochastic' | translate}}</a>
+    </li>
+    <li [ngClass]="{'selected': indicatorStatus.SMA}">
+
+      <span (click)="showIndicatorSetting(settingIndicator,'SMA')">
+        <i class="fa fa-cog"></i>
+      </span>
+      <a (click)="isShowIndicator('SMA')">{{'Ind_SMA' | translate}}</a>
+    </li>
+    <li [ngClass]="{'selected': indicatorStatus.RSI}">
+
+      <span (click)="showIndicatorSetting(settingIndicator,'RSI')">
+        <i class="fa fa-cog"></i>
+      </span>
+      <a (click)="isShowIndicator('RSI')">{{'Ind_RSI' | translate}}</a>
+    </li>
+    <li [ngClass]="{'selected': indicatorStatus.EMA}">
+
+      <span (click)="showIndicatorSetting(settingIndicator,'EMA')">
+        <i class="fa fa-cog"></i>
+      </span>
+      <a (click)="isShowIndicator('EMA')">{{'Ind_EMA' | translate}}</a>
+    </li>
+  </ul>
+</div>
+
+<!-- / For indicator settings -->
+<ng-template #settingIndicator let-c="close" let-d="dismiss">
+  <div class="modal-header modal-headerbg">
+    <h3 class=" modal-title" id="myModalLabel"> {{selIndicatorSetting.title | translate}} {{'Ind_SETTINGS' | translate}}
+    </h3>
+  </div>
+
+  <div class="modal-body indicatorSlider">
+    <div *ngFor="let option of selIndicatorSetting.options" class="sliderRow">
+      <div class="col-12">
+        <h5><label>{{option.label | translate}} : </label> <span class="sliderValue">{{option.value}}</span></h5>
+      </div>
+      <div class="col-12">
+        <span class="sliderTotalVal">{{option.min}}</span>
+        <input type="range" [min]="option.min" [max]="option.max" [step]="1" value="option.value"
+          [(ngModel)]="option.value">
+        <span class="sliderTotalVal">{{option.max}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="validation" *ngIf="selIndicatorSetting.dispError">
+    {{selIndicatorSetting.dispErrorMsg | translate}}
+  </div>
+  <div class="modal-footer">
+    <button aria-label="Close" (click)="d('Cross click');closeSettings()" class="btn bt-second-color"
+      type="button">{{'Ind_Close' | translate}}</button>
+    <button (click)="saveSettings(selIndicatorSetting)" class="btn bt-second-color">{{'Ind_OK' | translate}}</button>
+  </div>
+
+</ng-template>

@@ -1,0 +1,333 @@
+<section *ngIf="registerTopNavbar != 'hide'" class="top-navigation" id="body_full_screen">
+  <div class="container">
+    <section class="header-wrapper d-flex">
+
+      <div class="row">
+        <div class=" col-sm-7 logo-login">
+          <a href="#" (click)="clicked($event)">
+            <img src="{{'assets/images/logo-login.png?v='+cacheBusting['logo-login.png']}}" class="img-responsive" />
+          </a>
+        </div>
+        <div class="col-sm-5 language-block">
+          <div ngbDropdown class="dropdown d-inline-block" *ngIf="!disableSubmit">
+            <span *ngFor="let lang of languages">
+              <div class="" *ngIf="wtStorageService.selected_lang == lang.code" id="dropdownMenu1" ngbDropdownToggle>
+                <img src={{languageIcon}} /> <span>{{' '}}{{lang.name}}</span>
+                <span class="caret"></span>
+              </div>
+            </span>
+
+            <div class="dropdown-menu  dropdown-menu-right animated flipInY" aria-labelledby="dropdownMenu1">
+              <ul>
+                <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
+                  <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
+                    {{lang.name}}
+                  </li>
+                </a>
+              </ul>
+
+            </div>
+          </div>
+          <!-- <div class="language pull-right">
+
+            <div ngbDropdown class="dropdown d-inline-block " *ngIf="disableSubmit">
+              <div class="" *ngIf="wtStorageService.selected_lang == 'en' " id="dropdownMenu1" ngbDropdownToggle>
+                <img src="./assets/images/us-flag.png" />
+                <span class="caret"></span>
+              </div>
+              <div class="" *ngIf="wtStorageService.selected_lang == 'zh' " id="dropdownMenu1" ngbDropdownToggle>
+                <img src="./assets/images/zh-flag.png" />
+                <span class="caret"></span>
+              </div>
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="item item-manage-account ml-auto">
+        <span>{{'already_using_crypto_countdown' | translate}}</span>
+        <a href="" class="btn btn-danger ml-4 animated bounceIn" (click)="openLogin()">{{'signIn' | translate}}</a>
+      </div>
+    </section>
+  </div>
+</section>
+<!-- <div *ngIf="licenseId">
+  <livechat-widget [licenseId]="licenseId" [group]="groupRegister"></livechat-widget>
+</div> -->
+<div class="login-container banner-wrapper">
+
+  <div class="container">
+    <form #form="ngForm" action="" class="register-form" novalidate>
+      <div class="login-form ">
+
+        <div class="row mb-4">
+          <div class="col-sm-12">
+            <h2 class="mt-4 mb-4">{{ 'hello_there' | translate }}</h2>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="sub-heading-fields col-12">
+            {{'account_details' | translate}}
+          </label>
+          <div class="col-12 inner-addon">
+
+            <div class="right-addon">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                class="svg-inline--fa fa-user fa-w-14 fa-fw fa-lg">
+                <path fill="currentColor"
+                  d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"
+                  class=""></path>
+              </svg>
+
+              <input #input type="text" class="form-control" (keyup)="validateName($event.target.value)" placeholder="{{'fullName' | translate}}" name="" autofocus="autofocus"
+              [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Name') || ( this.validationMessage == 'nameValidationErrorMessage') ))}"
+              name="name" id="name" [(ngModel)]="name" tabindex="1">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row inner-addon">
+          <div class="col-xl-12 col-lg-12">
+            <div class="right-addon">
+              <i class="fa fa-envelope"></i>
+              <input type="email" class="form-control" (keyup)="validateEmail($event.target.value)"
+                [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Email') || ( this.validationMessage == 'emailValidationErrorMessage') || ( this.validationMessage == 'emailAlreadyExists')))}"
+                placeholder="{{'Email-id' | translate}}" name="loginId" id="loginId" [(ngModel)]="loginId"
+                autofocus="autofocus" autocomplete="off" tabindex="1">
+            </div>
+          </div>
+        </div>
+        <div class="row inner-addon">
+          <div class="col-xl-12 col-lg-12 mt-3">
+            <div class="right-addon ">
+              <!-- <i class="fa fa-unlock"></i> -->
+              <svg version="1.1" (click)="hidepassword()" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+                style="enable-background:new 0 0 24 24; display: none" xml:space="preserve">
+                <style type="text/css">
+                  .st0 {
+                    fill: none;
+                  }
+
+                  .st1 {
+                    fill: #6C6B6B;
+                  }
+                </style>
+                <path class="st0" d="M0,0h24v24H0V0z" />
+                <path class="st1"
+                  d="M12,4.5C7,4.5,2.7,7.6,1,12c1.7,4.4,6,7.5,11,7.5s9.3-3.1,11-7.5C21.3,7.6,17,4.5,12,4.5z M12,17
+                    c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S14.8,17,12,17z M12,9c-1.7,0-3,1.3-3,3s1.3,3,3,3s3-1.3,3-3S13.7,9,12,9z" />
+              </svg>
+
+              <svg version="1.1" (click)="showpassword()" id="Layer_2" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
+                style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                <style type="text/css">
+                  .st0 {
+                    fill: none;
+                  }
+
+                  .st1 {
+                    fill: #6C6B6B;
+                  }
+                </style>
+                <path class="st0" d="M0,0h24v24H0V0z M0,0h24v24H0V0z M0,0h24v24H0V0z M0,0h24v24H0V0z" />
+                <path class="st1" d="M12,7c2.8,0,5,2.2,5,5c0,0.6-0.1,1.3-0.4,1.8l2.9,2.9c1.5-1.3,2.7-2.9,3.4-4.8c-1.7-4.4-6-7.5-11-7.5
+                    c-1.4,0-2.7,0.2-4,0.7l2.2,2.2C10.7,7.1,11.4,7,12,7z M2,4.3l2.3,2.3L4.7,7c-1.7,1.3-3,3-3.7,5c1.7,4.4,6,7.5,11,7.5
+                    c1.6,0,3-0.3,4.4-0.8l0.4,0.4l2.9,2.9l1.3-1.3L3.3,3L2,4.3z M7.5,9.8l1.5,1.6C9,11.6,9,11.8,9,12c0,1.7,1.3,3,3,3
+                    c0.2,0,0.4,0,0.6-0.1l1.6,1.5C13.5,16.8,12.8,17,12,17c-2.8,0-5-2.2-5-5C7,11.2,7.2,10.5,7.5,9.8z M11.8,9l3.1,3.1l0-0.2
+                    c0-1.7-1.3-3-3-3L11.8,9z" />
+              </svg>
+
+              <input type="password" autocomplete="new-password" class="form-control" (input)="onPasswordChange()"
+                [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Password') || (validationMessage == 'Incorrect_Password')))}"
+                placeholder="{{ 'Create_Password' | translate}} " name="regPassword " id="regPassword"
+                [(ngModel)]="regPassword" tabindex="2">
+            </div>
+          </div>
+        </div>
+        <div class="row inner-addon mt-2 mb-2">
+          <div class="col-12">
+            <div class="validations">
+              <ul>
+                <li [ngClass]="upperCaseAlphabetValidation? 'show': '' ">{{'AZ' | translate}}</li>
+                <li [ngClass]="lengthValidation? 'show': '' ">{{'passwordLengthValidation'|translate}}</li>
+                <li [ngClass]="lowerCaseAlphabetValidation ? 'show': '' ">{{'az' | translate}}</li>
+                <li [ngClass]="numberValidation? 'show': '' ">{{'passwordNumberValidation'|translate}}</li>
+                <li [ngClass]="specialCharacterValidation? 'show': '' ">{{'noSpecialCharacterLabel'|translate}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row inner-addon">
+          <label class="sub-heading-fields mt-4 col-12">
+            {{'contact_details' | translate}}
+          </label>
+          <div class="col-xl-6 col-lg-6" style="display: inline-block">
+            <select (change)="onCountryChange($event)" class="form-control" name="country"
+              [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Select_Country') )}"
+              [(ngModel)]="country">
+              <option [value]="-1"> {{'countryPlaceholder' | translate}}</option>
+              <option *ngFor="let option of countryList" [value]="option.id"> {{ option.name }} </option>
+            </select>
+          </div>
+          <div *ngIf="!cid" class="col-xl-6 col-lg-6" style="display: inline-block">
+            <div>
+              <div class="right-addon">
+                <i class="fa fa-code"></i>
+                <input type="input" class="form-control" onKeyPress="if(this.value.length==9) return false;"
+                  (input)="onPromoChange()"
+                  [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'invalidPromoCode') )}"
+                  placeholder="{{'promoCodePlaceholder' | translate}}" name="promoCode" [disabled]="disablePromocode"
+                  [ngClass]="{'disabled':disablePromocode == true}" id="promoCode" [(ngModel)]="promoCode"
+                  autofocus="autofocus" tabindex="3" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row inner-addon mt-3">
+          <div class="col-xl-6 col-lg-6" style="display: inline-block">
+            <input type="input" class="form-control"
+              [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Enter_PhoneCode') )}"
+              name="phoneCode" placeholder="{{'phoneCodePlaceholder' | translate }}" id="phoneCode"
+              [(ngModel)]="phoneCode" autofocus="autofocus" tabindex="4">
+          </div>
+          <div class="col-xl-6 col-lg-6" style="display: inline-block">
+            <div class="right-addon">
+              <i class="fa fa-phone"></i>
+              <input type="input" class="form-control" onKeyPress="if(this.value.length==15) return false;"
+                [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Phone') || (validationMessage == 'invalidPhoneNumber')))}"
+                name="phone" placeholder="{{'phonePlaceholder' | translate }}" id="phone" (input)="onPhoneChange()"
+                [(ngModel)]="phone" autofocus="autofocus" tabindex="5">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row inner-addon">
+          <label class="sub-heading-fields mt-4 mb-1 col-12">
+            {{'security_details' | translate}}
+          </label>
+          <div class="col-12">
+
+            <div class="otp-div">
+              <div class="row inner-addon">
+                <div class="col-xl-6 col-lg-6">
+                  <button (click)="getEmailOTP()" [disabled]="otpButtonDisable" class="btn btn-primary w-100 btn-otp">
+                    {{(!otpButtonLabelChanged ? 'getEmailOtp':'emailOTPSent')| translate}}</button>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                  <div class="otp-input">
+                    <input tabindex="7" name="otpValue" type="number" class="form-control btn-otp"
+                      onKeyPress="if(this.value.length==4) return false;"
+                      [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'get_email_otp') )}"
+                      [(ngModel)]="otpValue " [disabled]="!otpButtonDisable" placeholder="{{'enter-otp' | translate }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- captcha overlay  -->
+        <div class="register-overlay" *ngIf="showCaptchaDiv">
+          <div class="captcha-info">
+            <p>{{'newRegisterCaptchaMsg'|translate}}</p>
+
+            <div class="captcha-container">
+              <div class="inner-addon row">
+                <div class="col-lg-6 col-sm-6 col-xl-6">
+                  <input name="captcha" class="form-control" [(ngModel)]="captchaCode"
+                    placeholder="{{'typeTheText' | translate }}">
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xl-6">
+                  <div class="captacha-img">
+                    <img [src]="captchaImageUrl" alt="">
+                    <svg (click)="refreshCaptcha()" aria-hidden="true" focusable="false" data-prefix="far"
+                      data-icon="redo-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="svg-inline--fa fa-redo-alt fa-w-16 fa-3x">
+                      <path fill="currentColor"
+                        d="M483.515 28.485L431.35 80.65C386.475 35.767 324.485 8 256.001 8 119.34 8 7.9 119.525 8 256.185 8.1 393.067 119.095 504 256 504c63.926 0 122.202-24.187 166.178-63.908 5.113-4.618 5.353-12.561.482-17.433l-19.738-19.738c-4.498-4.498-11.753-4.785-16.501-.552C351.787 433.246 306.105 452 256 452c-108.321 0-196-87.662-196-196 0-108.321 87.662-196 196-196 54.163 0 103.157 21.923 138.614 57.386l-54.128 54.129c-7.56 7.56-2.206 20.485 8.485 20.485H492c6.627 0 12-5.373 12-12V36.971c0-10.691-12.926-16.045-20.485-8.486z"
+                        class=""></path>
+                    </svg>
+                    <button (click)="captchaSubmit()"
+                      class="btn btn-primary w-100 btn-otp">{{'submit' | translate}}</button>
+                  </div>
+
+                  <!-- <span class="glyphicon glyphicon-repeat" role="img" aria-hidden="true"></span> -->
+                </div>
+
+              </div>
+            </div>
+
+            <!--<div *ngIf="isInputEmpty && isValid" class="col-md-12">-->
+            <!--<div class="validation">-->
+            <!--{{ validationMessage | translate}}-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <p>{{'newRegisterCaptchaMsg2'|translate}}
+              <a href="mailTo:{{csEmail['csEmail']}}">{{csEmail['csEmail']}}</a>
+            </p>
+          </div>
+        </div>
+        <!-- captcha overlay ends here -->
+
+        <!-- validation div -->
+        <div *ngIf="!isValid" class="row">
+          <div class="col-12">
+            <div class="validation">
+              {{'Crm_Validation_WrongEmailPwd' | translate}}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isInputEmpty && isValid" class="row">
+          <div class="col-12">
+            <div class="validation">
+              {{ validationMessage | translate}}
+            </div>
+          </div>
+        </div>
+        <!-- end validation div -->
+
+        <div class="row inner-addon mt-3">
+          <div class="col-12">
+            <div class="form-group form-check disclaimer">
+
+              <input tabindex="8" id="disclaimer" class="form-check-input" type="checkbox" name="toAgree"
+                [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Accept_Privacy_Policy') )}"
+                value="1" [(ngModel)]="toAgree">
+              <label class="form-check-label" for="exampleCheck1">{{'tosAgreeLabel' | translate}}
+                <a *ngIf="!disableSubmit" class='text-primary' target="_blank"
+                  [attr.href]="termsOfServiceURL">{{'termsOfServices' | translate}}</a></label>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-xl-6 col-lg-6">
+            <!-- <button type="submit" (click)="register()" class="btn-danger btn btn-style-2 w-100 login-btn"
+              [disabled]="disableSubmit" tabindex="10">
+              {{'register' | translate}}
+              <i *ngIf="disableSubmit" class='fa fa-circle-o-notch fa-spin'></i>
+            </button> -->
+          </div>
+          <!-- <div class="disclaimer col-12 clear-left text-center"> {{'Back_to' | translate}}
+                      <span class="anchor-pointer" style="text-decoration:none; color: cornflowerblue;" *ngIf="!disableSubmit" target="_blank" (click)="backToLogin()">
+                      {{'Crm_Login_Header' | translate}}
+                      </span>
+                  </div> -->
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</div>
