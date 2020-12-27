@@ -9,88 +9,96 @@
   </div>
 </div> -->
 <div class="inner fullscreen-container" id="body_full_screen">
-  <div class="randomm">
+    <div class="randomm">
 
-    <!-- [perfectScrollbar] -->
-    <!-- Overlay screen -->
-    <div class="image-overlay loader-bkg" *ngIf="!isSymbolLoaded || isLoggingOut || accountSwitch || !initLoad">
-      <div class="loader">
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__ball"></div>
-      </div>
-    </div>
-    <!-- End  -->
-
-
-    <!-- [ngStyle]=" { height: windowHeight + 2  + 'px' }" [perfectScrollbar]-->
-
-    <div id="loginbg">
-
-      <!-- Top Header Wrapper -->
-      <section class="header-wrapper d-flex">
-        <!-- Branding Logo -->
-        <div class="item item-logo">
-          <div class="align-items-center article-wrap d-flex">
-            <div class="logo">
-              <img src="{{'assets/images/brand-logo.svg?v='+version}}" alt="" class="img-fluid img-responsive">
+        <!-- [perfectScrollbar] -->
+        <!-- Overlay screen -->
+        <div class="image-overlay loader-bkg" *ngIf="!isSymbolLoaded || isLoggingOut || accountSwitch || !initLoad">
+            <!-- <div class="loader">
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__bar"></div>
+                <div class="loader__ball"></div>
+            </div> -->
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
             </div>
-            <!-- <div class="article-text">
+        </div>
+        <!-- End  -->
+
+
+        <!-- [ngStyle]=" { height: windowHeight + 2  + 'px' }" [perfectScrollbar]-->
+
+        <div id="loginbg">
+
+
+            <!-- Top Header Wrapper -->
+            <section class="header-wrapper d-flex">
+
+                <!-- Branding Logo -->
+                <div class="item item-logo">
+                    <div class="align-items-center article-wrap d-flex">
+                        <div class="logo">
+                            <img src="{{'assets/images/brand-logo.svg?v='+version}}" alt="" class="img-fluid img-responsive">
+                        </div>
+                        <!-- <div class="article-text">
               Crypto <br>
               Countdown
             </div> -->
-          </div>
-        </div>
-        <!-- Country Flag -->
-        <div class="item item-flag">
+                    </div>
+                </div>
+                <!-- Country Flag -->
+                <div class="item item-flag">
 
-          <div ngbDropdown class=" dropdown-v2 language-block">
-            <div class="collected-data">
-                <div class="country-flag flag-group" >
-                  <span *ngFor="let lang of languages">
+                    <div ngbDropdown class=" dropdown-v2 language-block">
+                        <div class="collected-data">
+                            <div class="country-flag flag-group">
+                                <span *ngFor="let lang of languages">
                     <div class="" *ngIf="wtStorageService.selected_lang == lang.code" id="dropdownMenu1" >
                       <img src={{languageIcon}} /> <span>{{' '}}{{lang.translatedName}}</span>
+                            </div>
+                            </span>
+                        </div>
                     </div>
-                  </span>
-            </div>
-            </div>
-            <div class="arrow-action" ngbDropdownToggle>
-              <i class="fa fa-angle-down"></i>
-            </div>
+                    <div class="arrow-action" ngbDropdownToggle>
+                        <i class="fa fa-angle-down"></i>
+                    </div>
 
-            <div class="dropdown-menu  dropdown-menu-right animated flipInY" aria-labelledby="dropdownMenu1">
-              <ul>
-                <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
-                  <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
+                    <div class="dropdown-menu  dropdown-menu-right animated flipInY" aria-labelledby="dropdownMenu1">
+                        <ul>
+                            <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
+                                <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
 
-                    {{lang.translatedName}}
-                  </li>
-                </a>
-              </ul>
+                                    {{lang.translatedName}}
+                                </li>
+                            </a>
+                        </ul>
 
-            </div>
+                    </div>
 
-          </div>
+                </div>
 
 
         </div>
 
         <div (click)="goFS()" class="item item-zoom-out">
-          <a placement="bottom">
-            <i class="fa fa-arrows-alt"></i>
-          </a>
-          <a style="display: none" #fileInput (click)="openFS()" placement="bottom">
-            <i class="fa fa-arrows-alt"></i>
-          </a>
+            <a placement="bottom">
+                <!-- <i class="fa fa-arrows-alt"></i> -->
+                <i class="fa fa-expand" aria-hidden="true"></i>
+            </a>
+            <a style="display: none" #fileInput (click)="openFS()" placement="bottom">
+                <!-- <i class="fa fa-arrows-alt"></i> -->
+                <i class="fa fa-expand" aria-hidden="true"></i>
+            </a>
         </div>
 
         <!-- MT4 ID -->
-        <div  class="item item-mt4-id">
-          <div id="mt4Dropdown" ngbDropdown class="" (openChange)="toggleDpDown($event, null)">
-            <button (click)="mapBalance()" class="btn dropdown-toggle dropdown-v2 " id="avatar" ngbDropdownToggle>
+        <div class="item item-mt4-id">
+            <div id="mt4Dropdown" ngbDropdown class="" (openChange)="toggleDpDown($event, null)">
+                <button (click)="mapBalance()" class="btn dropdown-toggle dropdown-v2 " id="avatar" ngbDropdownToggle>
               <!-- <div class="collected-data" *ngIf="!demoSelected">
                 {{wtStorageService.selectedMt4Account.accountId.loginId}}
               </div>
@@ -114,101 +122,96 @@
                 <i class="fa fa-angle-down"></i>
               </div>
             </button>
-            <div class="account-mt4-wrapper dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomIn"
-              aria-labelledby="avatar">
+                <div class="account-mt4-wrapper dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomIn" aria-labelledby="avatar">
 
-              <div class="box-wrap d-flex">
-                <div *ngIf="hasDemo" class="flex-item box-1">
-                  <div class="title-head">
-                    {{'traningAccount' | translate}}
+                    <div class="box-wrap d-flex">
+                        <div *ngIf="hasDemo" class="flex-item box-1">
+                            <div class="title-head">
+                                {{'traningAccount' | translate}}
 
-                  </div>
-                  <p>
-                    {{'traningAccountContent' | translate}}
-
-                  </p>
-                  <div class="demo-ac-wrap">
-
-                    <div (click)="changeMt4Account(mt4Account, index)"
-                         [ngClass]="{'list-menu': true, 'selected':mt4Account.accountId==wtStorageService.selectedMt4Account.accountId.loginId}"
-                         *ngFor="let mt4Account of wtStorageService.mt4AccountsList;let i=index">
-
-                      <div *ngIf="mt4Account.demo" class="d-flex align-items-center justify-content-sm-between">
-                        <div class="flex-text ">
-                          <div class="mt-4-account-id">
-                            {{mt4Account.accountId}}
-                          </div>
-                          <div class="value">
-                            $ {{mt4Account.balance}}
-                          </div>
-                        </div>
-
-                        <!-- Try now Button -->
-                        <div class="flex-btn">
-                          <button class="btn default-btn green">{{'tryNow' | translate}}</button>
-                        </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <!-- Box 2  -->
-                <div class="flex-item box-2">
-                  <div class="title-head">
-                    {{'realAccount' | translate}}
-                  </div>
-                  <!-- All MT4 Accounts Here -->
-                  <div class="group-object" [perfectScrollbar]>
-                    <div class="list-item" >
-                      <div (click)="changeMt4Account(mt4Account, index)"
-                        [ngClass]="{'list-menu': true, 'selected':mt4Account.accountId==wtStorageService.selectedMt4Account.accountId}"
-                        *ngFor="let mt4Account of wtStorageService.mt4AccountsList;let i=index">
-
-                        <div *ngIf="!(mt4Account.demo)" class="d-flex align-items-center justify-content-sm-between">
-                          <div class="flex-text ">
-                            <div class="mt-4-account-id">
-                                {{mt4Account.accountId.loginId}}
                             </div>
-                            <div  class="value">
-                              $ {{mt4Account.balance}}
+                            <p>
+                                {{'traningAccountContent' | translate}}
+
+                            </p>
+                            <div class="demo-ac-wrap">
+
+                                <div (click)="changeMt4Account(mt4Account, index)" [ngClass]="{'list-menu': true, 'selected':mt4Account.accountId==wtStorageService.selectedMt4Account.accountId.loginId}" *ngFor="let mt4Account of wtStorageService.mt4AccountsList;let i=index">
+
+                                    <div *ngIf="mt4Account.demo" class="d-flex align-items-center justify-content-sm-between">
+                                        <div class="flex-text ">
+                                            <div class="mt-4-account-id">
+                                                {{mt4Account.accountId}}
+                                            </div>
+                                            <div class="value">
+                                                $ {{mt4Account.balance}}
+                                            </div>
+                                        </div>
+
+                                        <!-- Try now Button -->
+                                        <div class="flex-btn">
+                                            <button class="btn default-btn green">{{'tryNow' | translate}}</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="add-amount">
-                              <a (click)="openDeposit(depositRef)" class="align-items-baseline d-flex"> {{'addMoney' | translate}} <i
+                        </div>
+                        <!-- Box 2  -->
+                        <div class="flex-item box-2">
+                            <div class="title-head">
+                                {{'realAccount' | translate}}
+                            </div>
+                            <!-- All MT4 Accounts Here -->
+                            <div class="group-object" [perfectScrollbar]>
+                                <div class="list-item">
+                                    <div (click)="changeMt4Account(mt4Account, index)" [ngClass]="{'list-menu': true, 'selected':mt4Account.accountId==wtStorageService.selectedMt4Account.accountId}" *ngFor="let mt4Account of wtStorageService.mt4AccountsList;let i=index">
+
+                                        <div *ngIf="!(mt4Account.demo)" class="d-flex align-items-center justify-content-sm-between">
+                                            <div class="flex-text ">
+                                                <div class="mt-4-account-id">
+                                                    {{mt4Account.accountId.loginId}}
+                                                </div>
+                                                <div class="value">
+                                                    $ {{mt4Account.balance}}
+                                                </div>
+                                                <div class="add-amount">
+                                                    <a (click)="openDeposit(depositRef)" class="align-items-baseline d-flex"> {{'addMoney' | translate}} <i
                                   class="fa fa-plus-circle"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <!-- Selected or select Button -->
+                                            <div class="flex-btn">
+                                                <button *ngIf="mt4Account.accountId == wtStorageService.selectedMt4Account.accountId" class="btn default-btn ">{{ 'selectedText' | translate}}</button>
+                                                <button *ngIf="!(mt4Account.accountId == wtStorageService.selectedMt4Account.accountId)" class="btn default-btn ">{{ 'selectText' | translate}}</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-
-                          <!-- Selected or select Button -->
-                          <div class="flex-btn">
-                            <button *ngIf="mt4Account.accountId == wtStorageService.selectedMt4Account.accountId" class="btn default-btn ">{{ 'selectedText' | translate}}</button>
-                            <button *ngIf="!(mt4Account.accountId == wtStorageService.selectedMt4Account.accountId)" class="btn default-btn ">{{ 'selectText' | translate}}</button>
-                           </div>
+                            <!-- End -->
                         </div>
-
-                      </div>
                     </div>
-                  </div>
-                  <!-- End -->
-                </div>
-              </div>
 
-            </div>
-            <!-- <ul class="dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomInDown" aria-labelledby="avatar">
+                </div>
+                <!-- <ul class="dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomInDown" aria-labelledby="avatar">
               <li (click)="changeMt4Account(mt4Account, index)"
                 [ngClass]="{'selected':mt4Account.accountId==wtStorageService.selectedMt4Account.accountId}"
                 *ngFor="let mt4Account of wtStorageService.mt4AccountsList;let i=index">
                 <a class="mt4-timeframe-dropdown-list">{{mt4Account.accountId.loginId}}</a>
               </li>
             </ul> -->
-          </div>
+            </div>
         </div>
         <!-- Open Trades -->
         <div class="item item-open-trade">
-          <div class="trade-history-wrap d-flex h-100 " id="open-trades">
-            <a class="d-flex group-btn dropdown-toggle open-trade" id="opentrades" (click)="isShowOpenTrade()">
-              <div class="icon-1">
-                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.81 18.63">
+            <div class="trade-history-wrap d-flex h-100 " id="open-trades">
+                <a class="d-flex group-btn dropdown-toggle open-trade" id="opentrades" (click)="isShowOpenTrade()">
+                    <div class="icon-1">
+                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.81 18.63">
                   <title>open-trade-01</title>
                   <path
                     d="M4.36,12.81a.17.17,0,0,1-.17-.17V3.17A.17.17,0,0,1,4.36,3H21.42a.17.17,0,0,1,.17.17v9.47a.17.17,0,0,1-.17.17Zm.17-.34H21.25V3.34H4.53Z" />
@@ -230,414 +233,385 @@
                   <path
                     d="M12.12,10A.16.16,0,0,1,12,9.83a.17.17,0,0,1,.17-.17h6.74a.18.18,0,0,1,.17.17.17.17,0,0,1-.17.17Z" />
                 </svg>
-              </div>
-              {{'Trade_Open_Trades' | translate}}
-              <span class="current-trade" *ngIf="tradeActive">
+                    </div>
+                    {{'Trade_Open_Trades' | translate}}
+                    <span class="current-trade" *ngIf="tradeActive">
                 <i class="fa fa-circle Blink"></i>
               </span>
-            </a>
-          </div>
+                </a>
+            </div>
         </div>
         <!-- Trading History -->
         <div class="item item-trade-history">
-          <div class="trade-history-wrap d-flex h-100 " id="open-history">
-            <a class="d-flex trade-history-slide group-btn" id="history"
-              (click)="isShowTradeHistory(!tradeHistoryComponent.showTradesHistory)">
-              <div class="icon-1">
-                <img src="{{'assets/images/timer.svg?v='+cacheBusting['timer.svg']}}" />
-              </div>
-              {{'Trade_Trading_History' | translate}}
-            </a>
-          </div>
+            <div class="trade-history-wrap d-flex h-100 " id="open-history">
+                <a class="d-flex trade-history-slide group-btn" id="history" (click)="isShowTradeHistory(!tradeHistoryComponent.showTradesHistory)">
+                    <div class="icon-1">
+                        <img src="{{'assets/images/timer.svg?v='+cacheBusting['timer.svg']}}" />
+                    </div>
+                    {{'Trade_Trading_History' | translate}}
+                </a>
+            </div>
         </div>
 
 
         <!-- Making deposit -->
         <div class="item item-deposit">
-          <div class="deposit-wrapper h-100">
-            <div class="deposit-balance">
-              <span class="balance">{{'Trade_Balance' | translate}}</span>
-              <span class="amount">${{accountInfo.balance}}</span>
-            </div>
-            <div class="deposit-action h-100" ngcontent-c0="" ngbdropdown="" *ngIf="!singleApi">
+            <div class="deposit-wrapper h-100">
+                <div class="deposit-balance">
+                    <span class="balance">{{'Trade_Balance' | translate}}</span>
+                    <span class="amount">${{accountInfo.balance}}</span>
+                </div>
+                <div class="deposit-action h-100" ngcontent-c0="" ngbdropdown="" *ngIf="!singleApi">
 
-              <button class=" deposit dropdown-toggle m-display-none" (click)="openDeposit(depositRef)">
+                    <button class=" deposit dropdown-toggle m-display-none" (click)="openDeposit(depositRef)">
                 {{'trade_Deposit_funds' | translate}}
               </button>
 
-              <!-- For mobile mode -->
-              <button class=" deposit dropdown-toggle d-display-none" (click)="openDeposit(depositRef)">
+                    <!-- For mobile mode -->
+                    <button class=" deposit dropdown-toggle d-display-none" (click)="openDeposit(depositRef)">
               <img src="{{'assets/images/deposit.svg?v='+cacheBusting['deposit.svg']}}" alt="" class="d-block img-fluid">
               </button>
 
+                </div>
             </div>
-          </div>
         </div>
         <!-- Manage Account -->
         <div class="item item-manage-account">
-          <div class="hamburgermenu">
-            <div ngbDropdown class="dropdown" (openChange)="toggleDpDown($event, null)">
+            <div class="hamburgermenu">
+                <div ngbDropdown class="dropdown" (openChange)="toggleDpDown($event, null)">
 
-              <div class="manage-ac-dropdown d-flex align-items-center" id="tradingmenu" ngbDropdownToggle>
-                <div class="user-avtar">
-                  <img alt="profile" [src]="userAvatar" onError="this.src='assets/images/user-avtar.jpg';">
+                    <div class="manage-ac-dropdown d-flex align-items-center" id="tradingmenu" ngbDropdownToggle>
+                        <div class="user-avtar">
+                            <img alt="profile" [src]="userAvatar" onError="this.src='assets/images/user-avtar.jpg';">
+                        </div>
+                        <div class="user-name">
+                            <span class="account-name"> {{ userName }} </span>
+                            <span class="static-account">{{'manage-account' | translate}}</span>
+
+                        </div>
+                        <i class="fa fa-angle-down down-arrow"></i>
+                    </div>
+                    <div class=" dropdown-menu trading animated slideInRight  dropdown-bg" aria-labelledby="tradingmenu">
+                        <ul>
+
+                            <li class="deposit-menu" *ngIf="!singleApi">
+                                <a (click)="openDeposit(depositRef)">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 153.158 153.158" style="enable-background:new 0 0 153.158 153.158;" xml:space="preserve" width="512px" height="512px">
+      <g>
+        <path
+          d="M139.368,147.678H13.79c-7.604,0-13.79-6.187-13.79-13.79v-95.67c0-7.604,6.187-13.79,13.79-13.79  h43.518c0.094-0.044,0.192-0.082,0.294-0.114l59.1-18.718c0.655-0.204,1.363-0.136,1.964,0.195c0.6,0.331,1.037,0.895,1.21,1.558  l4.451,17.079h15.042c7.604,0,13.79,6.187,13.79,13.79v95.67C153.158,141.491,146.972,147.678,139.368,147.678z M13.79,29.428  c-4.847,0-8.79,3.943-8.79,8.79v95.67c0,4.847,3.943,8.79,8.79,8.79h125.578c4.847,0,8.79-3.943,8.79-8.79V104.2h-46.567  c-6.075,0-11.018-4.942-11.018-11.017V78.922c0-6.074,4.942-11.017,11.018-11.017h46.567V38.218c0-4.847-3.943-8.79-8.79-8.79H13.79  z M101.591,72.905c-3.318,0-6.018,2.699-6.018,6.017v14.262c0,3.317,2.699,6.017,6.018,6.017h46.567V72.905H101.591z M73.803,24.428  h45.356l-3.458-13.27L73.803,24.428z M109.572,94.94c-4.9,0-8.888-3.987-8.888-8.888s3.987-8.888,8.888-8.888  s8.888,3.987,8.888,8.888S114.473,94.94,109.572,94.94z M109.572,82.165c-2.144,0-3.888,1.744-3.888,3.888s1.744,3.888,3.888,3.888  s3.888-1.744,3.888-3.888S111.716,82.165,109.572,82.165z"
+          data-original="#222221" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+      </g>
+    </svg>
+
+                                    <!-- <img src="../../assets/icons/deposit.svg" alt=""> -->
+                                    <!-- <i class="far fa-credit-card"></i> -->
+                                    {{'Trade_Deposit' | translate}}</a>
+                            </li>
+                            <li class="withdraw-menu">
+                                <a (click)="openWithdraw(withdrawRef)" *ngIf="!singleApi">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 512 512" width="512px" height="512px" class="">
+      <g>
+        <title class="active-path" style="fill:#FFFFFF" data-old_color="#F6F2F2">Atm</title>
+        <path
+          d="M488.925,48H23.075C18.657,48,15,52.014,15,56.432V284.181A7.912,7.912,0,0,0,23.075,292H127V455.568c0,4.418,3.58,8.432,8,8.432H377c4.419,0,8-4.014,8-8.432V292H488.925A7.912,7.912,0,0,0,497,284.181V56.432C497,52.014,493.343,48,488.925,48ZM127,201H83V139h44ZM369,448H143V139h7V435.174a7.585,7.585,0,0,0,.684,3.027,8,8,0,0,0,7.427,4.8h198.5c4.418,0,8.392-3.407,8.392-7.826V139h4Zm-27.8-74c-26.4,0-48.2,21.177-48.2,47.579V427H219v-4.968A47.95,47.95,0,0,0,171.254,374H166V139H349V374Zm7.8,16v37H309v-5.421C309,404,323.62,390,341.2,390Zm-177.746,0A31.932,31.932,0,0,1,203,422.032V427H166V390ZM481,276H385V217h52.164A7.517,7.517,0,0,0,445,209.415V131.2a8.034,8.034,0,0,0-7.836-8.2H74.836A8.034,8.034,0,0,0,67,131.2v78.217A7.517,7.517,0,0,0,74.836,217H127v59H31V64H481Zm-96-75V139h44v62Z"
+          data-original="#000000" class="active-path" data-old_color="#F6F2F2" fill="#FFFFFF" />
+        <path
+          d="M256,154.185a84.305,84.305,0,1,0,84.305,84.305A84.4,84.4,0,0,0,256,154.185Zm0,152.61a68.305,68.305,0,1,1,68.305-68.305A68.382,68.382,0,0,1,256,306.8Z"
+          data-original="#000000" class="active-path" data-old_color="#F6F2F2" fill="#FFFFFF" />
+      </g>
+    </svg> {{'Trade_Withdrawal' | translate}}</a>
+                            </li>
+                            <li class="withdraw-menu referral-icon" *ngIf="!singleApi">
+                                <a (click)="openReferral(referralRef)">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 512 512" width="512px">
+      <g>
+        <path
+          d="m250.902344 271.894531c1.691406.0625 3.386718.105469 5.097656.105469 1.585938 0 3.164062-.035156 4.738281-.09375 35.8125.773438 71.035157 10.25 102.15625 27.570312 9.652344 5.371094 21.832031 1.902344 27.203125-7.75 5.371094-9.652343 1.902344-21.832031-7.75-27.203124-14.328125-7.972657-29.386718-14.542969-44.933594-19.652344 33.117188-24.828125 54.585938-64.390625 54.585938-108.871094 0-74.992188-61.011719-136-136-136-74.992188 0-136 61.007812-136 136 0 44.507812 21.492188 84.09375 54.644531 108.917969-30.371093 9.996093-58.871093 25.546875-83.816406 46.0625-45.730469 37.617187-77.527344 90.085937-89.53125 147.742187-3.761719 18.066406.746094 36.621094 12.363281 50.910156 11.558594 14.214844 28.703125 22.367188 47.03125 22.367188h156.308594c11.042969 0 20-8.953125 20-20s-8.957031-20-20-20h-156.308594c-8.539062 0-13.6875-4.765625-16-7.605469-3.988281-4.90625-5.53125-11.289062-4.234375-17.519531 20.769531-99.761719 108.808594-172.617188 210.445313-174.980469zm-90.902344-135.894531c0-52.933594 43.0625-96 96-96 52.933594 0 96 43.066406 96 96 0 51.339844-40.507812 93.390625-91.238281 95.882812-1.589844-.03125-3.175781-.050781-4.761719-.050781-1.5625 0-3.121094.023438-4.679688.050781-50.769531-2.445312-91.320312-44.515624-91.320312-95.882812zm352 235.828125c.019531 13.359375-5.203125 25.914063-14.699219 35.359375l-37.199219 36.992188c-3.902343 3.882812-9.003906 5.820312-14.101562 5.820312-5.136719 0-10.273438-1.96875-14.183594-5.898438-7.789062-7.832031-7.753906-20.492187.078125-28.28125l24.933594-24.796874h-113.339844c-22.328125 0-40.488281 18.164062-40.488281 40.488281s17.941406 40.488281 40 40.488281c11.042969 0 20 8.953125 20 20s-8.957031 20-20 20c-21.511719 0-41.667969-8.398438-56.75-23.652344-14.996094-15.164062-23.25-35.347656-23.25-56.835937 0-44.382813 36.105469-80.488281 80.488281-80.488281h111.503907l-23.058594-22.800782c-7.851563-7.769531-7.925782-20.433594-.15625-28.285156 7.765625-7.851562 20.429687-7.925781 28.285156-.15625l37.140625 36.726562c9.523437 9.417969 14.777344 21.960938 14.796875 35.320313zm0 0"
+          data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+      </g>
+    </svg> {{'referral' | translate}}
+                                </a>
+                            </li>
+
+                            <li class="language-menu">
+                                <a (click)="showSettings(setting)">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 470 470" enable-background="new 0 0 470 470" width="512px" height="512px">
+      <g>
+        <g>
+          <path
+            d="m432.5,227.5h-77.031c-0.611-37.438-5.782-73.616-14.771-105.694h50.518c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-55.112c-8.018-24.165-18.316-45.521-30.553-62.656-2.408-3.371-7.093-4.153-10.462-1.745-3.371,2.407-4.152,7.092-1.745,10.462 10.618,14.868 19.688,33.199 26.965,53.939h-77.809v-69.306c0-4.143-3.357-7.5-7.5-7.5s-7.5,3.357-7.5,7.5v69.306h-77.81c7.277-20.74 16.347-39.071 26.965-53.939 2.407-3.37 1.626-8.055-1.745-10.462-3.372-2.407-8.055-1.625-10.462,1.745-12.237,17.135-22.535,38.492-30.553,62.656h-55.112c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h50.518c-8.988,32.078-14.159,68.256-14.771,105.694h-77.03c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h77.031c0.611,37.438 5.782,73.616 14.771,105.694h-50.519c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h55.112c8.019,24.169 18.32,45.529 30.56,62.666 1.464,2.049 3.77,3.142 6.11,3.142 1.508,0 3.031-0.454 4.353-1.397 3.37-2.408 4.151-7.092 1.744-10.463-10.621-14.869-19.693-33.204-26.972-53.947h77.81v69.305c0,4.143 3.357,7.5 7.5,7.5s7.5-3.357 7.5-7.5v-69.306h77.81c-7.278,20.744-16.351,39.078-26.972,53.947-2.407,3.371-1.626,8.055 1.744,10.463 1.321,0.943 2.844,1.397 4.353,1.397 2.341,0 4.646-1.093 6.11-3.142 12.24-17.137 22.54-38.497 30.56-62.666h55.112c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-50.519c8.989-32.078 14.16-68.256 14.771-105.694h77.031c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.499-7.5-7.499zm-107.36-105.694c9.313,31.683 14.695,67.958 15.326,105.694h-97.966v-105.694h82.64zm-180.28,0h82.64v105.694h-97.966c0.632-37.737 6.013-74.011 15.326-105.694zm0,226.388c-9.313-31.683-14.695-67.958-15.326-105.694h97.966v105.694h-82.64zm180.28,0h-82.64v-105.694h97.966c-0.632,37.737-6.013,74.012-15.326,105.694z"
+            data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+          <path
+            d="M401.17,68.83C356.784,24.444,297.771,0,235,0S113.216,24.444,68.83,68.83S0,172.229,0,235.001   c0,46.271,13.391,90.899,38.764,129.316l-28.718,86.148c-0.898,2.695-0.197,5.667,1.812,7.676c2.009,2.008,4.979,2.708,7.676,1.812   l86.15-28.716C144.102,456.609,188.729,470,235,470c62.771,0,121.784-24.444,166.17-68.83S470,297.771,470,235.001   C470,172.229,445.556,113.216,401.17,68.83z M235,455c-44.491,0-87.355-13.222-123.961-38.235   c-1.262-0.862-2.739-1.308-4.231-1.308c-0.797,0-1.598,0.127-2.372,0.385L29.02,440.979l25.14-75.414   c0.741-2.225,0.399-4.668-0.923-6.604C28.222,322.357,15,279.492,15,235.001C15,113.692,113.691,15,235,15s220,98.692,220,220.001   C455,356.309,356.309,455,235,455z"
+            data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+        </g>
+      </g>
+    </svg> {{'Trade_Language' | translate}}</a>
+                            </li>
+
+                            <li class="aboutus" *ngIf="!singleApi">
+                                <a [attr.href]="staticLink" target="_blank">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 502.643 502.643" style="enable-background:new 0 0 502.643 502.643;" xml:space="preserve" width="512px" height="512px">
+      <g>
+        <g>
+          <g>
+            <path
+              d="M251.256,237.591c37.166,0,67.042-30.048,67.042-66.977c0.043-37.037-29.876-66.999-67.042-66.999    c-36.908,0-66.869,29.962-66.869,66.999C184.387,207.587,214.349,237.591,251.256,237.591z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M305.032,248.506H197.653c-19.198,0-34.923,17.602-34.923,39.194v107.854c0,1.186,0.604,2.243,0.669,3.473h175.823    c0.129-1.229,0.626-2.286,0.626-3.473V287.7C339.912,266.108,324.187,248.506,305.032,248.506z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M431.588,269.559c29.832,0,53.754-24.008,53.754-53.668s-23.922-53.711-53.754-53.711    c-29.617,0-53.582,24.051-53.582,53.711C377.942,245.53,401.972,269.559,431.588,269.559z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M474.708,278.317h-86.046c-15.445,0-28.064,14.107-28.064,31.472v86.413c0,0.928,0.453,1.812,0.518,2.826h141.03    c0.065-1.014,0.496-1.898,0.496-2.826v-86.413C502.707,292.424,490.11,278.317,474.708,278.317z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M71.011,269.559c29.789,0,53.733-24.008,53.733-53.668S100.8,162.18,71.011,162.18c-29.638,0-53.603,24.051-53.603,53.711    S41.373,269.559,71.011,269.559L71.011,269.559z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M114.109,278.317H27.977C12.576,278.317,0,292.424,0,309.789v86.413c0,0.928,0.453,1.812,0.539,2.826h141.03    c0.065-1.014,0.475-1.898,0.475-2.826v-86.413C142.087,292.424,129.489,278.317,114.109,278.317z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+        </g>
+      </g>
+    </svg> {{'Trade_About_us' | translate}}</a>
+                            </li>
+                            <li class="logout-menu" *ngIf="!singleApi">
+                                <a href="" (click)="logOut()">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3" style="enable-background:new 0 0 490.3 490.3;" xml:space="preserve" width="512px" height="512px">
+      <g>
+        <g>
+          <g>
+            <path
+              d="M0,121.05v248.2c0,34.2,27.9,62.1,62.1,62.1h200.6c34.2,0,62.1-27.9,62.1-62.1v-40.2c0-6.8-5.5-12.3-12.3-12.3    s-12.3,5.5-12.3,12.3v40.2c0,20.7-16.9,37.6-37.6,37.6H62.1c-20.7,0-37.6-16.9-37.6-37.6v-248.2c0-20.7,16.9-37.6,37.6-37.6h200.6    c20.7,0,37.6,16.9,37.6,37.6v40.2c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-40.2c0-34.2-27.9-62.1-62.1-62.1H62.1    C27.9,58.95,0,86.75,0,121.05z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+            <path
+              d="M385.4,337.65c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l83.9-83.9c4.8-4.8,4.8-12.5,0-17.3l-83.9-83.9    c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l63,63H218.6c-6.8,0-12.3,5.5-12.3,12.3c0,6.8,5.5,12.3,12.3,12.3h229.8l-63,63    C380.6,325.15,380.6,332.95,385.4,337.65z"
+              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
+          </g>
+        </g>
+      </g>
+    </svg> {{'Trade_Logout' | translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="user-name">
-                  <span class="account-name"> {{ userName }} </span>
-                  <span class="static-account">{{'manage-account' | translate}}</span>
-
-                </div>
-                <i class="fa fa-angle-down down-arrow"></i>
-              </div>
-              <div class=" dropdown-menu trading animated slideInRight  dropdown-bg" aria-labelledby="tradingmenu">
-                <ul>
-
-                  <li class="deposit-menu" *ngIf="!singleApi">
-                    <a (click)="openDeposit(depositRef)">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                        id="Capa_1" x="0px" y="0px" viewBox="0 0 153.158 153.158"
-                        style="enable-background:new 0 0 153.158 153.158;" xml:space="preserve" width="512px"
-                        height="512px">
-                        <g>
-                          <path
-                            d="M139.368,147.678H13.79c-7.604,0-13.79-6.187-13.79-13.79v-95.67c0-7.604,6.187-13.79,13.79-13.79  h43.518c0.094-0.044,0.192-0.082,0.294-0.114l59.1-18.718c0.655-0.204,1.363-0.136,1.964,0.195c0.6,0.331,1.037,0.895,1.21,1.558  l4.451,17.079h15.042c7.604,0,13.79,6.187,13.79,13.79v95.67C153.158,141.491,146.972,147.678,139.368,147.678z M13.79,29.428  c-4.847,0-8.79,3.943-8.79,8.79v95.67c0,4.847,3.943,8.79,8.79,8.79h125.578c4.847,0,8.79-3.943,8.79-8.79V104.2h-46.567  c-6.075,0-11.018-4.942-11.018-11.017V78.922c0-6.074,4.942-11.017,11.018-11.017h46.567V38.218c0-4.847-3.943-8.79-8.79-8.79H13.79  z M101.591,72.905c-3.318,0-6.018,2.699-6.018,6.017v14.262c0,3.317,2.699,6.017,6.018,6.017h46.567V72.905H101.591z M73.803,24.428  h45.356l-3.458-13.27L73.803,24.428z M109.572,94.94c-4.9,0-8.888-3.987-8.888-8.888s3.987-8.888,8.888-8.888  s8.888,3.987,8.888,8.888S114.473,94.94,109.572,94.94z M109.572,82.165c-2.144,0-3.888,1.744-3.888,3.888s1.744,3.888,3.888,3.888  s3.888-1.744,3.888-3.888S111.716,82.165,109.572,82.165z"
-                            data-original="#222221" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                        </g>
-                      </svg>
-
-                      <!-- <img src="../../assets/icons/deposit.svg" alt=""> -->
-                      <!-- <i class="far fa-credit-card"></i> -->
-                      {{'Trade_Deposit' | translate}}</a>
-                  </li>
-                  <li class="withdraw-menu"><a (click)="openWithdraw(withdrawRef)" *ngIf="!singleApi">
-                      <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 512 512"
-                        width="512px" height="512px" class="">
-                        <g>
-                          <title class="active-path" style="fill:#FFFFFF" data-old_color="#F6F2F2">Atm</title>
-                          <path
-                            d="M488.925,48H23.075C18.657,48,15,52.014,15,56.432V284.181A7.912,7.912,0,0,0,23.075,292H127V455.568c0,4.418,3.58,8.432,8,8.432H377c4.419,0,8-4.014,8-8.432V292H488.925A7.912,7.912,0,0,0,497,284.181V56.432C497,52.014,493.343,48,488.925,48ZM127,201H83V139h44ZM369,448H143V139h7V435.174a7.585,7.585,0,0,0,.684,3.027,8,8,0,0,0,7.427,4.8h198.5c4.418,0,8.392-3.407,8.392-7.826V139h4Zm-27.8-74c-26.4,0-48.2,21.177-48.2,47.579V427H219v-4.968A47.95,47.95,0,0,0,171.254,374H166V139H349V374Zm7.8,16v37H309v-5.421C309,404,323.62,390,341.2,390Zm-177.746,0A31.932,31.932,0,0,1,203,422.032V427H166V390ZM481,276H385V217h52.164A7.517,7.517,0,0,0,445,209.415V131.2a8.034,8.034,0,0,0-7.836-8.2H74.836A8.034,8.034,0,0,0,67,131.2v78.217A7.517,7.517,0,0,0,74.836,217H127v59H31V64H481Zm-96-75V139h44v62Z"
-                            data-original="#000000" class="active-path" data-old_color="#F6F2F2" fill="#FFFFFF" />
-                          <path
-                            d="M256,154.185a84.305,84.305,0,1,0,84.305,84.305A84.4,84.4,0,0,0,256,154.185Zm0,152.61a68.305,68.305,0,1,1,68.305-68.305A68.382,68.382,0,0,1,256,306.8Z"
-                            data-original="#000000" class="active-path" data-old_color="#F6F2F2" fill="#FFFFFF" />
-                        </g>
-                      </svg>
-                      {{'Trade_Withdrawal' | translate}}</a>
-                  </li>
-                  <li class="withdraw-menu referral-icon" *ngIf="!singleApi"><a (click)="openReferral(referralRef)">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 512 512" width="512px">
-                        <g>
-                          <path
-                            d="m250.902344 271.894531c1.691406.0625 3.386718.105469 5.097656.105469 1.585938 0 3.164062-.035156 4.738281-.09375 35.8125.773438 71.035157 10.25 102.15625 27.570312 9.652344 5.371094 21.832031 1.902344 27.203125-7.75 5.371094-9.652343 1.902344-21.832031-7.75-27.203124-14.328125-7.972657-29.386718-14.542969-44.933594-19.652344 33.117188-24.828125 54.585938-64.390625 54.585938-108.871094 0-74.992188-61.011719-136-136-136-74.992188 0-136 61.007812-136 136 0 44.507812 21.492188 84.09375 54.644531 108.917969-30.371093 9.996093-58.871093 25.546875-83.816406 46.0625-45.730469 37.617187-77.527344 90.085937-89.53125 147.742187-3.761719 18.066406.746094 36.621094 12.363281 50.910156 11.558594 14.214844 28.703125 22.367188 47.03125 22.367188h156.308594c11.042969 0 20-8.953125 20-20s-8.957031-20-20-20h-156.308594c-8.539062 0-13.6875-4.765625-16-7.605469-3.988281-4.90625-5.53125-11.289062-4.234375-17.519531 20.769531-99.761719 108.808594-172.617188 210.445313-174.980469zm-90.902344-135.894531c0-52.933594 43.0625-96 96-96 52.933594 0 96 43.066406 96 96 0 51.339844-40.507812 93.390625-91.238281 95.882812-1.589844-.03125-3.175781-.050781-4.761719-.050781-1.5625 0-3.121094.023438-4.679688.050781-50.769531-2.445312-91.320312-44.515624-91.320312-95.882812zm352 235.828125c.019531 13.359375-5.203125 25.914063-14.699219 35.359375l-37.199219 36.992188c-3.902343 3.882812-9.003906 5.820312-14.101562 5.820312-5.136719 0-10.273438-1.96875-14.183594-5.898438-7.789062-7.832031-7.753906-20.492187.078125-28.28125l24.933594-24.796874h-113.339844c-22.328125 0-40.488281 18.164062-40.488281 40.488281s17.941406 40.488281 40 40.488281c11.042969 0 20 8.953125 20 20s-8.957031 20-20 20c-21.511719 0-41.667969-8.398438-56.75-23.652344-14.996094-15.164062-23.25-35.347656-23.25-56.835937 0-44.382813 36.105469-80.488281 80.488281-80.488281h111.503907l-23.058594-22.800782c-7.851563-7.769531-7.925782-20.433594-.15625-28.285156 7.765625-7.851562 20.429687-7.925781 28.285156-.15625l37.140625 36.726562c9.523437 9.417969 14.777344 21.960938 14.796875 35.320313zm0 0"
-                            data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                        </g>
-                      </svg>
-
-                      {{'referral' | translate}}
-                    </a></li>
-
-                  <li class="language-menu"><a (click)="showSettings(setting)">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                        viewBox="0 0 470 470" enable-background="new 0 0 470 470" width="512px" height="512px">
-                        <g>
-                          <g>
-                            <path
-                              d="m432.5,227.5h-77.031c-0.611-37.438-5.782-73.616-14.771-105.694h50.518c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-55.112c-8.018-24.165-18.316-45.521-30.553-62.656-2.408-3.371-7.093-4.153-10.462-1.745-3.371,2.407-4.152,7.092-1.745,10.462 10.618,14.868 19.688,33.199 26.965,53.939h-77.809v-69.306c0-4.143-3.357-7.5-7.5-7.5s-7.5,3.357-7.5,7.5v69.306h-77.81c7.277-20.74 16.347-39.071 26.965-53.939 2.407-3.37 1.626-8.055-1.745-10.462-3.372-2.407-8.055-1.625-10.462,1.745-12.237,17.135-22.535,38.492-30.553,62.656h-55.112c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h50.518c-8.988,32.078-14.159,68.256-14.771,105.694h-77.03c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h77.031c0.611,37.438 5.782,73.616 14.771,105.694h-50.519c-4.143,0-7.5,3.357-7.5,7.5s3.357,7.5 7.5,7.5h55.112c8.019,24.169 18.32,45.529 30.56,62.666 1.464,2.049 3.77,3.142 6.11,3.142 1.508,0 3.031-0.454 4.353-1.397 3.37-2.408 4.151-7.092 1.744-10.463-10.621-14.869-19.693-33.204-26.972-53.947h77.81v69.305c0,4.143 3.357,7.5 7.5,7.5s7.5-3.357 7.5-7.5v-69.306h77.81c-7.278,20.744-16.351,39.078-26.972,53.947-2.407,3.371-1.626,8.055 1.744,10.463 1.321,0.943 2.844,1.397 4.353,1.397 2.341,0 4.646-1.093 6.11-3.142 12.24-17.137 22.54-38.497 30.56-62.666h55.112c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.5-7.5-7.5h-50.519c8.989-32.078 14.16-68.256 14.771-105.694h77.031c4.143,0 7.5-3.357 7.5-7.5s-3.357-7.499-7.5-7.499zm-107.36-105.694c9.313,31.683 14.695,67.958 15.326,105.694h-97.966v-105.694h82.64zm-180.28,0h82.64v105.694h-97.966c0.632-37.737 6.013-74.011 15.326-105.694zm0,226.388c-9.313-31.683-14.695-67.958-15.326-105.694h97.966v105.694h-82.64zm180.28,0h-82.64v-105.694h97.966c-0.632,37.737-6.013,74.012-15.326,105.694z"
-                              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                            <path
-                              d="M401.17,68.83C356.784,24.444,297.771,0,235,0S113.216,24.444,68.83,68.83S0,172.229,0,235.001   c0,46.271,13.391,90.899,38.764,129.316l-28.718,86.148c-0.898,2.695-0.197,5.667,1.812,7.676c2.009,2.008,4.979,2.708,7.676,1.812   l86.15-28.716C144.102,456.609,188.729,470,235,470c62.771,0,121.784-24.444,166.17-68.83S470,297.771,470,235.001   C470,172.229,445.556,113.216,401.17,68.83z M235,455c-44.491,0-87.355-13.222-123.961-38.235   c-1.262-0.862-2.739-1.308-4.231-1.308c-0.797,0-1.598,0.127-2.372,0.385L29.02,440.979l25.14-75.414   c0.741-2.225,0.399-4.668-0.923-6.604C28.222,322.357,15,279.492,15,235.001C15,113.692,113.691,15,235,15s220,98.692,220,220.001   C455,356.309,356.309,455,235,455z"
-                              data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                          </g>
-                        </g>
-                      </svg>
-
-                      {{'Trade_Language' | translate}}</a></li>
-
-                  <li class="aboutus" *ngIf="!singleApi"><a [attr.href]="staticLink" target="_blank">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                        id="Capa_1" x="0px" y="0px" viewBox="0 0 502.643 502.643"
-                        style="enable-background:new 0 0 502.643 502.643;" xml:space="preserve" width="512px"
-                        height="512px">
-                        <g>
-                          <g>
-                            <g>
-                              <path
-                                d="M251.256,237.591c37.166,0,67.042-30.048,67.042-66.977c0.043-37.037-29.876-66.999-67.042-66.999    c-36.908,0-66.869,29.962-66.869,66.999C184.387,207.587,214.349,237.591,251.256,237.591z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M305.032,248.506H197.653c-19.198,0-34.923,17.602-34.923,39.194v107.854c0,1.186,0.604,2.243,0.669,3.473h175.823    c0.129-1.229,0.626-2.286,0.626-3.473V287.7C339.912,266.108,324.187,248.506,305.032,248.506z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M431.588,269.559c29.832,0,53.754-24.008,53.754-53.668s-23.922-53.711-53.754-53.711    c-29.617,0-53.582,24.051-53.582,53.711C377.942,245.53,401.972,269.559,431.588,269.559z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M474.708,278.317h-86.046c-15.445,0-28.064,14.107-28.064,31.472v86.413c0,0.928,0.453,1.812,0.518,2.826h141.03    c0.065-1.014,0.496-1.898,0.496-2.826v-86.413C502.707,292.424,490.11,278.317,474.708,278.317z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M71.011,269.559c29.789,0,53.733-24.008,53.733-53.668S100.8,162.18,71.011,162.18c-29.638,0-53.603,24.051-53.603,53.711    S41.373,269.559,71.011,269.559L71.011,269.559z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M114.109,278.317H27.977C12.576,278.317,0,292.424,0,309.789v86.413c0,0.928,0.453,1.812,0.539,2.826h141.03    c0.065-1.014,0.475-1.898,0.475-2.826v-86.413C142.087,292.424,129.489,278.317,114.109,278.317z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                            <g>
-                            </g>
-                          </g>
-                        </g>
-                      </svg>
-
-                      {{'Trade_About_us' | translate}}</a>
-                  </li>
-                  <li class="logout-menu" *ngIf="!singleApi"><a href="" (click)="logOut()">
-
-                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                        id="Capa_1" x="0px" y="0px" viewBox="0 0 490.3 490.3"
-                        style="enable-background:new 0 0 490.3 490.3;" xml:space="preserve" width="512px"
-                        height="512px">
-                        <g>
-                          <g>
-                            <g>
-                              <path
-                                d="M0,121.05v248.2c0,34.2,27.9,62.1,62.1,62.1h200.6c34.2,0,62.1-27.9,62.1-62.1v-40.2c0-6.8-5.5-12.3-12.3-12.3    s-12.3,5.5-12.3,12.3v40.2c0,20.7-16.9,37.6-37.6,37.6H62.1c-20.7,0-37.6-16.9-37.6-37.6v-248.2c0-20.7,16.9-37.6,37.6-37.6h200.6    c20.7,0,37.6,16.9,37.6,37.6v40.2c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-40.2c0-34.2-27.9-62.1-62.1-62.1H62.1    C27.9,58.95,0,86.75,0,121.05z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                              <path
-                                d="M385.4,337.65c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l83.9-83.9c4.8-4.8,4.8-12.5,0-17.3l-83.9-83.9    c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l63,63H218.6c-6.8,0-12.3,5.5-12.3,12.3c0,6.8,5.5,12.3,12.3,12.3h229.8l-63,63    C380.6,325.15,380.6,332.95,385.4,337.65z"
-                                data-original="#000000" class="active-path" data-old_color="#ffffff" fill="#ffffff" />
-                            </g>
-                          </g>
-                        </g>
-                      </svg>
-
-                      {{'Trade_Logout' | translate}}</a></li>
-                </ul>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
-      <!-- Top Header Wrapper End -->
-
-
-
-      <div class="main middle-section">
-
-        <section>
-          <open-trade #openTrade [chart]="chart" (closeOpenTradeView)="isShowOpenTrade()"
-            (openTradeClosed)="updateHistory($event)"></open-trade>
         </section>
+        <!-- Top Header Wrapper End -->
 
 
-        <section>
-          <trade-history #tradeHistory (closeHistoryView)="isShowTradeHistory(false)"></trade-history>
+
+        <div class="main middle-section">
+
+            <section>
+                <open-trade #openTrade [chart]="chart" (closeOpenTradeView)="isShowOpenTrade()" (openTradeClosed)="updateHistory($event)"></open-trade>
+            </section>
 
 
-        </section>
+            <section>
+                <trade-history #tradeHistory (closeHistoryView)="isShowTradeHistory(false)"></trade-history>
 
 
-        <!-- New Middle section -->
+            </section>
 
-        <section class="middle-wrapper">
-          <div class="left-wrapper">
 
-            <div class="quick-wrappper">
-              <div class="grid-group">
-                <!-- Trading Symbol -->
-                <div id="symbolTrading" class="symbol-trading mobile-space">
-                  <div ngbDropdown customDropdownToggle class="" [autoClose]="dropDowns.closeSymSel"
-                    (openChange)="toggleDpDown($event,'closeSymSel')" #symbolDropDn="ngbDropdown"
-                     (closeDpDown)="symbolDropDn.close()">
-                    <button class="btn dropdown-toggle dropdown-v2 dropdown-toggle" ngbDropdownToggle>
+            <!-- New Middle section -->
+
+            <section class="middle-wrapper">
+
+                <div class="left-wrapper">
+
+                    <div class="quick-wrappper">
+                        <div class="grid-group">
+                            <!-- Trading Symbol -->
+                            <div id="symbolTrading" class="symbol-trading mobile-space">
+                                <div ngbDropdown customDropdownToggle class="" [autoClose]="dropDowns.closeSymSel" (openChange)="toggleDpDown($event,'closeSymSel')" #symbolDropDn="ngbDropdown"  (closeDpDown)="symbolDropDn.close()">
+                                    <button class="btn dropdown-toggle dropdown-v2 dropdown-toggle" ngbDropdownToggle>
                       <div class="collected-data">
                         {{wtStorageService.selectedSymbol}}
                       </div>
                       <div class="arrow-action"><i class="fa fa-angle-down"></i></div>
                     </button>
 
-                    <div ngbTabset
-                      class=" fix-scroll-issues dropdown-menu dropdown-bg dropdown-content animated zoomInDown"
-                      id="symbol-menu" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
-                      <div class="search">
-                        <input [(ngModel)]="searchInput" type="text" name=""
-                          placeholder="{{'Trade_Search' | translate}}">
-                        <button (click)="searchInput = ''" class="fa fa-times searchBt"
-                          [style.display]="(searchInput === undefined || searchInput === null || searchInput?.toString().trim() === '') ? 'none':''"></button>
-                      </div>
-                      <div class="menu-tabs">
-                        <ngb-tabset class="symbol-container" (tabChange)="searchInput = undefined"
-                          *ngIf="symbolConfiguration">
-                          <ngb-tab *ngFor="let security of symbolConfiguration | keyValue" title="{{security}}">
-                            <h1>{{security}}</h1>
-                            <ng-template ngbTabContent>
-                              <ul class="custom-block">
-                                <ng-container *ngIf="symbolConfiguration[security]| objKeysLength">
-                                  <div class="empty-list"> {{'Trade_No_Symbols_Found' | translate}} </div>
-                                </ng-container>
-                                <ng-container
-                                  *ngFor="let symbol of symbolConfiguration[security] | keyValue | searchFilter:{value:searchInput}">
-                                  <li *ngIf="symbolConfiguration[security][symbol].length > 0"
-                                    [ngClass]="{'selected':symbol==wtStorageService.selectedSymbol}">
-                                    <a class="fav-icon"
-                                      [ngClass]="{'fav': ((favorites && favorites[symbol] && favorites[symbol].isFav) == true) ? true : false}"
-                                      (click)="addToFavourite(symbol, security)"></a>
-                                    <a class="symbol-dropdown-list"
-                                      (click)="changeSymbol(symbol,symbolConfiguration[security][symbol],true)">{{symbol}}</a>
-                                  </li>
-                                </ng-container>
-                              </ul>
-                            </ng-template>
-                          </ngb-tab>
-                          <ngb-tab title="{{'Trade_Favorites' | translate}}">
-                            <h1>{{'Trade_Favorites' | translate}}</h1>
-                            <ng-template ngbTabContent>
-                              <ul *ngIf="symbolConfiguration">
-                                <ng-container *ngIf="favCount === 0">
-                                  <div class="empty-list">{{'Trade_No_Favorites' | translate}}</div>
-                                </ng-container>
-                                <ng-container
-                                  *ngFor="let fav of favorites | keyValue  | searchFilter:{value:searchInput}">
-                                  <li [ngClass]="{'selected':fav == wtStorageService.selectedSymbol}"
-                                    [hidden]="symbolConfiguration[favorites[fav].security][fav].length > 0 && !favorites[fav].isFav">
-                                    <button (click)="removeFromFav(fav)" class="fa fa-times closeBt"></button>
-                                    <a
-                                      (click)="changeSymbol(fav,symbolConfiguration[favorites[fav].security][fav],true)">{{fav}}</a>
-                                  </li>
-                                </ng-container>
-                              </ul>
-                            </ng-template>
-                          </ngb-tab>
-                        </ngb-tabset>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!--Symbol pagination -->
-                <div class="symbol-pagination-wrapper mobile-space">
+                                    <div ngbTabset class=" fix-scroll-issues dropdown-menu dropdown-bg dropdown-content animated zoomInDown" id="symbol-menu" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+                                        <div class="search">
+                                            <input [(ngModel)]="searchInput" type="text" name="" placeholder="{{'Trade_Search' | translate}}">
+                                            <button (click)="searchInput = ''" class="fa fa-times searchBt" [style.display]="(searchInput === undefined || searchInput === null || searchInput?.toString().trim() === '') ? 'none':''"></button>
+                                        </div>
+                                        <div class="menu-tabs">
+                                            <ngb-tabset class="symbol-container" (tabChange)="searchInput = undefined" *ngIf="symbolConfiguration">
+                                                <ngb-tab *ngFor="let security of symbolConfiguration | keyValue" title="{{security}}">
+                                                    <h1>{{security}}</h1>
+                                                    <ng-template ngbTabContent>
+                                                        <ul class="custom-block">
+                                                            <ng-container *ngIf="symbolConfiguration[security]| objKeysLength">
+                                                                <div class="empty-list"> {{'Trade_No_Symbols_Found' | translate}} </div>
+                                                            </ng-container>
+                                                            <ng-container *ngFor="let symbol of symbolConfiguration[security] | keyValue | searchFilter:{value:searchInput}">
+                                                                <li *ngIf="symbolConfiguration[security][symbol].length > 0" [ngClass]="{'selected':symbol==wtStorageService.selectedSymbol}">
+                                                                    <a class="fav-icon" [ngClass]="{'fav': ((favorites && favorites[symbol] && favorites[symbol].isFav) == true) ? true : false}" (click)="addToFavourite(symbol, security)"></a>
+                                                                    <a class="symbol-dropdown-list" (click)="changeSymbol(symbol,symbolConfiguration[security][symbol],true)">{{symbol}}</a>
+                                                                </li>
+                                                            </ng-container>
+                                                        </ul>
+                                                    </ng-template>
+                                                </ngb-tab>
+                                                <ngb-tab title="{{'Trade_Favorites' | translate}}">
+                                                    <h1>{{'Trade_Favorites' | translate}}</h1>
+                                                    <ng-template ngbTabContent>
+                                                        <ul *ngIf="symbolConfiguration">
+                                                            <ng-container *ngIf="favCount === 0">
+                                                                <div class="empty-list">{{'Trade_No_Favorites' | translate}}</div>
+                                                            </ng-container>
+                                                            <ng-container *ngFor="let fav of favorites | keyValue  | searchFilter:{value:searchInput}">
+                                                                <li [ngClass]="{'selected':fav == wtStorageService.selectedSymbol}" [hidden]="symbolConfiguration[favorites[fav].security][fav].length > 0 && !favorites[fav].isFav">
+                                                                    <button (click)="removeFromFav(fav)" class="fa fa-times closeBt"></button>
+                                                                    <a (click)="changeSymbol(fav,symbolConfiguration[favorites[fav].security][fav],true)">{{fav}}</a>
+                                                                </li>
+                                                            </ng-container>
+                                                        </ul>
+                                                    </ng-template>
+                                                </ngb-tab>
+                                            </ngb-tabset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Symbol pagination -->
+                            <div class="symbol-pagination-wrapper mobile-space">
 
-                  <nav aria-label="..." class="pagination-symbol m-display-none"
-                    [ngClass]="{'expand-box': openTradesComponent.showOpenTrades, 'expand-box1': tradeHistoryComponent.showTradesHistory,'pagination-history':tradeHistoryComponent.showTradesHistory}">
-                    <ul>
-                      <li class="page-item disabled">
-                        <span class="page-link"><i class="fa fa-angle-left"></i></span>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
-                        <a class="page-link" (click)="setTimeFrame('m1')">M1</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m5'}">
-                        <a class="page-link" (click)="setTimeFrame('m5')">M5</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m15'}">
-                        <a class="page-link" (click)="setTimeFrame('m15')">M15</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m30'}">
-                        <a class="page-link" (click)="setTimeFrame('m30')">M30</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h1'}">
-                        <a class="page-link" (click)="setTimeFrame('H1')">H1</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h4'}">
-                        <a class="page-link" (click)="setTimeFrame('h4')">H4</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='d1'}">
-                        <a class="page-link" (click)="setTimeFrame('d1')">D1</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='w1'}">
-                        <a class="page-link" (click)="setTimeFrame('w1')">W1</a>
-                      </li>
-                      <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='mn1'}">
-                        <a class="page-link" (click)="setTimeFrame('mn1')">MN1</a>
-                      </li>
-                      <li class="page-item disabled">
-                        <a class="page-link"><i class="fa fa-angle-right"></i></a>
-                      </li>
-                    </ul>
-                  </nav>
+                                <nav aria-label="..." class="pagination-symbol m-display-none" [ngClass]="{'expand-box': openTradesComponent.showOpenTrades, 'expand-box1': tradeHistoryComponent.showTradesHistory,'pagination-history':tradeHistoryComponent.showTradesHistory}">
+                                    <ul>
+                                        <li class="page-item disabled">
+                                            <span class="page-link"><i class="fa fa-angle-left"></i></span>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
+                                            <a class="page-link" (click)="setTimeFrame('m1')">M1</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m5'}">
+                                            <a class="page-link" (click)="setTimeFrame('m5')">M5</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m15'}">
+                                            <a class="page-link" (click)="setTimeFrame('m15')">M15</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m30'}">
+                                            <a class="page-link" (click)="setTimeFrame('m30')">M30</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h1'}">
+                                            <a class="page-link" (click)="setTimeFrame('H1')">H1</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h4'}">
+                                            <a class="page-link" (click)="setTimeFrame('h4')">H4</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='d1'}">
+                                            <a class="page-link" (click)="setTimeFrame('d1')">D1</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='w1'}">
+                                            <a class="page-link" (click)="setTimeFrame('w1')">W1</a>
+                                        </li>
+                                        <li class="page-item" [ngClass]="{'active':wtStorageService.selectedTimeFrame=='mn1'}">
+                                            <a class="page-link" (click)="setTimeFrame('mn1')">MN1</a>
+                                        </li>
+                                        <li class="page-item disabled">
+                                            <a class="page-link"><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </nav>
 
-                 <!-- Only for mobile -->
-                <div class="pagination-mobile d-display-none open-trade-mobile">
-                  <div ngbDropdown class="dropdown" (openChange)="toggleDpDown($event, null)">
+                                <!-- Only for mobile -->
+                                <div class="pagination-mobile d-display-none open-trade-mobile">
+                                    <div ngbDropdown class="dropdown" (openChange)="toggleDpDown($event, null)">
 
-                    <div class="manage-ac-dropdown d-flex align-items-center" id="tradingmenu" ngbDropdownToggle>
-                      <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
-                        <a >{{wtStorageService.selectedTimeFrame}}</a>
-                      </li>
-                    </div>
-                    <div class=" dropdown-menu trading animated slideInRight  dropdown-bg" aria-labelledby="tradingmenu">
-                      <ul>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
-                          <a  (click)="setTimeFrame('m1')">M1</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m5'}">
-                          <a  (click)="setTimeFrame('m5')">M5</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m15'}">
-                          <a  (click)="setTimeFrame('m15')">M15</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m30'}">
-                          <a  (click)="setTimeFrame('m30')">M30</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h1'}">
-                          <a  (click)="setTimeFrame('H1')">H1</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h4'}">
-                          <a  (click)="setTimeFrame('h4')">H4</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='d1'}">
-                          <a  (click)="setTimeFrame('d1')">D1</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='w1'}">
-                          <a  (click)="setTimeFrame('w1')">W1</a>
-                        </li>
-                        <li  [ngClass]="{'active':wtStorageService.selectedTimeFrame=='mn1'}">
-                          <a  (click)="setTimeFrame('mn1')">MN1</a>
-                        </li>
-                        <!-- <li class=" disabled">
+                                        <div class="manage-ac-dropdown d-flex align-items-center" id="tradingmenu" ngbDropdownToggle>
+                                            <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
+                                                <a>{{wtStorageService.selectedTimeFrame}}</a>
+                                            </li>
+                                        </div>
+                                        <div class=" dropdown-menu trading animated slideInRight  dropdown-bg" aria-labelledby="tradingmenu">
+                                            <ul>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m1'}">
+                                                    <a (click)="setTimeFrame('m1')">M1</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m5'}">
+                                                    <a (click)="setTimeFrame('m5')">M5</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m15'}">
+                                                    <a (click)="setTimeFrame('m15')">M15</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='m30'}">
+                                                    <a (click)="setTimeFrame('m30')">M30</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h1'}">
+                                                    <a (click)="setTimeFrame('H1')">H1</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='h4'}">
+                                                    <a (click)="setTimeFrame('h4')">H4</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='d1'}">
+                                                    <a (click)="setTimeFrame('d1')">D1</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='w1'}">
+                                                    <a (click)="setTimeFrame('w1')">W1</a>
+                                                </li>
+                                                <li [ngClass]="{'active':wtStorageService.selectedTimeFrame=='mn1'}">
+                                                    <a (click)="setTimeFrame('mn1')">MN1</a>
+                                                </li>
+                                                <!-- <li class=" disabled">
                           <a class="page-link"><i class="fa fa-angle-right"></i></a>
                         </li> -->
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <!-- end for mobile -->
-                </div>
-                <!-- End -->
-                <!-- open Trader for mobile -->
-                <div class="open-trade-mobile mobile-space d-display-none">
-                  <div class="trade-history-wrap d-flex h-100 " id="open-trades">
-                    <a id="opentrades" (click)="isShowOpenTrade()">
-                      <div class="icon-1">
-                        <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.81 18.63">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end for mobile -->
+                            </div>
+                            <!-- End -->
+                            <!-- open Trader for mobile -->
+                            <div class="open-trade-mobile mobile-space d-display-none">
+                                <div class="trade-history-wrap d-flex h-100 " id="open-trades">
+                                    <a id="opentrades" (click)="isShowOpenTrade()">
+                                        <div class="icon-1">
+                                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.81 18.63">
                           <title>open-trade-01</title>
                           <path
                             d="M4.36,12.81a.17.17,0,0,1-.17-.17V3.17A.17.17,0,0,1,4.36,3H21.42a.17.17,0,0,1,.17.17v9.47a.17.17,0,0,1-.17.17Zm.17-.34H21.25V3.34H4.53Z" />
@@ -659,61 +633,59 @@
                           <path
                             d="M12.12,10A.16.16,0,0,1,12,9.83a.17.17,0,0,1,.17-.17h6.74a.18.18,0,0,1,.17.17.17.17,0,0,1-.17.17Z" />
                         </svg>
-                      </div>
-                    </a>
-                    <span class="current-trade" *ngIf="tradeActive">
+                                        </div>
+                                    </a>
+                                    <span class="current-trade" *ngIf="tradeActive">
                       <i class="fa fa-circle Blink"></i>
                     </span>
-                  </div>
-                </div>
-                <!-- end -->
-                <!-- Full trade history mobile -->
-                <div class="open-trade-mobile mobile-space d-display-none">
-                  <div class="trade-history-wrap d-flex h-100 " id="open-history">
-                    <a  id="history"
-                      (click)="isShowTradeHistory(!tradeHistoryComponent.showTradesHistory)">
-                      <div class="icon-1">
-                        <!-- <object type="image/svg+xml" data="assets/images/timer.svg" class="">
+                                </div>
+                            </div>
+                            <!-- end -->
+                            <!-- Full trade history mobile -->
+                            <div class="open-trade-mobile mobile-space d-display-none">
+                                <div class="trade-history-wrap d-flex h-100 " id="open-history">
+                                    <a id="history" (click)="isShowTradeHistory(!tradeHistoryComponent.showTradesHistory)">
+                                        <div class="icon-1">
+                                            <!-- <object type="image/svg+xml" data="assets/images/timer.svg" class="">
 
                         </object> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" focusable="false" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" focusable="false" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                           <path class="st0" d="M345.5,313.6L275,262.3V116c0-6.6-5.4-12-12-12h-14c-6.6,0-12,5.4-12,12v159.6c0,3.8,1.8,7.4,4.9,9.7l81.2,59v0  c5.4,3.9,12.9,2.7,16.8-2.6l8.2-11.3C352,325,350.9,317.5,345.5,313.6z"/>
                           <path class="st0" d="M256,8C119,8,8,119,8,256s111,248,248,248s248-111,248-248S393,8,256,8z M68,98h-1H68z M256,472  c-118.7,0-216-96.1-216-216c0-118.7,96.1-216,216-216c118.7,0,216,96.1,216,216C472,374.7,375.9,472,256,472z"/>
                           </svg>
-                        <!-- <img src="assets/images/timer.svg" /> -->
-                      </div>
-                      <!-- {{'Trade_Trading_History' | translate}} -->
-                    </a>
-                  </div>
-                </div>
-                <!-- end -->
-                <!-- Trading Indicator -->
-                <div class="trading-indicator mobile-space open-trade-mobile">
-                  <indicators #indicators [chart]="chart" [dropDowns]="dropDowns" [chartData]="chartData"
-                    (toggleIndicDpEvent)="toggleDpDown($event,'indicSel')"></indicators>
-                  <!-- <div class="timer">
+                                            <!-- <img src="assets/images/timer.svg" /> -->
+                                        </div>
+                                        <!-- {{'Trade_Trading_History' | translate}} -->
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end -->
+                            <!-- Trading Indicator -->
+                            <div class="trading-indicator mobile-space open-trade-mobile">
+                                <indicators #indicators [chart]="chart" [dropDowns]="dropDowns" [chartData]="chartData" (toggleIndicDpEvent)="toggleDpDown($event,'indicSel')"></indicators>
+                                <!-- <div class="timer">
                     {{date}}
                   </div> -->
-                </div>
+                            </div>
 
-                <!-- End -->
-                <!-- Timer  -->
-                <div class="current-time-wrapper" *ngIf="currentTime">              
-                  <div class="timer">
-                    <span class="timer-text">{{'marketWatch' | translate}}</span>: <span class="current-time">{{currentTime}}</span>
-                  </div>
-                </div>
-                <!-- Timer end -->
-              </div>
-            </div>
+                            <!-- End -->
+                            <!-- Timer  -->
+                            <div class="current-time-wrapper" *ngIf="currentTime">
+                                <div class="timer">
+                                    <span class="timer-text">{{'marketWatch' | translate}}</span>: <span class="current-time">{{currentTime}}</span>
+                                </div>
+                            </div>
+                            <!-- Timer end -->
+                        </div>
+                    </div>
 
-            <!-- End -->
+                    <!-- End -->
 
-            <div [ngClass]="{'expand-box': openTradesComponent.showOpenTrades,
+                    <div [ngClass]="{'expand-box': openTradesComponent.showOpenTrades,
                 'expand-box1': tradeHistoryComponent.showTradesHistory }">
-              <div #divtradescreen class="">
-                <!-- chart loader -->
-                <!-- <div class='loader-bkg' *ngIf="(!accountSwitch && initLoad) && !chartLoaded">
+                        <div #divtradescreen class="">
+                            <!-- chart loader -->
+                            <!-- <div class='loader-bkg' *ngIf="(!accountSwitch && initLoad) && !chartLoaded">
                     <div class="loader">
                       <div class="loader__bar"></div>
                       <div class="loader__bar"></div>
@@ -723,277 +695,265 @@
                       <div class="loader__ball"></div>
                     </div>
                   </div> -->
-                <div class="center_align_cont_parent" *ngIf="false">
-                  <div class="center_align_cont">Market is closed</div>
+                            <div class="center_align_cont_parent" *ngIf="false">
+                                <div class="center_align_cont">Market is closed</div>
+                            </div>
+                            <!-- end chart loader -->
+                            <chart-container #chart [chartData]="chartData" [height]="headerWrapperHeight" [width]="headerWrapperWidth" [utc]="wtStorageService.utc" (getMoreCandles)="getMorePastData()"></chart-container>
+                        </div>
+                    </div>
                 </div>
-                <!-- end chart loader -->
-                <chart-container #chart [chartData]="chartData" [height]="headerWrapperHeight" [width]="headerWrapperWidth" [utc]="wtStorageService.utc" (getMoreCandles)="getMorePastData()"></chart-container>
-              </div>
+                <!-- <div class="right-wrapper" [perfectScrollbar]> -->
+                <div class="right-wrapper" [ngStyle]=" { height: headerWrapperHeight + 'px' }" [perfectScrollbar]>
+                    <!-- Time Frame -->
+                    <div class="time-frame mb-vw">
+                        <span class="title-text">{{'time-frame' | translate}}</span>
+
+                        <div id="timeFrame" ngbDropdown class="text-center dropdown-item-top" (openChange)="toggleDpDown($event, null)">
+                            <button id="percentage-menu" class="btn dropdown-toggle dropdown-v1" *ngIf="selectedSymConfig.interval === 0 " ngbDropdownToggle>
+
+    <div class="collected-data">
+      {{ 'time-frame' | translate}}
+    </div>
+    <div class="arrow-action">
+      <i class="fa fa-angle-down"></i>
+    </div>
+  </button>
+                            <button class="btn dropdown-toggle dropdown-v1" id="percentage-menu" *ngIf="selectedSymConfig.interval !== 0 " ngbDropdownToggle>
+    <div class="collected-data">
+      {{selectedSymConfig.interval | timeHMS}} - {{selectedSymConfig.winPayout}}%
+    </div>
+    <div class="arrow-action">
+      <i class="fa fa-angle-down"></i>
+    </div>
+  </button>
+                            <ul class="dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomInDown" id="percentage-menu">
+                                <li (click)="intervalChange(intervalDetail)" [ngClass]="{'selected':intervalDetail.interval == selectedSymConfig.interval &&
+                                    intervalDetail.winPayout == selectedSymConfig.winPayout}" *ngFor="let intervalDetail of intervalList">
+                                    <a class="mt4-timeframe-dropdown-list">
+        {{intervalDetail.interval | timeHMS}} - {{intervalDetail.winPayout}}%
+      </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End -->
+                    <!-- Bet Amount -->
+                    <div class="amount-section mb-vw">
+
+                        <div id="amountDropdown" ngbDropdown [autoClose]="dropDowns.calcSel" (openChange)="toggleDpDown($event,'calcSel')">
+                            <span class="title-text">{{'Trade_Amount' | translate}}</span>
+
+                            <div class="input-group-bind">
+                                <div class="input-data">
+                                    <input #amount class="data-filled" type="number" value={{selectedSymConfig.minAmount}} min="0" [(ngModel)]="tradeAmount" (keyup)="onKey($event)" OnlyNumber="true" (click)="hideKeyPad(amount);showCal = !showCal;" required ngbDropdownToggle [ngClass]="{'amount-error': tradeAmount < selectedSymConfig.minAmount|| tradeAmount > selectedSymConfig.maxAmount}">
+                                </div>
+                                <div class="hit-btn decrease-value">
+                                    <input type="button" value="-" triggers="manual" (click)="decreaseAmount()">
+                                </div>
+                                <div class="hit-btn increase-value">
+                                    <input type="button" value="+" placement="top" triggers="manual" (click)="incraseAmount()" id="calculate" [disabled]="maxAmountFlag">
+                                </div>
+
+
+                            </div>
+
+                            <div class="calculator dropdown-menu hidden-sm-down animated bounceIn">
+                                <button class="float-left col-md-6 half-button" (click)="subCalculator(50)">-$50</button>
+                                <button class="float-left col-md-6 half-button" (click)="addCalculator(50)" [disabled]="maxAmountFlag">+$50</button>
+                                <button class="float-left col-md-6 half-button" (click)="subCalculator(100)">-$100</button>
+                                <button class="float-left col-md-6 half-button" (click)="addCalculator(100)" [disabled]="maxAmountFlag">+$100</button>
+                                <button class="float-left col-md-12" (click)="mulCalculator(2)" [disabled]="maxAmountFlag">x2
+      ({{'Trade_Double_Up' | translate}})</button>
+
+                                <div class="ipad-calculator">
+                                    <button class="col-md-3 round-button " (click)="addString(1)" [disabled]="maxAmountFlag">1</button>
+                                    <button class="col-md-3 round-button " (click)="addString(2)" [disabled]="maxAmountFlag">2</button>
+                                    <button class="col-md-3 round-button " (click)="addString(3)" [disabled]="maxAmountFlag">3</button>
+                                    <button class="col-md-3 round-button " (click)="addString(4)" [disabled]="maxAmountFlag">4</button>
+                                    <button class="col-md-3 round-button " (click)="addString(5)" [disabled]="maxAmountFlag">5</button>
+                                    <button class="col-md-3 round-button " (click)="addString(6)" [disabled]="maxAmountFlag">6</button>
+                                    <button class="col-md-3 round-button " (click)="addString(7)" [disabled]="maxAmountFlag">7</button>
+                                    <button class="col-md-3 round-button " (click)="addString(8)" [disabled]="maxAmountFlag">8</button>
+                                    <button class="col-md-3 round-button " (click)="addString(9)" [disabled]="maxAmountFlag">9</button>
+                                    <button class="col-md-3 round-button " (click)="addString(0)" [disabled]="maxAmountFlag">0</button>
+                                    <button class="col-md-3 round-button " (click)="mulCalculator(100)" [disabled]="maxAmountFlag">00</button>
+                                    <button class="col-md-3 round-button " (click)="removeLast()">
+      </button> </div> <button class="float-left col-md-12" (click)="toggleDpDown(false,'calcSel')">{{'Trade_OK' | translate}}
+    </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End -->
+                    <!-- Profit Percentage -->
+                    <div class="profit-section mb-vw">
+                        <span class="title-text">
+  {{'Trade_Profit' | translate}}
+</span>
+                        <div id="profitPercentage" class="profit-percentage d-flex">
+                            <div class="item">
+                                <span class="text"> {{'in-usd' | translate}} </span>
+                                <div class="value small-txt">
+                                    {{(((tradeAmount)/100)*(selectedSymConfig.winPayout))| currency:'USD':'symbol':'1.2-2'}}
+                                </div>
+
+                            </div>
+
+                            <div class="item">
+                                <span class="text">{{'percentage' | translate}}</span>
+
+                                <div class="value">
+                                    {{selectedSymConfig.winPayout}}%
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End -->
+                    <!-- Bit -->
+                    <div id="predict" class="predict-sction">
+                        <div class="d-flex justify-content-between flex-column">
+                            <div class="title-section">
+                                {{'predict' | translate}}
+                            </div>
+                            <div class="onclick-trading">
+                                <div class=" one-click-toggle">
+                                    <ul class="tg-list">
+                                        <li class="tg-list-item one-click-text">
+                                            {{'Trade_One_Click_Trading' | translate}}
+                                        </li>
+                                        <li class="tg-list-item">
+                                            <input class="tgl tgl-ios" id="cb1" type="checkbox" [checked]="wtStorageService.oneclickSetting" (click)="oneClickSettingTogggle($event)" />
+                                            <label class="tgl-btn" for="cb1"></label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bet-for-trade d-flex justify-content-between mt-vw flex-column">
+                            <div class="flex-item item-high push-btn mb-2">
+                                <button class="btn" (click)="makeTrade('Up',oneclick)" [disabled]="disableTradeButtons"><i class="fa fa-arrow-right up-arrow" aria-hidden="true"></i> {{'Trade_UP' | translate}}</button>
+                            </div>
+                            <div class="flex-item item-low push-btn">
+                                <button class="btn" (click)="makeTrade('Down',oneclick)" [disabled]="disableTradeButtons"><i class="fa fa-arrow-right down-arrow" aria-hidden="true"></i> {{'Trade_DOWN' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End -->
+
+                    <section>
+                        <div class="col">
+                            <!-- <div class="row">
+    <div>
+     <div ngbDropdown class="amount-title" [autoClose]="dropDowns.calcSel"
+        (openChange)="toggleDpDown($event,'calcSel')">
+        <div class="col">
+          <div class="row">
+            <h5>{{'Trade_Amount' | translate}}<span class="dollar">($)</span></h5>
+          </div>
+          <div class="row center-alignment">
+            <div class="col-2 increase-decrease-bt-pddng">
+              <input type="button" value="-" class="increase-bt" triggers="manual" (click)="decreaseAmount()">
+            </div>
+            <div class="col-8">
+              <input #amount class="totalamount" type="number" value={{selectedSymConfig.minAmount}} min="0"
+                [(ngModel)]="tradeAmount" (keyup)="onKey($event)" OnlyNumber="true"
+                (click)="hideKeyPad(amount);showCal = !showCal;" required ngbDropdownToggle
+                [ngClass]="{'amount-error': tradeAmount < selectedSymConfig.minAmount|| tradeAmount > selectedSymConfig.maxAmount}">
+            </div>
+            <div class="col-2 increase-decrease-bt-pddng">
+              <input type="button" value="+" class="increase-bt " placement="top" triggers="manual"
+                (click)="incraseAmount()" id="calculate" [disabled]="maxAmountFlag">
             </div>
           </div>
-          <!-- <div class="right-wrapper" [perfectScrollbar]> -->
-            <div class="right-wrapper" [ngStyle]=" { height: headerWrapperHeight + 'px' }" [perfectScrollbar]>
-            <!-- Time Frame -->
-            <div  class="time-frame mb-vw">
-              <span class="title-text">{{'time-frame' | translate}}</span>
+        </div>
 
-              <div id="timeFrame" ngbDropdown class="text-center dropdown-item-top" (openChange)="toggleDpDown($event, null)">
-                <button id="percentage-menu" class="btn dropdown-toggle dropdown-v1"
-                  *ngIf="selectedSymConfig.interval === 0 " ngbDropdownToggle>
+        <div class="calculator dropdown-menu hidden-sm-down animated bounceIn">
+          <button class="float-left col-md-6 half-button" (click)="subCalculator(50)">-$50</button>
+          <button class="float-left col-md-6 half-button" (click)="addCalculator(50)"
+            [disabled]="maxAmountFlag">+$50</button>
+          <button class="float-left col-md-6 half-button" (click)="subCalculator(100)">-$100</button>
+          <button class="float-left col-md-6 half-button" (click)="addCalculator(100)"
+            [disabled]="maxAmountFlag">+$100</button>
+          <button class="float-left col-md-12" (click)="mulCalculator(2)" [disabled]="maxAmountFlag">x2
+            ({{'Trade_Double_Up' | translate}})</button>
 
-                  <div class="collected-data">
-                    {{ 'time-frame' | translate}}
-                  </div>
-                  <div class="arrow-action">
-                    <i class="fa fa-angle-down"></i>
-                  </div>
-                </button>
-                <button class="btn dropdown-toggle dropdown-v1" id="percentage-menu"
-                  *ngIf="selectedSymConfig.interval !== 0 " ngbDropdownToggle>
-                  <div class="collected-data">
-                    {{selectedSymConfig.interval | timeHMS}} - {{selectedSymConfig.winPayout}}%
-                  </div>
-                  <div class="arrow-action">
-                    <i class="fa fa-angle-down"></i>
-                  </div>
-                </button>
-                <ul class="dropdown-menu dropdown-bg dropdown-bg-left-align animated zoomInDown" id="percentage-menu">
-                  <li (click)="intervalChange(intervalDetail)" [ngClass]="{'selected':intervalDetail.interval == selectedSymConfig.interval &&
-                                                  intervalDetail.winPayout == selectedSymConfig.winPayout}"
-                    *ngFor="let intervalDetail of intervalList">
-                    <a class="mt4-timeframe-dropdown-list">
-                      {{intervalDetail.interval | timeHMS}} - {{intervalDetail.winPayout}}%
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- End -->
-            <!-- Bet Amount -->
-            <div class="amount-section mb-vw">
-
-              <div id="amountDropdown" ngbDropdown [autoClose]="dropDowns.calcSel" (openChange)="toggleDpDown($event,'calcSel')">
-                <span class="title-text">{{'Trade_Amount' | translate}}</span>
-
-                <div class="input-group-bind">
-                  <div class="input-data">
-                    <input #amount class="data-filled" type="number" value={{selectedSymConfig.minAmount}} min="0"
-                      [(ngModel)]="tradeAmount" (keyup)="onKey($event)" OnlyNumber="true"
-                      (click)="hideKeyPad(amount);showCal = !showCal;" required ngbDropdownToggle
-                      [ngClass]="{'amount-error': tradeAmount < selectedSymConfig.minAmount|| tradeAmount > selectedSymConfig.maxAmount}">
-                  </div>
-                  <div class="hit-btn decrease-value">
-                    <input type="button" value="-" triggers="manual" (click)="decreaseAmount()">
-                  </div>
-                  <div class="hit-btn increase-value">
-                    <input type="button" value="+" placement="top" triggers="manual" (click)="incraseAmount()"
-                      id="calculate" [disabled]="maxAmountFlag">
-                  </div>
-
-
-                </div>
-
-                <div class="calculator dropdown-menu hidden-sm-down animated bounceIn">
-                  <button class="float-left col-md-6 half-button" (click)="subCalculator(50)">-$50</button>
-                  <button class="float-left col-md-6 half-button" (click)="addCalculator(50)"
-                    [disabled]="maxAmountFlag">+$50</button>
-                  <button class="float-left col-md-6 half-button" (click)="subCalculator(100)">-$100</button>
-                  <button class="float-left col-md-6 half-button" (click)="addCalculator(100)"
-                    [disabled]="maxAmountFlag">+$100</button>
-                  <button class="float-left col-md-12" (click)="mulCalculator(2)" [disabled]="maxAmountFlag">x2
-                    ({{'Trade_Double_Up' | translate}})</button>
-
-                  <div class="ipad-calculator">
-                    <button class="col-md-3 round-button " (click)="addString(1)" [disabled]="maxAmountFlag">1</button>
-                    <button class="col-md-3 round-button " (click)="addString(2)" [disabled]="maxAmountFlag">2</button>
-                    <button class="col-md-3 round-button " (click)="addString(3)" [disabled]="maxAmountFlag">3</button>
-                    <button class="col-md-3 round-button " (click)="addString(4)" [disabled]="maxAmountFlag">4</button>
-                    <button class="col-md-3 round-button " (click)="addString(5)" [disabled]="maxAmountFlag">5</button>
-                    <button class="col-md-3 round-button " (click)="addString(6)" [disabled]="maxAmountFlag">6</button>
-                    <button class="col-md-3 round-button " (click)="addString(7)" [disabled]="maxAmountFlag">7</button>
-                    <button class="col-md-3 round-button " (click)="addString(8)" [disabled]="maxAmountFlag">8</button>
-                    <button class="col-md-3 round-button " (click)="addString(9)" [disabled]="maxAmountFlag">9</button>
-                    <button class="col-md-3 round-button " (click)="addString(0)" [disabled]="maxAmountFlag">0</button>
-                    <button class="col-md-3 round-button " (click)="mulCalculator(100)"
-                      [disabled]="maxAmountFlag">00</button>
-                    <button class="col-md-3 round-button " (click)="removeLast()">
-                    </button> </div> <button class="float-left col-md-12"
-                    (click)="toggleDpDown(false,'calcSel')">{{'Trade_OK' | translate}}
-                  </button>
-                </div>
-
-              </div>
-            </div>
-            <!-- End -->
-            <!-- Profit Percentage -->
-            <div class="profit-section mb-vw">
-              <span class="title-text">
-                {{'Trade_Profit' | translate}}
-              </span>
-              <div id="profitPercentage" class="profit-percentage d-flex">
-                <div class="item">
-                  <span class="text"> {{'in-usd' | translate}} </span>
-                  <div class="value">
-                    {{(((tradeAmount)/100)*(selectedSymConfig.winPayout))| currency:'USD':'symbol':'1.2-2'}}
-                  </div>
-
-                </div>
-
-                <div class="item">
-                  <span class="text">{{'percentage' | translate}}</span>
-
-                  <div class="value">
-                    {{selectedSymConfig.winPayout}}%
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <!-- End -->
-            <!-- Bit -->
-            <div id="predict" class="predict-sction">
-              <div class="d-flex justify-content-between">
-                <div class="title-section">
-                  {{'predict' | translate}}
-                </div>
-                <div  class="onclick-trading">
-                  <div class=" one-click-toggle">
-                    <ul class="tg-list">
-                      <li class="tg-list-item one-click-text">
-                        {{'Trade_One_Click_Trading' | translate}}
-                      </li>
-                      <li class="tg-list-item">
-                        <input class="tgl tgl-ios" id="cb1" type="checkbox" [checked]="wtStorageService.oneclickSetting"
-                          (click)="oneClickSettingTogggle($event)" />
-                        <label class="tgl-btn" for="cb1"></label>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="bet-for-trade d-flex justify-content-between mt-vw">
-                <div class="flex-item item-high push-btn">
-                  <button class="btn" (click)="makeTrade('Up',oneclick)" [disabled]="disableTradeButtons">{{'Trade_UP' | translate}}</button>
-                </div>
-                <div class="flex-item item-low push-btn">
-                  <button class="btn" (click)="makeTrade('Down',oneclick)" [disabled]="disableTradeButtons">{{'Trade_DOWN' | translate}}</button>
-                </div>
-              </div>
-            </div>
-            <!-- End -->
-
-            <section>
-              <div class="col">
-                <!-- <div class="row">
-                  <div>
-                   <div ngbDropdown class="amount-title" [autoClose]="dropDowns.calcSel"
-                      (openChange)="toggleDpDown($event,'calcSel')">
-                      <div class="col">
-                        <div class="row">
-                          <h5>{{'Trade_Amount' | translate}}<span class="dollar">($)</span></h5>
-                        </div>
-                        <div class="row center-alignment">
-                          <div class="col-2 increase-decrease-bt-pddng">
-                            <input type="button" value="-" class="increase-bt" triggers="manual" (click)="decreaseAmount()">
-                          </div>
-                          <div class="col-8">
-                            <input #amount class="totalamount" type="number" value={{selectedSymConfig.minAmount}} min="0"
-                              [(ngModel)]="tradeAmount" (keyup)="onKey($event)" OnlyNumber="true"
-                              (click)="hideKeyPad(amount);showCal = !showCal;" required ngbDropdownToggle
-                              [ngClass]="{'amount-error': tradeAmount < selectedSymConfig.minAmount|| tradeAmount > selectedSymConfig.maxAmount}">
-                          </div>
-                          <div class="col-2 increase-decrease-bt-pddng">
-                            <input type="button" value="+" class="increase-bt " placement="top" triggers="manual"
-                              (click)="incraseAmount()" id="calculate" [disabled]="maxAmountFlag">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="calculator dropdown-menu hidden-sm-down animated bounceIn">
-                        <button class="float-left col-md-6 half-button" (click)="subCalculator(50)">-$50</button>
-                        <button class="float-left col-md-6 half-button" (click)="addCalculator(50)"
-                          [disabled]="maxAmountFlag">+$50</button>
-                        <button class="float-left col-md-6 half-button" (click)="subCalculator(100)">-$100</button>
-                        <button class="float-left col-md-6 half-button" (click)="addCalculator(100)"
-                          [disabled]="maxAmountFlag">+$100</button>
-                        <button class="float-left col-md-12" (click)="mulCalculator(2)" [disabled]="maxAmountFlag">x2
-                          ({{'Trade_Double_Up' | translate}})</button>
-
-                        <div class="ipad-calculator">
-                          <button class="col-md-3 round-button " (click)="addString(1)" [disabled]="maxAmountFlag">1</button>
-                          <button class="col-md-3 round-button " (click)="addString(2)" [disabled]="maxAmountFlag">2</button>
-                          <button class="col-md-3 round-button " (click)="addString(3)" [disabled]="maxAmountFlag">3</button>
-                          <button class="col-md-3 round-button " (click)="addString(4)" [disabled]="maxAmountFlag">4</button>
-                          <button class="col-md-3 round-button " (click)="addString(5)" [disabled]="maxAmountFlag">5</button>
-                          <button class="col-md-3 round-button " (click)="addString(6)" [disabled]="maxAmountFlag">6</button>
-                          <button class="col-md-3 round-button " (click)="addString(7)" [disabled]="maxAmountFlag">7</button>
-                          <button class="col-md-3 round-button " (click)="addString(8)" [disabled]="maxAmountFlag">8</button>
-                          <button class="col-md-3 round-button " (click)="addString(9)" [disabled]="maxAmountFlag">9</button>
-                          <button class="col-md-3 round-button " (click)="addString(0)" [disabled]="maxAmountFlag">0</button>
-                          <button class="col-md-3 round-button " (click)="mulCalculator(100)"
-                            [disabled]="maxAmountFlag">00</button>
-                          <button class="col-md-3 round-button " (click)="removeLast()">
-                          </button> </div> <button class="float-left col-md-12"
-                          (click)="toggleDpDown(false,'calcSel')">{{'Trade_OK' | translate}}
-                        </button>
-                      </div>
-
-                    </div>
-                    <div class="amount-title">
-                      <div class="col">
-                        <div class="row">
-                          <h5>{{'Trade_Profit' | translate}}</h5>
-                        </div>
-                        <div class="row align-items-center">
-                          <div class="float-left col-6 profit">
-                            {{(((tradeAmount)/100)*(selectedSymConfig.winPayout))| currency:'USD':'symbol':'1.2-2'}}
-                          </div>
-                          <div class="float-right  col-6  profit-percentage">{{selectedSymConfig.winPayout}}%</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <div class="row">
-                  <div class="col">
-                    <div class="row">
-                      <button class="call" (click)="makeTrade('Up',oneclick)">{{'Trade_UP' | translate}}</button>
-                    </div>
-                    <div class="row"><span class="profit-amount">{{currentPrice}}</span></div>
-                    <div class="row">
-                      <button class="put" (click)="makeTrade('Down',oneclick)">{{'Trade_DOWN' | translate}}</button>
-                    </div>
-                  </div>
-                </div> -->
-                <!-- <div class="row">
-                  <div class="col">
-                    <div class="row">
-                      <div class="total-exposure">
-                        {{'Trade_Total_Exosure' | translate}}
-                        <span class="price">{{openTradesComponent.totalExpAmount}} $</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="total-exposure" style="cursor:pointer" (click)="isShowOpenTrade()">
-                        {{'Trade_Open_Trades' | translate}}
-                        <span class="price">{{openTradesComponent.openPositions}}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
-            </section>
-          </div>
-        </section>
-
-
-
-
-
+          <div class="ipad-calculator">
+            <button class="col-md-3 round-button " (click)="addString(1)" [disabled]="maxAmountFlag">1</button>
+            <button class="col-md-3 round-button " (click)="addString(2)" [disabled]="maxAmountFlag">2</button>
+            <button class="col-md-3 round-button " (click)="addString(3)" [disabled]="maxAmountFlag">3</button>
+            <button class="col-md-3 round-button " (click)="addString(4)" [disabled]="maxAmountFlag">4</button>
+            <button class="col-md-3 round-button " (click)="addString(5)" [disabled]="maxAmountFlag">5</button>
+            <button class="col-md-3 round-button " (click)="addString(6)" [disabled]="maxAmountFlag">6</button>
+            <button class="col-md-3 round-button " (click)="addString(7)" [disabled]="maxAmountFlag">7</button>
+            <button class="col-md-3 round-button " (click)="addString(8)" [disabled]="maxAmountFlag">8</button>
+            <button class="col-md-3 round-button " (click)="addString(9)" [disabled]="maxAmountFlag">9</button>
+            <button class="col-md-3 round-button " (click)="addString(0)" [disabled]="maxAmountFlag">0</button>
+            <button class="col-md-3 round-button " (click)="mulCalculator(100)"
+              [disabled]="maxAmountFlag">00</button>
+            <button class="col-md-3 round-button " (click)="removeLast()">
+            </button> </div> <button class="float-left col-md-12"
+            (click)="toggleDpDown(false,'calcSel')">{{'Trade_OK' | translate}}
+          </button>
+        </div>
 
       </div>
-      <!-- footer -->
-      <!-- <footer class="row ">
+      <div class="amount-title">
+        <div class="col">
+          <div class="row">
+            <h5>{{'Trade_Profit' | translate}}</h5>
+          </div>
+          <div class="row align-items-center">
+            <div class="float-left col-6 profit">
+              {{(((tradeAmount)/100)*(selectedSymConfig.winPayout))| currency:'USD':'symbol':'1.2-2'}}
+            </div>
+            <div class="float-right  col-6  profit-percentage">{{selectedSymConfig.winPayout}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+                            <!-- <div class="row">
+    <div class="col">
+      <div class="row">
+        <button class="call" (click)="makeTrade('Up',oneclick)">{{'Trade_UP' | translate}}</button>
+      </div>
+      <div class="row"><span class="profit-amount">{{currentPrice}}</span></div>
+      <div class="row">
+        <button class="put" (click)="makeTrade('Down',oneclick)">{{'Trade_DOWN' | translate}}</button>
+      </div>
+    </div>
+  </div> -->
+                            <!-- <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="total-exposure">
+          {{'Trade_Total_Exosure' | translate}}
+          <span class="price">{{openTradesComponent.totalExpAmount}} $</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="total-exposure" style="cursor:pointer" (click)="isShowOpenTrade()">
+          {{'Trade_Open_Trades' | translate}}
+          <span class="price">{{openTradesComponent.openPositions}}</span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+
+
+
+
+
+        </div>
+        <!-- footer -->
+        <!-- <footer class="row ">
           <div class="col-4 footer-left-block">
             <indicators  #indicators [chart]="chart" [dropDowns]="dropDowns" [chartData]="chartData"
               (toggleIndicDpEvent)="toggleDpDown($event,'indicSel')"></indicators>
@@ -1018,104 +978,103 @@
           </div>
           </div>
         </footer> -->
-      <!-- end footer -->
+        <!-- end footer -->
     </div>
-  </div>
+</div>
 </div>
 
 <!-- / For  settings -->
 <ng-template #setting let-c="close" let-d="dismiss">
-  <div class="modal-header modal-headerbg ">
-    <h3 class="modal-title" id="myModalLabel">{{'Trade_Language' | translate}}</h3>
-    <!--<a class="pull-right close-button" aria-label="Close" (click)="d('Cross click')"><img src="assets/images/closebt.png" /></a>-->
-  </div>
-  <div class="modal-body">
-    <div class="language-container">
-      <div ngbDropdown class="language-block">
-        <div class="active-lang">
-          <ul>
-            <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
-              <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
-
-                {{lang.translatedName}}
-              </li>
-            </a>
-          </ul>
-
-        </div>
-
-      </div>
+    <div class="modal-header modal-headerbg ">
+        <h3 class="modal-title" id="myModalLabel">{{'Trade_Language' | translate}}</h3>
+        <!--<a class="pull-right close-button" aria-label="Close" (click)="d('Cross click')"><img src="assets/images/closebt.png" /></a>-->
     </div>
- </div>
+    <div class="modal-body">
+        <div class="language-container">
+            <div ngbDropdown class="language-block">
+                <div class="active-lang">
+                    <ul>
+                        <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
+                            <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
 
-  <div class="d-flex modal-footer">
+                                {{lang.translatedName}}
+                            </li>
+                        </a>
+                    </ul>
 
-    <button class="btn bt-second-color" type="button" (click)="closeLang();c()">{{'Trade_Close' | translate}}</button>
-    <button class="btn bt-second-color" type="button" (click)="saveLang();c()">{{'Trade_OK' | translate}}</button>
+                </div>
 
-  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex modal-footer">
+
+        <button class="btn bt-second-color" type="button" (click)="closeLang();c()">{{'Trade_Close' | translate}}</button>
+        <button class="btn bt-second-color" type="button" (click)="saveLang();c()">{{'Trade_OK' | translate}}</button>
+
+    </div>
 
 
 
 
 </ng-template>
 <ng-template #oneclick let-c="close" let-d="dismiss">
-  <div class="modal-header  modal-headerbg ">
-    <h3 class="modal-title">{{'Trade_Confirm_Trade' | translate}}</h3>
-  </div>
-  <div class="modal-body confirm-trade">
-    <div class="float-left col-6 col-sm-6 col-md-6">
-      <p *ngIf="tradeAction=='Up'" >
-        <i class="fa fa-angle-double-up"></i>{{'Trade_UP' | translate}}
-      </p>
-      <p *ngIf="tradeAction=='Down'" >
-        <i class="fa fa-angle-double-down"></i>{{'Trade_DOWN' | translate}}
-      </p>
+    <div class="modal-header  modal-headerbg ">
+        <h3 class="modal-title">{{'Trade_Confirm_Trade' | translate}}</h3>
     </div>
-    <div class="float-left col-6 col-sm-6 col-md-6">
-      <p><i class="fa fa-money"></i> $ {{tradeAmount}}</p>
+    <div class="modal-body confirm-trade">
+        <div class="float-left col-6 col-sm-6 col-md-6">
+            <p *ngIf="tradeAction=='Up'">
+                <i class="fa fa-angle-double-up"></i>{{'Trade_UP' | translate}}
+            </p>
+            <p *ngIf="tradeAction=='Down'">
+                <i class="fa fa-angle-double-down"></i>{{'Trade_DOWN' | translate}}
+            </p>
+        </div>
+        <div class="float-left col-6 col-sm-6 col-md-6">
+            <p><i class="fa fa-money"></i> $ {{tradeAmount}}</p>
+        </div>
+        <div class="float-left col-6 col-sm-6 col-md-6">
+            <p><i class="fa  fa-star-o"></i> {{wtStorageService.selectedSymbol}}</p>
+        </div>
+        <div class="float-left col-6 col-sm-6 col-md-6">
+            <p><i class="fa  fa-tachometer "></i> {{selectedSymConfig.interval | timeHMS}} - {{selectedSymConfig.winPayout}}%
+            </p>
+        </div>
     </div>
-    <div class="float-left col-6 col-sm-6 col-md-6">
-      <p><i class="fa  fa-star-o"></i> {{wtStorageService.selectedSymbol}}</p>
-    </div>
-    <div class="float-left col-6 col-sm-6 col-md-6">
-      <p><i class="fa  fa-tachometer "></i> {{selectedSymConfig.interval | timeHMS}} -
-        {{selectedSymConfig.winPayout}}%</p>
-    </div>
-  </div>
-  <div class="d-flex  modal-footer">
-    <!-- <button type="button" class="btn btn-primary" (click)="">Close</button> -->
-    <button type="button" class="btn bt-second-color" (click)="c('Close')">{{'Trade_Close' | translate}}</button>
-    <button type="button" class="btn bt-second-color" (click)="d('submit')">{{'Trade_Submit' | translate}}</button>
+    <div class="d-flex  modal-footer">
+        <!-- <button type="button" class="btn btn-primary" (click)="">Close</button> -->
+        <button type="button" class="btn bt-second-color" (click)="c('Close')">{{'Trade_Close' | translate}}</button>
+        <button type="button" class="btn bt-second-color" (click)="d('submit')">{{'Trade_Submit' | translate}}</button>
 
-  </div>
+    </div>
 </ng-template>
 
 <ng-template #extendSession let-c="close">
-  <div class="modal-body text-center">
-    <span>
+    <div class="modal-body text-center">
+        <span>
 
       {{'Your_session_will_expire_in_next' | translate}} {{secLeft}} {{'Trade_seconds' | translate}}
 
     </span>
-  </div>
+    </div>
 </ng-template>
 
 <ng-template #depositRef let-c="close" let-d="dismiss">
 
-  <div class="modal-body">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDeposit()">
+    <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDeposit()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <div class="title-heading">
-      {{'deposit_funds_start_trading' | translate}}
-    </div>
-    <span class="body-text">
+        <div class="title-heading">
+            {{'deposit_funds_start_trading' | translate}}
+        </div>
+        <span class="body-text">
       {{'deposit_fund_easy' | translate}}
     </span>
 
-    <span style="text-decoration:none" class="btn btn-style-1 anchor-pointer"
-      (click)="navigateToDeposit()">{{'deposit_funds_now' | translate}}
+        <span style="text-decoration:none" class="btn btn-style-1 anchor-pointer" (click)="navigateToDeposit()">{{'deposit_funds_now' | translate}}
       <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="arrow-right" role="img"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-right fa-w-14 fa-3x">
         <path fill="currentColor"
@@ -1123,71 +1082,70 @@
           class=""></path>
       </svg>
     </span>
-  </div>
-  <div class="security-logo">
-    <img src="{{'assets/images/security-and-trust-logos.png?v='+cacheBusting['security-and-trust-logos.png']}}" alt="" class="img-fluid">
-  </div>
-  <div class="d-flex  modal-footer">
-    {{'note_portal' | translate }} {{ brandName }}
-  </div>
+    </div>
+    <div class="security-logo">
+        <img src="{{'assets/images/security-and-trust-logos.png?v='+cacheBusting['security-and-trust-logos.png']}}" alt="" class="img-fluid">
+    </div>
+    <div class="d-flex  modal-footer">
+        {{'note_portal' | translate }} {{ brandName }}
+    </div>
 </ng-template>
 
 
 <ng-template #referralRef let-c="close" let-d="dismiss">
 
-  <div class="modal-body">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeReferral()">
+    <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeReferral()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <div class="reward-section">
-      <div class="flex-item item-1 ">
-        <div class="referral-img">
-          <img src="{{'assets/images/referral.png?v='+cacheBusting['referral.png']}}" class="img-fluid">
-        </div>
-        <div class="title-heading">
-          {{'spreadRewards' | translate}}
-        </div>
-        <div class="body-text">
-          {{'referralText' | translate}}
+        <div class="reward-section">
+            <div class="flex-item item-1 ">
+                <div class="referral-img">
+                    <img src="{{'assets/images/referral.png?v='+cacheBusting['referral.png']}}" class="img-fluid">
+                </div>
+                <div class="title-heading">
+                    {{'spreadRewards' | translate}}
+                </div>
+                <div class="body-text">
+                    {{'referralText' | translate}}
 
+                </div>
+
+            </div>
+            <div class="flex-item item-2 ">
+                <div class="rq-code">
+                    <img [src]="imageData" alt="QRCode" class="img-fluid">
+                </div>
+                <p>
+                    {{'scanRQCode' | translate}}
+                </p>
+            </div>
         </div>
-
-      </div>
-      <div class="flex-item item-2 ">
-        <div class="rq-code">
-          <img [src]="imageData" alt="QRCode" class="img-fluid">
-        </div>
-        <p>
-          {{'scanRQCode' | translate}}
-        </p>
-      </div>
-    </div>
-
-  </div>
-  <div class="modal-footer">
-
-    <div class="footer-title-head">
-      {{'shareLink' | translate}}
 
     </div>
+    <div class="modal-footer">
 
-    <div class="copy-wrap">
+        <div class="footer-title-head">
+            {{'shareLink' | translate}}
 
-      <div class="item-group box-1" *ngFor="let lang of languages">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="btnGroupAddon">{{lang.translatedName}}</div>
-          </div>
-          <input readonly="readonly" type="text" value="{{ lang.referralLink }}" class="form-control" aria-describedby="button-addon2" title="{{lang.translatedName}}">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="onCopyText(lang)" type="button" id="button-addon2"
-              title="{{lang.translatedName}}" placement="top" ngbTooltip="{{lang.translatedName}}">{{'copy' | translate}}</button>
-          </div>
         </div>
-      </div>
+
+        <div class="copy-wrap">
+
+            <div class="item-group box-1" *ngFor="let lang of languages">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" id="btnGroupAddon">{{lang.translatedName}}</div>
+                    </div>
+                    <input readonly="readonly" type="text" value="{{ lang.referralLink }}" class="form-control" aria-describedby="button-addon2" title="{{lang.translatedName}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="onCopyText(lang)" type="button" id="button-addon2" title="{{lang.translatedName}}" placement="top" ngbTooltip="{{lang.translatedName}}">{{'copy' | translate}}</button>
+                    </div>
+                </div>
+            </div>
 
 
-      <!-- <div class="item-group box-1">
+            <!-- <div class="item-group box-1">
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text" id="btnGroupAddon">English</div>
@@ -1253,41 +1211,40 @@
         </div>
       </div> -->
 
-    </div>
+        </div>
 
-    <div class="social-wrap">
-      <div class="social-list messager">
-        <a [attr.href]="sinaReferral" target="_blank">
-          <img src="{{'assets/images/sina-weibo.svg?v='+cacheBusting['sina-weibo.svg']}}" alt="Sina Weibo" title="Sina Weibo">
-        </a>
-      </div>
-      <div class="social-list facebook">
-        <a [attr.href]="facebookReferral" target="_blank"> <i class="fa fa-facebook-f"></i></a>
-      </div>
-      <div class="social-list whatsup">
-        <a [attr.href]="whatsappReferral" target="_blank"> <i class="fa fa-whatsapp"></i></a>
-      </div>
+        <div class="social-wrap">
+            <div class="social-list messager">
+                <a [attr.href]="sinaReferral" target="_blank">
+                    <img src="{{'assets/images/sina-weibo.svg?v='+cacheBusting['sina-weibo.svg']}}" alt="Sina Weibo" title="Sina Weibo">
+                </a>
+            </div>
+            <div class="social-list facebook">
+                <a [attr.href]="facebookReferral" target="_blank"> <i class="fa fa-facebook-f"></i></a>
+            </div>
+            <div class="social-list whatsup">
+                <a [attr.href]="whatsappReferral" target="_blank"> <i class="fa fa-whatsapp"></i></a>
+            </div>
+        </div>
     </div>
-  </div>
 </ng-template>
 
 
 
 <ng-template #withdrawRef let-c="close" let-d="dismiss">
-  <div class="modal-header  modal-headerbg ">
-    <h3 class="modal-title">{{'Trade_Withdrawal' | translate}}</h3>
-  </div>
-  <div class="modal-body text-center">
-    <span>
+    <div class="modal-header  modal-headerbg ">
+        <h3 class="modal-title">{{'Trade_Withdrawal' | translate}}</h3>
+    </div>
+    <div class="modal-body text-center">
+        <span>
       {{'Trade_withdrawal_redirect' | translate}}
     </span>
-  </div>
-  <div class="d-flex  modal-footer">
-    <button class="btn bt-second-color" (click)="d()">{{'Trade_not_now' | translate}}</button>
-    <span style="text-decoration:none" class="btn bt-second-color anchor-pointer" (click)="navigateToWithdraw()"
-      (click)="c()">{{'Trade_Sure' | translate}} </span>
-  </div>
-  <!--<div class="modal-body confirm-trade text-center">
+    </div>
+    <div class="d-flex  modal-footer">
+        <button class="btn bt-second-color" (click)="d()">{{'Trade_not_now' | translate}}</button>
+        <span style="text-decoration:none" class="btn bt-second-color anchor-pointer" (click)="navigateToWithdraw()" (click)="c()">{{'Trade_Sure' | translate}} </span>
+    </div>
+    <!--<div class="modal-body confirm-trade text-center">
         <span>
           {{'Trade_withdrawal_redirect' | translate}}
         </span>
@@ -1303,17 +1260,16 @@
 
 <ng-template #fullscreenRef let-c="close" let-d="dismiss">
 
-  <div class="modal-body">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeFullscreen()">
+    <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeFullscreen()">
       <span aria-hidden="true">&times;</span>
     </button>
-    <div class="title-heading">
-      {{'go_full_screen' | translate}}
-    </div>
-    <span style="text-decoration:none" class="btn btn-style-1 anchor-pointer"
-      (click)="openFS()">{{'full_screen' | translate}}
+        <div class="title-heading">
+            {{'go_full_screen' | translate}}
+        </div>
+        <span style="text-decoration:none" class="btn btn-style-1 anchor-pointer" (click)="openFS()">{{'full_screen' | translate}}
 
     </span>
-    <button class="btn bt-second-color" (click)="closeFullscreen">{{'Ind_Close' | translate}}</button>
-  </div>
+        <button class="btn bt-second-color" (click)="closeFullscreen">{{'Ind_Close' | translate}}</button>
+    </div>
 </ng-template>

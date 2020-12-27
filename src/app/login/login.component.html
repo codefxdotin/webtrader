@@ -1,115 +1,116 @@
-
-
-
 <div id="loginbg" class="release-version">
 
     <div class="loader-backdrop" *ngIf="!wtStorageService.showLogin">
-        <div class="loader">
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__bar"></div>
-          <div class="loader__ball"></div>
+        <!-- <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+        </div> -->
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
         </div>
-      </div>
+    </div>
 
-  <div class="container-fluid" *ngIf="wtStorageService.showLogin">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 d-flex no-padding new-login-block">
+    <div class="container-fluid" *ngIf="wtStorageService.showLogin">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-sm-12 language-block">
+                    <div ngbDropdown class="dropdown d-inline-block" *ngIf="!disableSubmit">
+                        <span *ngFor="let lang of languages">
+<div class="" *ngIf="wtStorageService.selected_lang == lang.code" id="dropdownMenu1" ngbDropdownToggle>
+  <img src={{languageIcon}} /> <span>{{' '}}{{lang.translatedName}}</span>
+                        <span class="caret"></span>
+                    </div>
+                    </span>
 
-        <div class="col-md-5 col-lg-4 col-sm-12 no-padding-down-sm">
-          <div class="col-md-12 col-sm-12 d-flex">
-            <div class=" col-sm-7 logo-login">
-              <a href="#" (click)="clicked($event)">
-                <img src="{{'assets/images/logo-login.png?v='+version}}" class="img-responsive" />
-              </a>
+                    <div class="dropdown-menu  dropdown-menu-right animated flipInY" aria-labelledby="dropdownMenu1">
+                        <ul>
+                            <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
+                                <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
+
+                                    {{lang.translatedName}}
+                                </li>
+                            </a>
+                        </ul>
+
+                    </div>
+                </div>
+                <!-- <div class="language pull-right">
+
+<div ngbDropdown class="dropdown d-inline-block " *ngIf="disableSubmit">
+<div class="" id="dropdownMenu1" ngbDropdownToggle>
+  <img src={{languageIcon}} /> <span>{{' '}}{{selectedLang}}</span>
+  <span class="caret"></span>
+</div>
+</div>
+</div> -->
             </div>
-            <div class="col-sm-5 language-block">
-              <div ngbDropdown class="dropdown d-inline-block" *ngIf="!disableSubmit">
-                <span *ngFor="let lang of languages">
-                  <div class="" *ngIf="wtStorageService.selected_lang == lang.code" id="dropdownMenu1" ngbDropdownToggle>
-                    <img src={{languageIcon}} /> <span>{{' '}}{{lang.translatedName}}</span>
-                    <span class="caret"></span>
-                  </div>
-                </span>
+        </div>
+        <div class="col-md-12 col-sm-12 d-flex no-padding new-login-block">
 
-                <div class="dropdown-menu  dropdown-menu-right animated flipInY" aria-labelledby="dropdownMenu1">
-                  <ul>
-                    <a href="#" (click)="switchLanguage($event, lang)" style="text-decoration: none;" *ngFor="let lang of languages">
-                      <li [ngClass]="{'selected':wtStorageService.selected_lang == lang.code}">
-
-                        {{lang.translatedName}}
-                      </li>
-                    </a>
-                  </ul>
+            <div class="col-md-5 col-lg-4 col-sm-12 m-auto no-padding-down-sm">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class=" col-sm-12 logo-login">
+                        <a href="#" (click)="clicked($event)">
+                            <img src="{{'assets/images/logo-login.png?v='+version}}" class="img-responsive" />
+                        </a>
+                    </div>
 
                 </div>
-              </div>
-              <!-- <div class="language pull-right">
 
-                <div ngbDropdown class="dropdown d-inline-block " *ngIf="disableSubmit">
-                  <div class="" id="dropdownMenu1" ngbDropdownToggle>
-                    <img src={{languageIcon}} /> <span>{{' '}}{{selectedLang}}</span>
-                    <span class="caret"></span>
-                  </div>
-                </div>
-              </div> -->
-            </div>
-          </div>
+                <!--End of CRM Log in  -->
 
-          <!--End of CRM Log in  -->
+                <div *ngIf="inLogin">
+                    <!--<div *ngIf="licenseId">-->
+                    <!--<livechat-widget [licenseId]="licenseId" [group]="groupLogin"></livechat-widget>-->
+                    <!--</div>-->
+                    <form #form="ngForm" action="" (ngSubmit)=login() novalidate>
+                        <div class="loginform col-12">
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input #input type="email" class="" [ngClass]="{'error': (! isValid || isInputEmpty) }" placeholder="{{'Email-id' | translate}}" name="username" id="username" [(ngModel)]="loginId" autofocus="autofocus" tabindex="1">
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input [type]="hide ? 'password' : 'text'" class="" autocomplete="new-password" [ngClass]="{'error': (! isValid || isInputEmpty) }" placeholder="{{'Crm_Password' | translate}}" name="password" id="password" [(ngModel)]="password" tabindex="2">
+                                    <i class="fa fa-eye eyeIcon" (click)="viewPassword()" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <!-- validation div -->
+                            <div *ngIf="!isValid" class="col-md-12">
+                                <div class="validation">
+                                    {{'Crm_Validation_WrongEmailPwd' | translate}}
+                                </div>
+                            </div>
+                            <div *ngIf="isInputEmpty && isValid" class="col-md-12">
+                                <div class="validation">
+                                    {{ validationMessage | translate}}
+                                </div>
+                            </div>
+                            <!-- end validation div -->
 
-          <div *ngIf="inLogin">
-            <!--<div *ngIf="licenseId">-->
-              <!--<livechat-widget [licenseId]="licenseId" [group]="groupLogin"></livechat-widget>-->
-            <!--</div>-->
-            <form #form="ngForm" action="" (ngSubmit)=login() novalidate>
-              <div class="loginform col-12">
-                <div class="flex-row">
-                  <div class="col-12">
-                    <input #input type="email" class="" [ngClass]="{'error': (! isValid || isInputEmpty) }" placeholder="{{'Email-id' | translate}}"
-                      name="username" id="username" [(ngModel)]="loginId" autofocus="autofocus" tabindex="1">
-                  </div>
-                </div>
-                <div class="flex-row">
-                  <div class="col-12">
-                    <input [type]="hide ? 'password' : 'text'" class="" autocomplete="new-password" [ngClass]="{'error': (! isValid || isInputEmpty) }" placeholder="{{'Crm_Password' | translate}}"
-                      name="password" id="password" [(ngModel)]="password" tabindex="2">
-                      <i class="fa fa-eye eyeIcon" (click)="viewPassword()" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <!-- validation div -->
-                <div *ngIf="!isValid" class="col-md-12">
-                  <div class="validation">
-                    {{'Crm_Validation_WrongEmailPwd' | translate}}
-                  </div>
-                </div>
-                <div *ngIf="isInputEmpty && isValid" class="col-md-12">
-                  <div class="validation">
-                    {{ validationMessage | translate}}
-                  </div>
-                </div>
-                <!-- end validation div -->
-
-                <div class="form-fot justify-content-center forgotPwd-block">
-                  <!--<div class="col-sm-6 col-sm-6 col-xl-6 remember mt40">
+                            <div class="form-fot justify-content-center forgotPwd-block">
+                                <!--<div class="col-sm-6 col-sm-6 col-xl-6 remember mt40">
                   <input id="rememberme" type="checkbox" name="checkbox" value="1">
                   <label for="rememberme"> Remember me</label>
               </div>-->
-                  <div class="col-md-12 forgottxt text-align-r">
-                    <a [ngClass]="{'pull-left':true, 'disabled': disableSubmit }" data-toggle="modal" data-target="#forgotpassword"
-                      (click)="openForgot()" tabindex="4">
+                                <div class="col-md-12 forgottxt text-center">
+                                    <a [ngClass]="{'pull-left':false, 'disabled': disableSubmit }" data-toggle="modal" data-target="#forgotpassword" (click)="openForgot()" tabindex="4">
                       {{'Forgot_Password' | translate}}
+                    </a><br/>
+                                    <a (click)="onRegister()" tabindex="4">
+                                      Don’t have an account?  {{'Sign Up' | translate}}
                     </a>
-                    <a (click)="onRegister()" tabindex="4">
-                      {{'register' | translate}}
-                    </a>
-                  </div>
-                  <!--(click) = "openFP(content)" -->
-                </div>
+                                </div>
+                                <!--(click) = "openFP(content)" -->
+                            </div>
 
-                <!--<div class=" form-fot">
+                            <!--<div class=" form-fot">
             <div class="col-12">
                 <div class="text-center disclaimer">
                     <input id="disclaimer" type="checkbox" name="checkbox" value="1" [(ngModel)]="checkBox">
@@ -121,405 +122,371 @@
 
             </div>
         </div>-->
-                <div *ngIf="inLogin && !inRegister" class="flex-row clear-left">
-                  <div class="col-12">
-                    <button type="submit" class="login-submit" [disabled]="disableSubmit" tabindex="3">
+                            <div *ngIf="inLogin && !inRegister" class="flex-row clear-left">
+                                <div class="col-12">
+                                    <button type="submit" class="login-submit" [disabled]="disableSubmit" tabindex="3">
                       <!-- <img src="./assets/images/login-lock.png">  -->
                       {{'Crm_MT4_Submit' | translate}}
                       <i *ngIf="disableSubmit" class='fa fa-circle-o-notch fa-spin'></i>
                     </button>
-                  </div>
-                  <div class="disclaimer col-12 clear-left">
-                    {{'By_Logging_in_you_agree_to_our' | translate}}
-                    <a *ngIf="!disableSubmit" target="_blank" [attr.href]="termsOfServiceURL">
+                                </div>
+                                <div class="disclaimer col-12 clear-left">
+                                    {{'By_Logging_in_you_agree_to_our' | translate}}
+                                    <a *ngIf="!disableSubmit" target="_blank" [attr.href]="termsOfServiceURL">
                       {{'Privacy_Policy' | translate}}
                     </a>
-                    <a *ngIf="disableSubmit" class="disabled" href="#">{{'Privacy_Policy' | translate}}</a>
-                  </div>
+                                    <a *ngIf="disableSubmit" class="disabled" href="#">{{'Privacy_Policy' | translate}}</a>
+                                </div>
+                            </div>
+
+                            <!-- <div *ngIf="inLogin && !inRegister" class="flex-row clear-left">
+                                <p class="version_no">{{'releaseVersion' | translate}} :
+                                    <span>{{version}}</span>
+                                </p>
+                            </div> -->
+
+                            <div *ngIf="inLogin && !inRegister" class="col-sm-12 note-text">
+                                <p>{{'Crm_Footer_Message' | translate}}</p>
+                            </div>
+
+                        </div>
+
+                    </form>
                 </div>
 
-                <div *ngIf="inLogin && !inRegister" class="flex-row clear-left">
-                  <p class="version_no">{{'releaseVersion' | translate}} :
-                    <span>{{version}}</span>
-                  </p>
-                </div>
+                <!--End of CRM Log in  -->
 
-                <div *ngIf="inLogin && !inRegister" class="col-sm-12 note-text">
-                  <p>{{'Crm_Footer_Message' | translate}}</p>
-                </div>
+                <!--Forgot Password -->
 
-              </div>
+                <div *ngIf="! inLogin && ! isFpEmailVerified && !inRegister">
+                    <!--<div *ngIf="licenseId">-->
+                    <!--<livechat-widget [licenseId]="licenseId" [group]="groupForgotPwd"></livechat-widget>-->
+                    <!--</div>-->
+                    <form #form="ngForm" action="" name="fpForm" (ngSubmit)=forgotPwd() novalidate>
+                        <div class="loginform col-12">
+                            <h2 class="text-center">{{'Forgot_Password' | translate}}</h2>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input name="email" type="email" class="" [ngClass]="{'error':  isFpEmailValid }" placeholder="{{'Email-id' | translate}}" name="password" id="password" [(ngModel)]="emailId" value="" autofocus="autofocus">
+                                </div>
+                            </div>
+                            <!-- validation div -->
+                            <div *ngIf="isFpEmailValid" class="col-md-12">
+                                <div class="validation">{{fpValidationMessage | translate}}</div>
+                            </div>
+                            <!-- end validation div -->
 
-            </form>
-          </div>
-
-          <!--End of CRM Log in  -->
-
-          <!--Forgot Password -->
-
-          <div *ngIf="! inLogin && ! isFpEmailVerified && !inRegister">
-            <!--<div *ngIf="licenseId">-->
-              <!--<livechat-widget [licenseId]="licenseId" [group]="groupForgotPwd"></livechat-widget>-->
-            <!--</div>-->
-            <form #form="ngForm" action="" name="fpForm" (ngSubmit)=forgotPwd() novalidate>
-              <div class="loginform col-12">
-                <h2 class="text-center">{{'Forgot_Password' | translate}}</h2>
-                <div class="flex-row">
-                  <div class="col-12">
-                    <input name="email" type="email" class="" [ngClass]="{'error':  isFpEmailValid }" placeholder="{{'Email-id' | translate}}"
-                      name="password" id="password" [(ngModel)]="emailId" value="" autofocus="autofocus">
-                  </div>
-                </div>
-                <!-- validation div -->
-                <div *ngIf="isFpEmailValid" class="col-md-12">
-                  <div class="validation">{{fpValidationMessage | translate}}</div>
-                </div>
-                <!-- end validation div -->
-
-                <div class="flex-row clear-left">
-                  <div class="col-12">
-                    <button type="submit" class="login-submit" [disabled]="disableFpSubmit">
+                            <div class="flex-row clear-left">
+                                <div class="col-12">
+                                    <button type="submit" class="login-submit" [disabled]="disableFpSubmit">
                       <!--<img src="./assets/images/login-lock.png">-->
                       {{'Crm_MT4_Submit' | translate}}
                       <i *ngIf="disableFpSubmit" class='fa fa-circle-o-notch fa-spin'></i>
                     </button>
-                  </div>
-                  <div class="disclaimer col-12 clear-left"> {{'Back_to' | translate}}
-                    <a href="" *ngIf="!disableSubmit" target="_blank" (click)="backToLogin()">
+                                </div>
+                                <div class="disclaimer col-12 clear-left"> {{'Back_to' | translate}}
+                                    <a href="" *ngIf="!disableSubmit" target="_blank" (click)="backToLogin()">
                       {{'Crm_Login_Header' | translate}}
                     </a>
-                  </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
                 </div>
 
-              </div>
-
-            </form>
-          </div>
 
 
+                <!--End of Forgot Password -->
 
-          <!--End of Forgot Password -->
+                <!--Forgot Password Reset Link -->
 
-          <!--Forgot Password Reset Link -->
+                <div *ngIf="! inLogin && isFpEmailVerified">
+                    <div class="flex-row">
+                        <div class="loginform col-12">
+                            <h2 class="text-center">{{'Verification_Link_Sent' | translate}}</h2>
+                            <!--<h5  class="d-flex justify-content-center">{{'The_Reset_Password_Link_has_been_sent_to_your_email' | translate}}</h5>-->
+                            <div class="col-sm-12 text-align-center verification-block">
+                                <p>{{'The_Reset_Password_Link_has_been_sent_to_your_email' | translate}}</p>
+                            </div>
 
-          <div *ngIf="! inLogin && isFpEmailVerified">
-            <div class="flex-row">
-              <div class="loginform col-12">
-                <h2 class="text-center">{{'Verification_Link_Sent' | translate}}</h2>
-                <!--<h5  class="d-flex justify-content-center">{{'The_Reset_Password_Link_has_been_sent_to_your_email' | translate}}</h5>-->
-                <div class="col-sm-12 text-align-center verification-block">
-                  <p>{{'The_Reset_Password_Link_has_been_sent_to_your_email' | translate}}</p>
-                </div>
-
-                <div class="flex-row clear-left">
-                  <div class="col-12">
-                    <button type="submit" class="login-submit" [disabled]="disableFpSubmit" (click)="backToLoginReset()">
+                            <div class="flex-row clear-left">
+                                <div class="col-12">
+                                    <button type="submit" class="login-submit" [disabled]="disableFpSubmit" (click)="backToLoginReset()">
                       <!-- <img src="./assets/images/login-lock.png"> -->
                       {{'Back_to_Login' | translate}}
                       <i *ngIf="disableFpSubmit" class='fa fa-circle-o-notch fa-spin'></i>
                     </button>
-                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- register section -->
-          <div *ngIf="inRegister">
-            <!--<div *ngIf="licenseId">-->
-              <!--<livechat-widget [licenseId]="licenseId" [group]="groupRegister"></livechat-widget>-->
-            <!--</div>-->
+                <!-- register section -->
+                <div *ngIf="inRegister">
+                    <!--<div *ngIf="licenseId">-->
+                    <!--<livechat-widget [licenseId]="licenseId" [group]="groupRegister"></livechat-widget>-->
+                    <!--</div>-->
 
-            <form #form="ngForm" action="" novalidate>
-              <div class="loginform col-12">
-                <h2 class="text-center">{{ 'register' | translate }}</h2>
-                <div class="flex-row">
-                  <div class="col-12">
-                    <select (change)="onCountryChange($event)" name="country" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Select_Country') )}"
-                      [(ngModel)]="country">
+                    <form #form="ngForm" action="" novalidate>
+                        <div class="loginform col-12">
+                            <h2 class="text-center">{{ 'register' | translate }}</h2>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <select (change)="onCountryChange($event)" name="country" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Select_Country') )}" [(ngModel)]="country">
                       <option [value]="-1"> {{'country'| translate }}</option>
                       <option *ngFor="let option of countryList" [value]="option.id"> {{ option.name }} </option>
                     </select>
-                  </div>
-                </div>
-                <div *ngIf="!cid" class="flex-row">
-                  <div class="col-12">
-                    <input type="input" onKeyPress="if(this.value.length>=10) return false;" (input)="onPromoChange()" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'invalidPromoCode') || (validationMessage == 'invalidPromoCodeValue')) )}" placeholder="{{'promoCodePlaceholder' | translate}}" name="promoCode" [disabled]="disablePromocode" [ngClass]="{'disabled':disablePromocode == true}" id="promoCode" [(ngModel)]="promoCode"
-                      autofocus="autofocus" tabindex="1" autocomplete="off">
-                  </div>
-                </div>
-                <div class="flex-row">
-                  <div class="col-4" style="display: inline-block">
-                    <input type="input" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Enter_PhoneCode') )}"
-                      name="phoneCode" placeholder="{{'phoneCodePlaceholder' | translate }}" id="phoneCode" [(ngModel)]="phoneCode"
-                      autofocus="autofocus" tabindex="2" required>
-                  </div>
-                  <div class="col-8" style="display: inline-block">
-                    <input type="input" onKeyPress="if(this.value.length==15) return false;" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Phone') || (validationMessage == 'invalidPhoneNumber')))}"
-                      name="phone" placeholder="{{'phonePlaceholder' | translate }}" id="phone" (input)="onPhoneChange()" [(ngModel)]="phone" autofocus="autofocus"
-                      tabindex="3" required>
-                  </div>
-                </div>
-                <div class="flex-row">
-                  <div class="col-12">
-                <input #input type="text" class="" (keyup)="validateName($event.target.value)" placeholder="{{'fullName' | translate}}" name="" autofocus="autofocus"
-                [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Name') || ( this.validationMessage == 'nameValidationErrorMessage') ))}"
-                name="name" id="name" [(ngModel)]="name" tabindex="4">
-              </div>
-            </div>
-                <div class="flex-row">
-                  <div class="col-12">
-                    <input type="email" class="" (keyup)="validateEmail($event.target.value)" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Email') || ( this.validationMessage == 'emailValidationErrorMessage') || ( this.validationMessage == 'emailAlreadyExists')))}"
-                      placeholder="{{'Email-id' | translate}}" name="username" id="username" [(ngModel)]="loginId" autofocus="autofocus"
-                      autocomplete="off" tabindex="4">
-                  </div>
-                </div>
-                <div class="flex-row">
-                  <div class="col-12">
-                    <input type="password" class="" (input)="onPasswordChange()" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Password') || (validationMessage == 'Incorrect_Password')))}"
-                      placeholder="{{ 'Crm_Password' | translate}} " name="regPassword " id="regPassword " [(ngModel)]="regPassword"
-                      autocomplete="new-password" tabindex="5">
-                  </div>
-                </div>
-                <div class="flex-row ">
-                  <div class="col-12">
-                    <div class="validations">
-                      <ul>
-                        <li [ngClass]="upperCaseAlphabetValidation? 'show': '' ">{{'AZ' | translate}}</li>
-                        <li [ngClass]="lengthValidation? 'show': '' ">{{'passwordLengthValidation'|translate}}</li>
-                        <li [ngClass]="lowerCaseAlphabetValidation ? 'show': '' ">{{'az' | translate}}</li>
-                        <li [ngClass]="numberValidation? 'show': '' ">{{'passwordNumberValidation'|translate}}</li>
-                        <li [ngClass]="specialCharacterValidation? 'show': '' ">{{'noSpecialCharacterLabel'|translate}}</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                                </div>
+                            </div>
+                            <div *ngIf="!cid" class="flex-row">
+                                <div class="col-12">
+                                    <input type="input" onKeyPress="if(this.value.length>=10) return false;" (input)="onPromoChange()" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'invalidPromoCode') || (validationMessage == 'invalidPromoCodeValue')) )}" placeholder="{{'promoCodePlaceholder' | translate}}"
+                                        name="promoCode" [disabled]="disablePromocode" [ngClass]="{'disabled':disablePromocode == true}" id="promoCode" [(ngModel)]="promoCode" autofocus="autofocus" tabindex="1" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <div class="col-4" style="display: inline-block">
+                                    <input type="input" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Enter_PhoneCode') )}" name="phoneCode" placeholder="{{'phoneCodePlaceholder' | translate }}" id="phoneCode" [(ngModel)]="phoneCode" autofocus="autofocus"
+                                        tabindex="2" required>
+                                </div>
+                                <div class="col-8" style="display: inline-block">
+                                    <input type="input" onKeyPress="if(this.value.length==15) return false;" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Phone') || (validationMessage == 'invalidPhoneNumber')))}" name="phone" placeholder="{{'phonePlaceholder' | translate }}"
+                                        id="phone" (input)="onPhoneChange()" [(ngModel)]="phone" autofocus="autofocus" tabindex="3" required>
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input #input type="text" class="" (keyup)="validateName($event.target.value)" placeholder="{{'fullName' | translate}}" name="" autofocus="autofocus" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Name') || ( this.validationMessage == 'nameValidationErrorMessage') ))}"
+                                        name="name" id="name" [(ngModel)]="name" tabindex="4">
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input type="email" class="" (keyup)="validateEmail($event.target.value)" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Email') || ( this.validationMessage == 'emailValidationErrorMessage') || ( this.validationMessage == 'emailAlreadyExists')))}"
+                                        placeholder="{{'Email-id' | translate}}" name="username" id="username" [(ngModel)]="loginId" autofocus="autofocus" autocomplete="off" tabindex="4">
+                                </div>
+                            </div>
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <input type="password" class="" (input)="onPasswordChange()" [ngClass]="{'error': ((! isValid || isInputEmpty) && ((validationMessage == 'Please_Enter_Password') || (validationMessage == 'Incorrect_Password')))}" placeholder="{{ 'Crm_Password' | translate}} "
+                                        name="regPassword " id="regPassword " [(ngModel)]="regPassword" autocomplete="new-password" tabindex="5">
+                                </div>
+                            </div>
+                            <div class="flex-row ">
+                                <div class="col-12">
+                                    <div class="validations">
+                                        <ul>
+                                            <li [ngClass]="upperCaseAlphabetValidation? 'show': '' ">{{'AZ' | translate}}</li>
+                                            <li [ngClass]="lengthValidation? 'show': '' ">{{'passwordLengthValidation'|translate}}</li>
+                                            <li [ngClass]="lowerCaseAlphabetValidation ? 'show': '' ">{{'az' | translate}}</li>
+                                            <li [ngClass]="numberValidation? 'show': '' ">{{'passwordNumberValidation'|translate}}</li>
+                                            <li [ngClass]="specialCharacterValidation? 'show': '' ">{{'noSpecialCharacterLabel'|translate}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="flex-row">
+                            <div class="flex-row">
 
-                  <div class="col-12">
-                    <div class="otp-div">
-                      <div class="row">
-                        <div class="col-lg-5 col-sm-5 col-12">
-                          <button (click)="getEmailOTP()" [disabled]="otpButtonDisable" class="btn btn-primary">
+                                <div class="col-12">
+                                    <div class="otp-div">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-sm-5 col-12">
+                                                <button (click)="getEmailOTP()" [disabled]="otpButtonDisable" class="btn btn-primary">
                             {{(!otpButtonLabelChanged ? 'getEmailOtp':'emailOTPSent')| translate}}</button>
-                        </div>
-                        <div class="col-lg-7 col-sm-7 col-12 ">
-                          <div class="otp-input">
-                            <input name="otpValue" type="number" onKeyPress="if(this.value.length==4) return false;" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'get_email_otp') )}" [(ngModel)]="otpValue "
-                              [disabled]="!otpButtonDisable ">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                                            </div>
+                                            <div class="col-lg-7 col-sm-7 col-12 ">
+                                                <div class="otp-input">
+                                                    <input name="otpValue" type="number" onKeyPress="if(this.value.length==4) return false;" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'get_email_otp') )}" [(ngModel)]="otpValue " [disabled]="!otpButtonDisable ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                </div>
+                            </div>
 
 
-                <!-- captcha overlay  -->
-                <div class="register-overlay" *ngIf="showCaptchaDiv">
-                  <div class="captcha-info">
-                    <p>{{'newRegisterCaptchaMsg'|translate}}</p>
+                            <!-- captcha overlay  -->
+                            <div class="register-overlay" *ngIf="showCaptchaDiv">
+                                <div class="captcha-info">
+                                    <p>{{'newRegisterCaptchaMsg'|translate}}</p>
 
-                    <div class="captcha-container">
-                      <div class="row">
-                        <div class="col-lg-4 col-6">
-                          <input name="captcha" [(ngModel)]="captchaCode" placeholder="{{'typeTheText' | translate }}">
-                        </div>
-                        <div class="col-8 ">
-                          <div class="captacha-img">
-                              <img [src]="captchaImageUrl" alt="">
-                              <svg   (click)="refreshCaptcha()" aria-hidden="true" focusable="false" data-prefix="far" data-icon="redo-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-redo-alt fa-w-16 fa-3x"><path fill="currentColor" d="M483.515 28.485L431.35 80.65C386.475 35.767 324.485 8 256.001 8 119.34 8 7.9 119.525 8 256.185 8.1 393.067 119.095 504 256 504c63.926 0 122.202-24.187 166.178-63.908 5.113-4.618 5.353-12.561.482-17.433l-19.738-19.738c-4.498-4.498-11.753-4.785-16.501-.552C351.787 433.246 306.105 452 256 452c-108.321 0-196-87.662-196-196 0-108.321 87.662-196 196-196 54.163 0 103.157 21.923 138.614 57.386l-54.128 54.129c-7.56 7.56-2.206 20.485 8.485 20.485H492c6.627 0 12-5.373 12-12V36.971c0-10.691-12.926-16.045-20.485-8.486z" class=""></path></svg>
-                              <button (click)="captchaSubmit()" class="btn btn-primary">{{'submit' | translate}}</button>
-                          </div>
+                                    <div class="captcha-container">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-6">
+                                                <input name="captcha" [(ngModel)]="captchaCode" placeholder="{{'typeTheText' | translate }}">
+                                            </div>
+                                            <div class="col-8 ">
+                                                <div class="captacha-img">
+                                                    <img [src]="captchaImageUrl" alt="">
+                                                    <svg (click)="refreshCaptcha()" aria-hidden="true" focusable="false" data-prefix="far" data-icon="redo-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-redo-alt fa-w-16 fa-3x"><path fill="currentColor" d="M483.515 28.485L431.35 80.65C386.475 35.767 324.485 8 256.001 8 119.34 8 7.9 119.525 8 256.185 8.1 393.067 119.095 504 256 504c63.926 0 122.202-24.187 166.178-63.908 5.113-4.618 5.353-12.561.482-17.433l-19.738-19.738c-4.498-4.498-11.753-4.785-16.501-.552C351.787 433.246 306.105 452 256 452c-108.321 0-196-87.662-196-196 0-108.321 87.662-196 196-196 54.163 0 103.157 21.923 138.614 57.386l-54.128 54.129c-7.56 7.56-2.206 20.485 8.485 20.485H492c6.627 0 12-5.373 12-12V36.971c0-10.691-12.926-16.045-20.485-8.486z" class=""></path></svg>
+                                                    <button (click)="captchaSubmit()" class="btn btn-primary">{{'submit' | translate}}</button>
+                                                </div>
 
-                          <!-- <span class="glyphicon glyphicon-repeat" role="img" aria-hidden="true"></span> -->
-                        </div>
+                                                <!-- <span class="glyphicon glyphicon-repeat" role="img" aria-hidden="true"></span> -->
+                                            </div>
 
-                      </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div *ngIf="isInputEmpty && isValid" class="col-md-12">
-                        <div class="validation">
-                          {{ validationMessage | translate}}
-                        </div>
-                      </div>
+                                    <div *ngIf="isInputEmpty && isValid" class="col-md-12">
+                                        <div class="validation">
+                                            {{ validationMessage | translate}}
+                                        </div>
+                                    </div>
 
-                    <p>{{'newRegisterCaptchaMsg2'|translate}}
-                      <a href="mailTo:{{csEmail['csEmail']}}">{{csEmail['csEmail']}}</a>
-                    </p>
-                  </div>
-                </div>
-                <!-- captcha overlay ends here -->
+                                    <p>{{'newRegisterCaptchaMsg2'|translate}}
+                                        <a href="mailTo:{{csEmail['csEmail']}}">{{csEmail['csEmail']}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- captcha overlay ends here -->
 
-                <!-- validation div -->
-                <div *ngIf="!isValid" class="col-md-12">
-                  <div class="validation">
-                    {{'Crm_Validation_WrongEmailPwd' | translate}}
-                  </div>
-                </div>
-                <div *ngIf="isInputEmpty && isValid" class="col-md-12">
-                  <div class="validation">
-                    {{ validationMessage | translate}}
-                  </div>
-                </div>
-                <!-- end validation div -->
+                            <!-- validation div -->
+                            <div *ngIf="!isValid" class="col-md-12">
+                                <div class="validation">
+                                    {{'Crm_Validation_WrongEmailPwd' | translate}}
+                                </div>
+                            </div>
+                            <div *ngIf="isInputEmpty && isValid" class="col-md-12">
+                                <div class="validation">
+                                    {{ validationMessage | translate}}
+                                </div>
+                            </div>
+                            <!-- end validation div -->
 
-                <div class="flex-row">
-                  <div class="col-12">
-                    <div class="form-check text-center disclaimer login-checkbox">
-                      <label class="form-check-label">
+                            <div class="flex-row">
+                                <div class="col-12">
+                                    <div class="form-check text-center disclaimer login-checkbox">
+                                        <label class="form-check-label">
                         <input id="disclaimer" type="checkbox" name="toAgree" [ngClass]="{'error': ((! isValid || isInputEmpty) && (validationMessage == 'Please_Accept_Privacy_Policy') )}"
                           value="1" [(ngModel)]="toAgree"> {{'tosAgreeLabel' | translate}}
                         <a *ngIf="!disableSubmit" class='text-primary' target="_blank" [attr.href]="termsOfServiceURL">{{'termsOfServices' | translate}}</a>
                       </label>
-                    </div>
-                  </div>
-                </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div *ngIf="!inLogin && inRegister" class="flex-row clear-left">
-                  <div class="col-12">
-                    <button type="submit" (click)="register()" class="login-submit" [disabled]="disableSubmit" tabindex="10">
+                            <div *ngIf="!inLogin && inRegister" class="flex-row clear-left">
+                                <div class="col-12">
+                                    <button type="submit" (click)="register()" class="login-submit" [disabled]="disableSubmit" tabindex="10">
                       {{'register' | translate}}
                       <i *ngIf="disableSubmit" class='fa fa-circle-o-notch fa-spin'></i>
                     </button>
-                  </div>
-                  <div class="disclaimer col-12 clear-left text-center"> {{'Back_to' | translate}}
-                      <span class="anchor-pointer" style="text-decoration:none; color: cornflowerblue;" *ngIf="!disableSubmit" target="_blank" (click)="backToLogin()">
+                                </div>
+                                <div class="disclaimer col-12 clear-left text-center"> {{'Back_to' | translate}}
+                                    <span class="anchor-pointer" style="text-decoration:none; color: cornflowerblue;" *ngIf="!disableSubmit" target="_blank" (click)="backToLogin()">
                       {{'Crm_Login_Header' | translate}}
                       </span>
-                  </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
-
-              </div>
-            </form>
-          </div>
-          <!-- register section ends  -->
+                <!-- register section ends  -->
 
 
-          <!--End of Forgot Password Reset Link -->
-          <section class="footer " *ngIf="wtStorageService.showLogin ">
-            <div class="container ">
-              <div class="col-sm-12 copyright-block text-align-center ">
-              </div>
+                <!--End of Forgot Password Reset Link -->
+                <section class="footer " *ngIf="wtStorageService.showLogin ">
+                    <div class="container ">
+                        <div class="col-sm-12 copyright-block text-align-center ">
+                        </div>
+                    </div>
+                </section>
             </div>
-          </section>
-        </div>
-        <!--left part end-->
-        <div *ngIf="!isMobileDevice" class="col-md-7 col-lg-8 hidden-sm-down login-right-block carousel slide " data-ride="carousel ">
-          <!-- <ngb-carousel interval="4000 ">
-            <ng-template ngbSlide>
-              <img class="slider-img img-fluid " [src]="imageUrl1 " alt="Random first slide "> -->
-              <!-- <div class="carousel-caption ">
-                <p>{{'Getting_started_with' | translate}}</p>
-                <h3>{{'web_tarder_carousel' | translate}}</h3>
-                <span>V2.1.22</span>
-              </div> -->
-            <!-- </ng-template>
-            <ng-template ngbSlide>
-              <img class="slider-img img-fluid " [src]="imageUrl2 " alt="Random second slide "> -->
-              <!-- <div class="carousel-caption ">
-                <p>{{'Light_up_your_phone_Trade' | translate}}</p>
-                <h3>{{'Anytime_Anywhere_carousel' | translate}}</h3>
-              </div> -->
-            <!-- </ng-template>
-            <ng-template ngbSlide>
-              <img class="slider-img img-fluid " [src]="imageUrl3 " alt="Random third slide "> -->
-              <!-- <div class="carousel-caption ">
-                <p>{{'The_Worlds_Most_Advanced' | translate}}</p>
-                <h3>{{'MT4_FX_Derivatives' | translate}}</h3>
-
-              </div> -->
-            <!-- </ng-template>
-
-          </ngb-carousel> -->
+            <!--left part end-->
+            <!-- <div *ngIf="!isMobileDevice" class="col-md-7 col-lg-8 hidden-sm-down login-right-block carousel slide " data-ride="carousel ">
+         
           <img class="slider-img img-fluid " src="{{'./assets/images/WebtraderLogin-New.jpg?v='+cacheBusting['WebtraderLogin-New.jpg']}}" alt="Random first slide ">
+        </div> -->
         </div>
-      </div>
     </div>
 
     <!-- loginbox -->
     <div class="main ">
-      <div class="loginbox ">
-        <div class="loginlogo text-center "></div>
-      </div>
+        <div class="loginbox ">
+            <div class="loginlogo text-center "></div>
+        </div>
 
     </div>
     <!-- / loginbox -->
     <!-- authentication box -->
 
-  </div>
+</div>
 
 
 
-  <!-- coach mark first time registration login -->
+<!-- coach mark first time registration login -->
 
 <div class="coach-mark" *ngIf="showCoachMark && (isMobileDevice || isTablet)">
 
     <div *ngIf="browserLang != 'zh'">
         <div class="device-coach-mark">
-          <div class="img-relative" >
-            <img src="{{'../../../assets/images/lang/en-3.png?v='+cacheBusting['en-3.png']}}"  alt="" *ngIf="currentBrowser=='chrome'">
-            <img src="{{'../../../assets/images/lang/en-1.png?v='+cacheBusting['en-1.png']}}"  alt="" *ngIf="currentBrowser=='safari'">
-            <img src="{{'../../../assets/images/lang/en-2.png?v='+cacheBusting['en-2.png']}}"  alt="" *ngIf="currentBrowser=='firefox'">
-            <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-          </div>
-        </div>
-         <div class="uc-browser-mapping" *ngIf="currentBrowser=='uc-browser'">
-          <div class="img-relative" >
-             <div class="uc-step-1" *ngIf="ucFlag=='1'">
+            <div class="img-relative">
+                <img src="{{'../../../assets/images/lang/en-3.png?v='+cacheBusting['en-3.png']}}" alt="" *ngIf="currentBrowser=='chrome'">
+                <img src="{{'../../../assets/images/lang/en-1.png?v='+cacheBusting['en-1.png']}}" alt="" *ngIf="currentBrowser=='safari'">
+                <img src="{{'../../../assets/images/lang/en-2.png?v='+cacheBusting['en-2.png']}}" alt="" *ngIf="currentBrowser=='firefox'">
                 <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/en-4.png?v='+cacheBusting['en-4.png']}}" id="uc-1"  alt="">
-              <a class="uc-img-1" (click)="switchUCImage('2')">Next 1</a>
-             </div>
-             <div class="uc-step-2" *ngIf="ucFlag=='2'">
-                <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/en-5.png?v='+cacheBusting['en-5.png']}}" id="uc-2" alt="">
-                <a class="uc-img-2" (click)="switchUCImage('3')">Next 2</a>
-             </div>
-            <div class="uc-step-3" *ngIf="ucFlag=='3'">
-                <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/en-6.png?v='+cacheBusting['en-6.png']}}" id="uc-3" alt="">
-                <a class="uc-img-3" (click)="switchUCImage('4')">Next 3</a>
             </div>
-          </div>
-         </div>
+        </div>
+        <div class="uc-browser-mapping" *ngIf="currentBrowser=='uc-browser'">
+            <div class="img-relative">
+                <div class="uc-step-1" *ngIf="ucFlag=='1'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/en-4.png?v='+cacheBusting['en-4.png']}}" id="uc-1" alt="">
+                    <a class="uc-img-1" (click)="switchUCImage('2')">Next 1</a>
+                </div>
+                <div class="uc-step-2" *ngIf="ucFlag=='2'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/en-5.png?v='+cacheBusting['en-5.png']}}" id="uc-2" alt="">
+                    <a class="uc-img-2" (click)="switchUCImage('3')">Next 2</a>
+                </div>
+                <div class="uc-step-3" *ngIf="ucFlag=='3'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/en-6.png?v='+cacheBusting['en-6.png']}}" id="uc-3" alt="">
+                    <a class="uc-img-3" (click)="switchUCImage('4')">Next 3</a>
+                </div>
+            </div>
+        </div>
         <!-- End -->
     </div>
 
     <div *ngIf="browserLang == 'zh'">
         <div class="device-coach-mark">
-          <div class="img-relative" >
-            <img src="{{'../../../assets/images/lang/zh-3.png?v='+cacheBusting['zh-3.png']}}"  alt="" *ngIf="currentBrowser=='chrome'">
-            <img src="{{'../../../assets/images/lang/zh-1.png?v='+cacheBusting['zh-1.png']}}"  alt="" *ngIf="currentBrowser=='safari'">
-            <img src="{{'../../../assets/images/lang/zh-2.png?v='+cacheBusting['zh-2.png']}}"  alt="" *ngIf="currentBrowser=='firefox'">
-            <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-          </div>
-        </div>
-         <div class="uc-browser-mapping" *ngIf="currentBrowser=='uc-browser'">
-          <div class="img-relative" >
-             <div class="uc-step-1" *ngIf="ucFlag=='1'">
+            <div class="img-relative">
+                <img src="{{'../../../assets/images/lang/zh-3.png?v='+cacheBusting['zh-3.png']}}" alt="" *ngIf="currentBrowser=='chrome'">
+                <img src="{{'../../../assets/images/lang/zh-1.png?v='+cacheBusting['zh-1.png']}}" alt="" *ngIf="currentBrowser=='safari'">
+                <img src="{{'../../../assets/images/lang/zh-2.png?v='+cacheBusting['zh-2.png']}}" alt="" *ngIf="currentBrowser=='firefox'">
                 <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/zh-4.png?v='+cacheBusting['zh-4.png']}}" id="uc-1"  alt="">
-              <a class="uc-img-1" (click)="switchUCImage('2')">Next 1</a>
-             </div>
-             <div class="uc-step-2" *ngIf="ucFlag=='2'">
-                <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/zh-5.png?v='+cacheBusting['zh-5.png']}}" id="uc-2" alt="">
-                <a class="uc-img-2" (click)="switchUCImage('3')">Next 2</a>
-             </div>
-            <div class="uc-step-3" *ngIf="ucFlag=='3'">
-                <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
-                <img src="{{'../../../assets/images/lang/zh-6.png?v='+cacheBusting['zh-6.png']}}" id="uc-3" alt="">
-                <a class="uc-img-3" (click)="switchUCImage('4')">Next 3</a>
             </div>
-          </div>
-         </div>
+        </div>
+        <div class="uc-browser-mapping" *ngIf="currentBrowser=='uc-browser'">
+            <div class="img-relative">
+                <div class="uc-step-1" *ngIf="ucFlag=='1'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/zh-4.png?v='+cacheBusting['zh-4.png']}}" id="uc-1" alt="">
+                    <a class="uc-img-1" (click)="switchUCImage('2')">Next 1</a>
+                </div>
+                <div class="uc-step-2" *ngIf="ucFlag=='2'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/zh-5.png?v='+cacheBusting['zh-5.png']}}" id="uc-2" alt="">
+                    <a class="uc-img-2" (click)="switchUCImage('3')">Next 2</a>
+                </div>
+                <div class="uc-step-3" *ngIf="ucFlag=='3'">
+                    <a class="close-coach-popup" (click)="closeCoachMark()">Close</a>
+                    <img src="{{'../../../assets/images/lang/zh-6.png?v='+cacheBusting['zh-6.png']}}" id="uc-3" alt="">
+                    <a class="uc-img-3" (click)="switchUCImage('4')">Next 3</a>
+                </div>
+            </div>
+        </div>
         <!-- End -->
     </div>
 
-  </div>
-
 </div>
 
+</div>
