@@ -80,21 +80,18 @@ export class LoginService {
     const payload: any = {
       // userName: userName,
       // email: userName,
-      email: 'codefxdotin@gmail.com',
-      password: 'Test123',
-      lang: 'en'
-      // captchaKey: 'DUMMY',
-      // token: '65F17730B6CCA38DFD7AB82D126D6E8E2E929045',
-      // time: '1550920508182'
+      email: userName,
+      password: pswrd,
+      lang:'en'
     };
     var loginHeaders = new Headers({});
     // loginHeaders.append('lang', this.wtstorageService.selected_lang);
-    // loginHeaders.append('Content-type', 'application/json');
+    loginHeaders.append('Content-type', 'application/json');
 
     loginHeaders.append('Domain', this.WTUtil.config.DOMAIN);
     loginHeaders.append('merchantKey', this.WTUtil.config.MERCHANT_KEY);
-    loginHeaders.append('lang', 'en');
-    loginHeaders.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    // loginHeaders.append('lang', 'en');
+    // loginHeaders.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
     // loginHeaders.append('IP', this.wtstorageService.ip);
     
     loginHeaders.append('IP', '1.1.1.1');
