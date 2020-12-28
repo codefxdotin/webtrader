@@ -28,7 +28,7 @@ export const WT_CONFIG = {
   APP_TITLE: 'WebTrader',
 
     MERCHANT_KEY: "12345",
-    DOMAIN: 'crm.broctagon.com',
+    DOMAIN: 'https://portal.swisstrade.io',
     appType : 'web',
 
 

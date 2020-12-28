@@ -30,8 +30,8 @@ export class LoginService {
     var postParams = 'email=' + userName + '&password=' + pswrd;
     var loginHeaders = new Headers({});
     loginHeaders.append('Domain', this.WTUtil.config.DOMAIN);
-    loginHeaders.append('MerchantKey', this.WTUtil.config.MERCHANT_KEY);
-    loginHeaders.append('lang', this.wtstorageService.selected_lang);
+    loginHeaders.append('merchantKey', this.WTUtil.config.MERCHANT_KEY);
+    loginHeaders.append('lang', 'en');
     loginHeaders.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
     loginHeaders.append('IP', this.wtstorageService.ip);
     let options = new RequestOptions({headers: loginHeaders});
@@ -78,15 +78,27 @@ export class LoginService {
     this.wtstorageService.passWord = pswrd;
 
     const payload: any = {
-      userName: userName,
-      password: pswrd
+      // userName: userName,
+      // email: userName,
+      email: 'codefxdotin@gmail.com',
+      password: 'Test123',
+      lang: 'en'
       // captchaKey: 'DUMMY',
       // token: '65F17730B6CCA38DFD7AB82D126D6E8E2E929045',
       // time: '1550920508182'
     };
     var loginHeaders = new Headers({});
-    loginHeaders.append('lang', this.wtstorageService.selected_lang);
-    loginHeaders.append('Content-type', 'application/json');
+    // loginHeaders.append('lang', this.wtstorageService.selected_lang);
+    // loginHeaders.append('Content-type', 'application/json');
+
+    loginHeaders.append('Domain', this.WTUtil.config.DOMAIN);
+    loginHeaders.append('merchantKey', this.WTUtil.config.MERCHANT_KEY);
+    loginHeaders.append('lang', 'en');
+    loginHeaders.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    // loginHeaders.append('IP', this.wtstorageService.ip);
+    
+    loginHeaders.append('IP', '1.1.1.1');
+    
     let options = new RequestOptions({headers: loginHeaders});
     return this.callAuthAPI(this.wtstorageService.crmBaseUrl + this.WTUtil.config.LOGIN_URI, payload, options);
   }
