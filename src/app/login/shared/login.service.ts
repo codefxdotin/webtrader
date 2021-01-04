@@ -43,7 +43,7 @@ export class LoginService {
     var loginHeaders = new Headers({});
     loginHeaders.append('lang', this.wtstorageService.selected_lang);
     loginHeaders.append('Content-type', 'application/json; charset=UTF-8');
-    loginHeaders.append('Authorization', token);
+    loginHeaders.append('Authorization', 'bearer' + token);
     let options = new RequestOptions({headers: loginHeaders});
    // return this.callAuthAPI(this.wtstorageService.crmBaseUrl + this.WTUtil.config.LOGIN_URI_TOKEN, null, options);
     return this.wthttpService.get(`${this.wtstorageService.crmBaseUrl}${this.WTUtil.config.LOGIN_URI_TOKEN}`,
@@ -79,13 +79,13 @@ export class LoginService {
 
     const payload: any = {
       // userName: userName,
-      // email: userName,
       email: userName,
-      password: pswrd,
-      lang:'en'
+      // email: userName,
+      password: pswrd
+      // lang:'en'
     };
     var loginHeaders = new Headers({});
-    // loginHeaders.append('lang', this.wtstorageService.selected_lang);
+    loginHeaders.append('lang', this.wtstorageService.selected_lang);
     loginHeaders.append('Content-type', 'application/json');
 
     loginHeaders.append('Domain', this.WTUtil.config.DOMAIN);

@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const token = this.getQueryStringValue('id');
     if (token) {
-      sessionStorage.setItem('crmToken', token);
+      sessionStorage.setItem('crmToken', 'bearer ' + token);
       sessionStorage.setItem('fromCrm', 'true');
     }
     let lang = this.getQueryStringValue('lang');

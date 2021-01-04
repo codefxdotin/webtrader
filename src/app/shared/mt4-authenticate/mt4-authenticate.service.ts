@@ -41,7 +41,7 @@ export class Mt4LoginService {
     var loginHeaders = new Headers({});
     loginHeaders.append('lang', this.wtstorageService.selected_lang);
     loginHeaders.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    loginHeaders.append('CRMToken', this.wtstorageService.crmToken);
+    loginHeaders.append('CRMToken', 'bearer ' + this.wtstorageService.crmToken);
     let options = new RequestOptions({headers: loginHeaders});
     if (this.wtstorageService.selectedMt4Account && this.wtstorageService.selectedMt4Account.demo) {
       return this.callAuthAPI(`${this.wtUtilService.config.BO_DEMO_BASE_URL}/auth`, postParams, options);
