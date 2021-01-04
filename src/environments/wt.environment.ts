@@ -51,9 +51,10 @@ export const WT_CONFIG = {
   VALIDATE_PROMOCODE_URI: '/v2/validate/promoCode?',
   VERIFY_URI: '/v2/verify',
   // LOGIN_URI_TOKEN: '/v2/wt/validate',
-  LOGIN_URI_TOKEN: '/api/v1/refresh',
+  LOGIN_URI_TOKEN: '/api/v1/login-token',
   // LOGIN_URI_TEMP_TOKEN: '/v2/check-key',
-  LOGIN_URI_TEMP_TOKEN: '/v2/wt/validate',
+  // LOGIN_URI_TEMP_TOKEN: '/v2/wt/validate',
+  LOGIN_URI_TEMP_TOKEN: '/api/v1/login-token',
   LOGIN_COACHMARK: '/v2/wt/coachmarks',
   FOX_BALANCE_URI: '/api/user/Balance/',
 

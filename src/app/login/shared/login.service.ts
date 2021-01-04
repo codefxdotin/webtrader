@@ -227,7 +227,7 @@ export class LoginService {
     loginHeaders.append('lang', this.wtstorageService.selected_lang);
     loginHeaders.append('Content-type', 'application/json; charset=UTF-8');
     const options = new RequestOptions({headers: loginHeaders});
-    return this.wthttpService.get(this.wtstorageService.crmBaseUrl + '/v2/dashboard/all-lang', options);
+    return this.wthttpService.get(this.wtstorageService.crmBaseUrl + '/api/v1/all-lang', options);
     // return this.wthttpService.get('https://bbv2qaapi.c64f.com/v2/dashboard/all-lang', options);
   }
 
